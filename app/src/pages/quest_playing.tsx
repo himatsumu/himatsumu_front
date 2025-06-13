@@ -1,3 +1,6 @@
+//クエスト進行中画面
+//ローディング
+
 import "../styles/quest_playing.scss";
 import images from '../hooks/images';
 
@@ -15,6 +18,7 @@ export default function QuestPlaying() {
                     //ボタンクリック時の処理書く
                 }}
             /> */}
+        
 
         <div className="image-placeholder">キャラクター画像</div>
  
