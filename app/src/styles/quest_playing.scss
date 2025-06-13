@@ -1,6 +1,12 @@
-$main-color: #FFFACF;
+@use '../styles/common' as *;
 
-.body {
-    background-color: $main-color;
+.font-color {
+    color: $main;
+};
+
+.image-placeholder {
+    width: 200px; // 幅
+    height: 200px; // 高さ
+    background-color: #ddd; 
+    border: 2px dashed #aaa; // 点線
 }
-
