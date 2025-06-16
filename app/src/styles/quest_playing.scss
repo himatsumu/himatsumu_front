@@ -1,6 +1,6 @@
 @use '../styles/common' as *;
 
-.font-color {
+.text-quest {
     color: $main;
 };
 
@@ -10,3 +10,44 @@
     background-color: #ddd; 
     border: 2px dashed #aaa; // 点線
 }
+
+//吹き出し
+.speechBubble {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 24px 60px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.speechBubble::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 76%;
+    border-style: solid;
+    border-width: 20px 0 0 20px;
+    border-color: #000000 transparent transparent;
+    translate: -50% 100%;
+    transform: skew(14deg);
+    transform-origin: top;
+}
+
+.speechBubble::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 76%;
+    border-style: solid;
+    border-width: 15.2px 0 0 15.2px;
+    border-color: #ffffff transparent transparent;
+    translate: calc(-50% + 0.4px) 100%;
+    transform: skew(14deg);
+    transform-origin: top; }

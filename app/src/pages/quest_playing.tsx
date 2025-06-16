@@ -2,38 +2,42 @@
 //ローディング
 
 import "../styles/quest_playing.scss";
-import images from '../hooks/images';
+import { useNavigate } from 'react-router-dom';
+// import images from '../hooks/images';
 
 export default function QuestPlaying() {
-    return(
+
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate('/quest_clear');
+    };
+
+    return (
         <>
-        <button className="font-color">戻る</button>
+            <button className="back-button">戻る</button>
 
-        <p className="font-color">クエスト挑戦中！！</p>
-   
-        {/* <img 
-                src={images.butonnBackGround} 
-                alt="クエスト完了ボタン" 
-                onClick={() => {
-                    //ボタンクリック時の処理書く
-                }}
-            /> */}
-        
+            <p className="text-quest">クエスト進行中！！</p>
 
-        <div className="image-placeholder">キャラクター画像</div>
- 
+            <div className="speechBubble">吹き出し</div>
 
-        <input 
+            <div className="image-placeholder">キャラクター画像</div>
+
+            <button onClick={goToHome} className="arrival-button">到着</button>
+
+
+
+            {/* <input 
             type="image" 
             src={images.butonnBackGround} 
             alt="クエスト完了ボタン"
             onClick={() => {
                 //ボタンクリック時の処理書く
             }}
-        />    
-        
-    
-    </>
-)
+        />     */}
+
+
+        </>
+    )
 }
 
