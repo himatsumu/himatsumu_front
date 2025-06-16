@@ -10,3 +10,30 @@
     background-color: #ddd;
     border: 2px dashed #aaa; // 点線
 }
+
+/*ダイアログ*/
+.quest-dialog {
+    width: 322px;
+    height: 300px;
+    border-radius: 24px;    
+    position: relative;
+    overflow: visible;      //はみ出たものを表示
+}
+
+/*ダイアログ内のテキスト*/
+.dialog-intext {
+    background-color: aquamarine;
+    height: 48px;
+    width: 258px;
+    display: flex;              //*中のテキストを水平、垂直で真ん中にするよう
+    align-items: center;        //*垂直中央揃え 
+    justify-content: center;    //*水平方向中央揃え 
+    margin: 0 auto;             //上下：０　左右：autoで均等に
+
+    position: absolute;
+    top: -10px;
+    left: 12%;
+    
+    // text-align: center; //クエスト続ける？を中央に
+    // margin: 0 auto; //中央寄せ
+}
