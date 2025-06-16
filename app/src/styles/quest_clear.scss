@@ -1,0 +1,12 @@
+@use '../styles/common' as *;
+
+.text-quest {
+    color: $main;
+};
+
+.image-placeholder {
+    width: 200px; // 幅
+    height: 200px; // 高さ
+    background-color: #ddd;
+    border: 2px dashed #aaa; // 点線
+}
