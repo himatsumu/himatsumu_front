@@ -3,6 +3,7 @@
 
 import "../styles/quest_playing.scss";
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/Button';
 // import images from '../hooks/images';
 
 export default function QuestPlaying() {
@@ -17,13 +18,14 @@ export default function QuestPlaying() {
         <>
             <button className="back-button">戻る</button>
 
-            <p className="text-quest">クエスト進行中！！</p>
+            <p className="text-quest">クエスト進行中...</p>
 
             <div className="speechBubble">吹き出し</div>
 
             <div className="image-placeholder">キャラクター画像</div>
 
-            <button onClick={goToHome} className="arrival-button">到着</button>
+            <Button variant= "small" onClick={goToHome} >到着</Button>
+
 
 
 
