@@ -1,9 +1,5 @@
 @use '../styles/common' as *;
 
-.text-quest {
-    color: $main;
-};
-
 .image-placeholder {
     width: 200px; // 幅
     height: 200px; // 高さ
@@ -13,6 +9,8 @@
 
 /*ダイアログ*/
 .quest-dialog {
+    background-color: $base;
+    color: #FFF;
     width: 322px;
     height: 300px;
     border-radius: 24px;    
@@ -22,7 +20,7 @@
 
 /*ダイアログ内のテキスト*/
 .dialog-intext {
-    background-color: aquamarine;
+    background-color: $main;
     height: 48px;
     width: 258px;
     display: flex;              //*中のテキストを水平、垂直で真ん中にするよう

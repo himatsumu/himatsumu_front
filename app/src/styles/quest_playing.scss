@@ -1,8 +1,10 @@
-@use '../styles/common' as *;
+@use '../styles/common.scss' as *;
 
 .text-quest {
-    color: $main;
-};
+    color: $sub;
+    font-size: 24px;
+    font-weight: bold;
+}
 
 .image-placeholder {
     width: 200px; // 幅
