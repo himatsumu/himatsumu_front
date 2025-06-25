@@ -1,28 +1,47 @@
 @use '../styles/common.scss' as *;
 
+//ressを使う時はフォントサイズをremに！！
+//戻るボタンとテキストボタンの親
+.top-element {
+    display: flex;
+    gap: 60px;
+    margin-top: 27px;
+    margin-left: 16px;
+}
+
 .text-quest {
     color: $sub;
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
 }
 
+
 .image-placeholder {
-    width: 200px; // 幅
-    height: 200px; // 高さ
-    background-color: #ddd; 
-    border: 2px dashed #aaa; // 点線
+    margin: 0 auto;
+    width: 300px;
+    text-align: center; //imgはインライン要素なので親のdivに指定すれば真ん中に来る
+    margin-top: 20px;
+
+}
+
+.fukidashi {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
 }
 
 //吹き出し
 .speechBubble {
     position: relative;
     display: inline-block;
+    width: 280px;
     margin-bottom: 20px;
-    padding: 24px 60px;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    background-color: #ffffff;
-    text-align: left;
+    padding: 18px 26px;
+    border: 2px solid #d9d9d9;
+    border-radius: 24px;
+    background-color: #fafaf8;
+    text-align: center;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -33,12 +52,12 @@
     content: "";
     position: absolute;
     bottom: 0;
-    left: 76%;
+    left: 19%;
     border-style: solid;
     border-width: 20px 0 0 20px;
-    border-color: #000000 transparent transparent;
+    border-color: #d9d9d9 transparent transparent;
     translate: -50% 100%;
-    transform: skew(14deg);
+    transform: skew(9deg);
     transform-origin: top;
 }
 
@@ -46,10 +65,11 @@
     content: "";
     position: absolute;
     bottom: 0;
-    left: 76%;
+    left: 19%;
     border-style: solid;
     border-width: 15.2px 0 0 15.2px;
-    border-color: #ffffff transparent transparent;
+    border-color: #fafaf8 transparent transparent;
     translate: calc(-50% + 0.4px) 100%;
-    transform: skew(14deg);
-    transform-origin: top; }
+    transform: skew(9deg);
+    transform-origin: top;
+}
