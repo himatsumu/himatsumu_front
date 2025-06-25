@@ -1,4 +1,15 @@
+@use '../styles/common' as *;
+
+//コンポーネントの共通スタイル
+
 //button
 .buttonCommon {
-    border-radius: 20px;
+    padding: 12px;              //縦幅指定
+    border-radius: 32px;
+    background-color: $main;    //これ共通じゃないから後で戻す
+    color: $base;
+    font-size: 20px;
+    font-weight: 800;           //文字の太さ
+    border: none;               //buttonの線消すよー
+
 }
