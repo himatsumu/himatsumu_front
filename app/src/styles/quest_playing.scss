@@ -1,37 +1,53 @@
 @use '../styles/common.scss' as *;
 
+//背景画像
+.backImage {
+    background-image: url('../assets/quest_playing_background.png');
+    height: 100vh;
+}
+
 //ressを使う時はフォントサイズをremに！！
 //戻るボタンとテキストボタンの親
 .top-element {
     display: flex;
-    gap: 60px;
-    margin-top: 27px;
-    margin-left: 16px;
+    gap: 45px;
+   // margin-top: 27px; marginの折りたたみが発生するのでpaddingに変更
+    padding-top: 27px;
+    margin-left: 14px;
 }
 
+//戻るボタン
+.arrow-back {
+    margin-top: -10px;
+    filter: drop-shadow(0 0 16px rgba(68, 68, 68, 0.25))
+}
+
+//上部テキスト
 .text-quest {
-    color: $sub;
+    color: $base;
     font-size: 2.4rem;
     font-weight: bold;
+    filter: drop-shadow(0 0 16px rgba(68, 68, 68, 0.25))
 }
 
-
+//キャラクター
 .image-placeholder {
     margin: 0 auto;
     width: 300px;
     text-align: center; //imgはインライン要素なので親のdivに指定すれば真ん中に来る
-    margin-top: 20px;
+    margin-top: 10px;
 
 }
 
+//吹き出し配置
 .fukidashi {
     width: 300px;
     margin: 0 auto;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
-//吹き出し
+//吹き出し本体
 .speechBubble {
     position: relative;
     display: inline-block;
@@ -72,4 +88,10 @@
     translate: calc(-50% + 0.4px) 100%;
     transform: skew(9deg);
     transform-origin: top;
+}
+
+//クエストクリアorクエスト失敗に遷移するボタン
+.button-arrangement {
+   text-align: center;
+   margin-top: 30px;
 }

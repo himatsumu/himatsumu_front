@@ -10,41 +10,39 @@ export default function QuestPlaying() {
 
     const navigate = useNavigate();
 
+    //遷移：クエストクリア
     const goToHome = () => {
         navigate('/quest_clear');
     };
 
     return (
         <>
-            {/*クエスト生成画面に戻る*/}
-            <div className="top-element">
-                <img onClick={goToHome} src={images.arrowBack} alt="クエスト生成画面に戻る" />
-                <p className="text-quest">クエスト進行中...</p>
+            {/*背景画像*/}
+            <div className="backImage">
+
+                {/*クエスト生成画面に戻る*/}
+                <div className="top-element">
+                    <img className="arrow-back" onClick={goToHome} src={images.arrowBack} alt="クエスト生成画面に戻る" />
+                    <p className="text-quest">クエスト進行中...</p>
+                </div>
+
+                {/*吹き出し*/}
+                <div className="fukidashi">
+                    <div className="speechBubble">カフェに行こう</div>
+                </div>
+
+                {/*キャラクター*/}
+                <div className="image-placeholder">
+                    <img src={images.characterLowHands} alt="キャラクター手を下げている状態" />
+                </div>
+
+                {/*クエストクリアorクエスト失敗に遷移*/}
+                <div className="button-arrangement">
+                    <Button variant="small" onClick={goToHome} >到着!</Button>
+                </div>
+
+
             </div>
-
-            <div className="fukidashi">
-                <div className="speechBubble">カフェに行こう</div>
-            </div>
-
-            {/*キャラクター*/}
-            <div className="image-placeholder">
-                <img src={images.characterLowHands} alt="キャラクター手を下げている状態" />
-            </div>
-
-            {/*クエストクリアorクエスト失敗に遷移*/}
-            <Button variant="small" onClick={goToHome} >到着!</Button>
-
-
-
-
-            {/* <input 
-            type="image" 
-            src={images.butonnBackGround} 
-            alt="クエスト完了ボタン"
-            onClick={() => {
-                //ボタンクリック時の処理書く
-            }}
-        />     */}
 
 
         </>

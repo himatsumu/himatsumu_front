@@ -7,7 +7,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {  //通常の <but
 
 //button共通じゃない
 const buttonStyle = {
-    small: styles["buttonCommon"]
+    small: `${styles.buttonCommon} ${styles.buttonNomal}`
 } as const
 
 //共通のボタンデザイン
