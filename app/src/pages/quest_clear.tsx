@@ -11,23 +11,26 @@ export default function QuestClear() {
     const handleCloseModal = () => dialogRef.current?.close();      //close()      dialogを閉じる
     return (
         <>
-            <div className="backGra">
-                <p className="text-quest">クエストクリア達成</p>
+            <div className="wrapper">
+                <div className="backGra" />
+                <div className="content">
+                    <p className="text-quest">クエストクリア達成</p>
 
-                <div className="image-placeholder">キャラクター画像</div>
-                <button type="button" onClick={handleShowModal}>ダイアログおーぷん〜</button>
+                    <div className="image-placeholder">キャラクター画像</div>
+                    <button type="button" onClick={handleShowModal}>ダイアログおーぷん〜</button>
 
-                ダイアログ
-                <dialog ref={dialogRef} className="quest-dialog">
-                    <div className="dialog-intext">
-                        <h1>クエスト続ける？</h1>
-                    </div>
-                    <button type="button">続ける</button>
-                    <button type="button" onClick={handleCloseModal}>今日は終了</button> 
+                    ダイアログ
+                    <dialog ref={dialogRef} className="quest-dialog">
+                        <div className="dialog-intext">
+                            <h1>クエスト続ける？</h1>
+                        </div>
+                        <button type="button">続ける</button>
+                        <button type="button" onClick={handleCloseModal}>今日は終了</button>
 
-                </dialog>
-
+                    </dialog>
+                </div>
             </div>
+
         </>
     );
 };
