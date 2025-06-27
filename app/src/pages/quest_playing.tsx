@@ -12,7 +12,7 @@ export default function QuestPlaying() {
 
     //遷移：クエストクリア
     const goToHome = () => {
-        navigate('/quest_clear');
+        navigate('/quest_no');
     };
 
     return (
