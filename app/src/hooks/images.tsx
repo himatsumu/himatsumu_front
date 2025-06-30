@@ -8,7 +8,9 @@ const images = {
     characterCry: './src/assets/character_cry.svg',                        //キャラクター（泣いている状態）
 
     questNo: './src/assets/quest_failed.svg',                               //「クエスト失敗」
-    questClear: './src/assets/quest_successful.svg',                        //「クエスト成功」
+    questClear: './src/assets/quest_successful.svg',                        //「クエスト達成」
+
+    coin: './src/assets/coin.svg',                                          //コイン
 }
 
 export default images;

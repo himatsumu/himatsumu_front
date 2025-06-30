@@ -9,7 +9,7 @@ export default function QuestNo() {
             <div className="no-wrapper">
                 <div className="no-backGra" />
                 <div className="no-content">
-                    {/*ここに中身かくよー*/}
+                    {/*ここに中身かく*/}
                     <img src={images.questNo} alt="クエスト失敗" />
                     <p className="quest-no-text">目的地まであと50mだよ</p>
 
