@@ -1,20 +1,20 @@
 //クエスト未達成画面
-import "../styles/quest_no.scss";
+import styles from "../styles/quest_no.module.scss";
 import images from '../hooks/images';
 import { Button } from '../components/Button';
 
 export default function QuestNo() {
     return (
         <>
-            <div className="no-wrapper">
-                <div className="no-backGra" />
-                <div className="no-content">
+            <div className={styles.no_wrapper}>
+                <div className={styles.no_backGra} />
+                <div className={styles.no_content}>
                     {/*ここに中身かく*/}
-                    <img src={images.questNo} alt="クエスト失敗" />
-                    <p className="quest-no-text">目的地まであと50mだよ</p>
+                    <img src={images.questNo} alt="クエスト失敗" className={styles.quest_miss} />
+                    <p className={styles.quest_no_text}>目的地まであと50mだよ</p>
 
                     {/*キャラクター*/}
-                    <div className="image-placeholder">
+                    <div className={styles.image_placeholder}>
                         <img src={images.characterLowHands} alt="キャラクター手を下げている状態" />
                     </div>
 
