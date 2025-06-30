@@ -1,13 +1,13 @@
 @use '../styles/common.scss' as *;
 
-.no-wrapper {
+.no_wrapper {
     position: relative;
     height: 100vh;
     overflow: hidden;
 }
 
 //背景グラデーション
-.no-backGra {
+.no_backGra {
     background: linear-gradient(180deg, #1F456C 0%, #444 100%);
     background-size: cover;
     background-position: center;
@@ -20,14 +20,19 @@
     z-index: -1;
 }
 
-.no-content {
+.no_content {
     position: relative;
     z-index: 1;
 
-    .quest-no-text {
+    .quest_no_text {
         color: $base;
         font-size: 1.6rem;
         font-weight: 600;
+    }
+
+    .quest_miss {
+        width: 300px;
+        height: 44px;
     }
 
 

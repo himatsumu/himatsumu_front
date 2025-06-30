@@ -26,7 +26,7 @@
 
     //ressを使う時はフォントサイズをremに！！
     //戻るボタンとテキストボタンの親
-    .top-element {
+    .top_element {
         display: flex;
         gap: 45px;
         // margin-top: 27px; marginの折りたたみが発生するのでpaddingに変更
@@ -35,13 +35,13 @@
     }
 
     //戻るボタン
-    .arrow-back {
+    .arrow_back {
         margin-top: -10px;
         filter: drop-shadow(0 0 16px rgba(68, 68, 68, 0.25))
     }
 
     //上部テキスト
-    .text-quest {
+    .text_quest {
         color: $base;
         font-size: 2.4rem;
         font-weight: bold;
@@ -49,7 +49,7 @@
     }
 
     //キャラクター
-    .image-placeholder {
+    .image_placeholder {
         margin: 0 auto;
         width: 300px;
         text-align: center; //imgはインライン要素なので親のdivに指定すれば真ん中に来る
@@ -109,7 +109,7 @@
     }
 
     //クエストクリアorクエスト失敗に遷移するボタン
-    .button-arrangement {
+    .button_arrangement {
         text-align: center;
         margin-top: 30px;
     }
