@@ -3,6 +3,7 @@
 const images = {
     butonnBackGround: './src/assets/button_background.svg',                 //ボタンの背景画像（ボツ）
     arrowBack: './src/assets/arrow_back.svg',                               //戻るボタン
+    arrowBackBlack: './src/assets/arrow_back_black.svg',                     //戻るボタン（黒）
 
     characterLowHands: './src/assets/character_low_hands.svg',              //キャラクター（手を下げている状態）
     characterCry: './src/assets/character_cry.svg',                        //キャラクター（泣いている状態）
