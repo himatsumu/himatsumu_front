@@ -1,5 +1,7 @@
+@import url('../node_modules/ress/ress.css');
+
 :root {
-  --bg: #fffacf;
+  --bg: #fafaf8;
 }
 
 html {
@@ -8,6 +10,7 @@ html {
 
 body {
   background: var(--bg);
+  font-family: "Zen Maru Gothic", sans-serif
 }
 
 a {
