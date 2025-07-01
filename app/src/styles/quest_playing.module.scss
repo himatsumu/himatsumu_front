@@ -114,4 +114,122 @@
         margin-top: 30px;
     }
 
+
+    //ローディング
+    .loader {
+        margin-left: 60px;
+        margin-bottom: 60px;    //後で綺麗に整える
+        --w: 10ch;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 30px;
+        line-height: 1.4em;
+        letter-spacing: var(--w);
+        width: var(--w);
+        overflow: hidden;
+        white-space: nowrap;
+        color: $base;
+        text-shadow:
+            calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+            calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base;
+        animation: l20 2s infinite linear;
+        // filter: drop-shadow(0 0 4px rgba(68, 68, 68, 0.25))
+    }
+
+    .loader:before {
+        content: "Loading...";
+        z-index: 1001;
+    }
+
+    @keyframes l20 {
+        9.09% {
+            text-shadow:
+                calc(0*var(--w)) -10px $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        18.18% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) -10px $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        27.27% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) -10px $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        36.36% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) -10px $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        45.45% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) -10px $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        54.54% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) -10px $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        63.63% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) -10px $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        72.72% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) -10px $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) 0 $base
+        }
+
+        81.81% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) -10px $base, calc(-9*var(--w)) 0 $base
+        }
+
+        90.90% {
+            text-shadow:
+                calc(0*var(--w)) 0 $base, calc(-1*var(--w)) 0 $base, calc(-2*var(--w)) 0 $base, calc(-3*var(--w)) 0 $base, calc(-4*var(--w)) 0 $base,
+                calc(-5*var(--w)) 0 $base, calc(-6*var(--w)) 0 $base, calc(-7*var(--w)) 0 $base, calc(-8*var(--w)) 0 $base, calc(-9*var(--w)) -10px $base
+        }
+    }
+
+    .loading_overlay {
+        position: fixed; // 画面全体にかぶせる
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none; // 下のコンテンツに干渉しない
+
+
+        // 背景レイヤー（ぼかす）
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../assets/quest_playing_background.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+    }
+
 }

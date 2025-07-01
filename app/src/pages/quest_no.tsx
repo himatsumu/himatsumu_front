@@ -15,11 +15,12 @@ export default function QuestNo() {
 
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
-                        <img src={images.characterLowHands} alt="キャラクター手を下げている状態" />
+                        <img src={images.characterCry} alt="キャラクター泣いている" />
                     </div>
 
-                    <Button variant="blueButton">やり直す</Button>
-
+                    <div className={styles.button_arrangement}>
+                        <Button variant="blueButton">やり直す</Button>
+                    </div>
                 </div>
             </div>
         </>

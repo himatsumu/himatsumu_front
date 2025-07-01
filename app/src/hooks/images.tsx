@@ -6,7 +6,7 @@ const images = {
 
     characterLowHands: './src/assets/character_low_hands.svg',              //キャラクター（手を下げている状態）
     characterCry: './src/assets/character_cry.svg',                         //キャラクター（泣いている状態）
-    characterUpHands: './src/assets/character_up_hands.svg',                     //キャラクター（手を挙げている状態）
+    characterUpHands: './src/assets/character_up_hands.svg',                //キャラクター（手を挙げている状態）
 
     questNo: './src/assets/quest_failed.svg',                               //「クエスト失敗」
     questClear: './src/assets/quest_successful.svg',                        //「クエスト達成」
@@ -15,3 +15,7 @@ const images = {
 }
 
 export default images;
+
+
+
+
