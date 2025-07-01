@@ -3,8 +3,10 @@
 .container{
     width: 100%;
     height: 100dvh;
-    padding: 0 1.6rem;
+    padding: 0 1.6rem 8dvh;
     color: $text;
+    display: flex;
+    flex-direction: column;
     // background-color: ;
 }
 
@@ -12,7 +14,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 2.6rem 0 7.2rem;
+    padding: 2.6rem 0 8dvh;
     .backBtn{
         width: 3.2rem;
         aspect-ratio: 1/1;
@@ -28,25 +30,32 @@
         flex: 1;
         text-align: center;
         margin-left: -3.2rem;
+        span{
+            margin-left: 0.8rem;
+            font-size: $md;
+        }
     }
 }
 
 .formWrapper{
     width: 100%;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     row-gap: 3.2rem;
+    flex: 1;
     .formItem{
         width: 100%;
         display: flex;
         align-items: center;
+        column-gap: .8rem;
         label{
-            width: 40%;
+            width: 35%;
             font-size: $md;
             font-weight: bolder;
         }
         input{
-            width:60%;
+            width:65%;
             font-size: $md;
             padding: 0.8rem 1.6rem;
             border-radius: .8rem;
@@ -54,19 +63,32 @@
             background-color: $base;
             box-shadow: 0px 0px 4px 0px $drop_shadow inset;
         }
-
+        .genreBtnWrap{
+            width: 65%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            .genreBtn{
+                padding: 0.8rem;
+                text-align: center;
+                font-size: $md;
+                border-radius: 0.8rem;
+                background-color: $base;
+                border: 2px solid $drop_shadow;
+                transition: all 0.2s ease-in-out;
+                &.selected{
+                    font-weight: bolder;
+                    color: $main_btn_shadow;
+                    border-color: $main_btn_shadow;
+                }
+            }
+        }
     }
 }
 
 .nextBtn{
     color: $main;
     font-size: $lg;
-    margin-top: 4.8rem;
-    margin-bottom: 2.4rem;
-    width: 100%;
-    position: fixed;
-    bottom: 2.4rem;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: calc(100% - 3.2rem);
+    display: block;
+    margin: 0 auto;
 }

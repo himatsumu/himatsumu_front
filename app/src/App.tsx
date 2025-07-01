@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import CharaEvolution from "./pages/chara_evolution";
 //import { useState } from 'react'
 import "./App.css";
-import Quest_start from "./pages/quest_start";
+import Quest_create from "./pages/quest_create";
+import Quest_create_check from "./pages/quest_create_check";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/quest_clear" element={<QuestClear />} />
           <Route path="/chara_evolution" element={<CharaEvolution />} />
           <Route path="/quest_no" element={<QuestNo />} /> */}
-          <Route path="/" element={<Quest_start />} />
+          <Route path="/quest-create" element={<Quest_create />} />
+          <Route path="/quest-create-check" element={<Quest_create_check />} />
         </Routes>
       </BrowserRouter>
     </>
