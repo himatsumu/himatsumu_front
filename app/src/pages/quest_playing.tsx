@@ -1,18 +1,22 @@
 //クエスト進行中画面
 //ローディング
-
+import { useState } from "react";
 import styles from "../styles/quest_playing.module.scss";
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import images from '../hooks/images';
 
 export default function QuestPlaying() {
-
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     //遷移：クエストクリア
     const goToHome = () => {
-        navigate('/quest_clear');
+        setIsLoading(true);             //ローディング開始
+
+        setTimeout(() => {
+            navigate('/quest_no');
+        }, 3000);   //ローディング見るためにわざとtimeoutセットしてる
     };
 
     return (
@@ -41,7 +45,14 @@ export default function QuestPlaying() {
 
                     {/*クエストクリアorクエスト失敗に遷移*/}
                     <div className={styles.button_arrangement}>
-                        <Button variant="small" onClick={goToHome} >到着!</Button>
+                        {isLoading ? (
+                            <div className={styles.loading_overlay}>
+                                <div className={styles.loader}></div>
+                            </div>
+                        ) : (
+                            <Button variant="small" onClick={goToHome} >到着!</Button>
+                        )}
+
                     </div>
 
                 </div>

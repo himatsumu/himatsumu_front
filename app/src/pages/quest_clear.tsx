@@ -25,22 +25,25 @@ export default function QuestClear() {
             <div className={styles.wrapper}>
                 <div className={styles.backGra} />
                 <div className={styles.content}>
-                    <img src={images.questClear} alt="クエスト達成" className={styles.quest_success}/>
-
-                    <div className={styles.clear_text}>
-                        {isClear ? (
-                            <>
-                                <div className={styles.text_side}>
-                                    <img src={images.coin} alt="コイン" />
-                                    <p>20ポイントゲット！</p>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <p>（相手の名前）が</p>
-                                <p>クエスト達成するまで待っててね</p>
-                            </>
-                        )}
+                    <div className={styles.top_element}>
+                        <div className={styles.anime}>
+                            <img src={images.questClear} alt="クエスト達成" className={styles.quest_success} />
+                        </div>
+                        <div className={styles.clear_text}>
+                            {isClear ? (
+                                <>
+                                    <div className={styles.text_side}>
+                                        <img src={images.coin} alt="コイン" />
+                                        <p>20ポイントゲット！</p>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <p>（相手の名前）が</p>
+                                    <p>クエスト達成するまで待っててね</p>
+                                </>
+                            )}
+                        </div>
                     </div>
 
                     {/*キャラクター*/}

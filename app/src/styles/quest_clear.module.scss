@@ -30,15 +30,40 @@
 .content {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;     //積み重なるように配置
-    align-items: center;
-    justify-content: center;
+
+    .top_element {
+        display: flex;
+        flex-direction: column; //積み重なるように配置
+        align-items: center;
+        justify-content: center;
+    }
 
     //クエスト達成！の画像
     .quest_success {
-       width: 300px;
-       height: 57px;
+        width: 100%;
+        margin-top: 70px;
+        margin-bottom: 10px;
+    }
+
+    //クエスト達成のアニメーション
+    .anime {
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .anime img {
+        animation: anime1 0.5s ease 0s infinite alternate;
+        transform-origin: center;
+    }
+
+    @keyframes anime1 {
+        from {
+            transform: scale(0.9, 0.9);
+        }
+
+        to {
+            transform: scale(1, 1);
+        }
     }
 
     //最初に表示されるテキスト
@@ -51,6 +76,13 @@
     .text_side {
         font-size: 2.0rem;
         display: flex;
+    }
+
+    //キャラクター
+    .image_placeholder {
+        display: flex;
+        justify-content: center; //横方向に中央寄せ
+        margin-top: 28px;
     }
 }
 
