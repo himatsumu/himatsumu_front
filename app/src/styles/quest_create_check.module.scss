@@ -1,13 +1,8 @@
 @use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
 
 .container{
-    width: 100%;
-    height: 100dvh;
-    padding: 0 1.6rem 8dvh;
-    color: $text;
-    display: flex;
-    flex-direction: column;
-    // background-color: ;
+    @extend .container;
 }
 
 .header{

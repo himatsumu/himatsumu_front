@@ -19,6 +19,11 @@ export default function Quest_create_check() {
         e.preventDefault();
         navigate('/quest-create', { state: formData });
     };
+
+    const handleNext = (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigate('/quest-theme', { state: formData });
+    };
     
     return (
       <div className={styles.container}>
@@ -53,8 +58,8 @@ export default function Quest_create_check() {
           <Button className={styles.backBtn} variant="blueButton" onClick={handleBack}>
             修正する
           </Button>
-          <Button className={styles.nextBtn} variant="small">
-            クエストを生成!
+          <Button className={styles.nextBtn} variant="small" onClick={handleNext}>
+            この内容で進む
           </Button>
         </div>
       </div>
