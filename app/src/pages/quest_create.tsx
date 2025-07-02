@@ -60,18 +60,25 @@ export default function Quest_create() {
   };
 
   const handleBack = () => { 
+    console.log("戻るボタンがクリックされました");
+    console.log("友達ホームに移動します");
     navigate("/friend-home");
-  }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button className={styles.backBtn} onClick={handleBack}>
+        <button 
+          type="button" 
+          className={styles.backBtn} 
+          onClick={handleBack}
+          style={{ cursor: 'pointer', zIndex: 1000 }}
+        >
           <img src={images.arrowBackBlack}  alt="戻る" />
         </button>
         <h1>クエスト生成<span>(1/2)</span></h1>
       </div>
-      <form action="" className={styles.formWrapper} onSubmit={handleSubmit}>
+      <form className={styles.formWrapper} onSubmit={handleSubmit}>
         <div className={styles.formItem}>
           <label>今日の予定</label>
           <input 
