@@ -12,7 +12,10 @@ const images = {
     questNo: './src/assets/quest_failed.svg',                               //「クエスト失敗」
     questClear: './src/assets/quest_successful.svg',                        //「クエスト達成」
 
-    coin: './src/assets/coin.svg',                                          //コイン
+    coin: './src/assets/coin.svg',
+    
+    album: './src/assets/album.svg',                                       //アルバム
+    dressUp: './src/assets/dressUp.svg',
 }
 
 export default images;
