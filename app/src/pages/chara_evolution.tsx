@@ -14,11 +14,11 @@ export default function CharaEvolution() {
 
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
-                        <img src={images.radialCircle} alt="背景の放射状" className={styles.adial_circle}/>
+                        <img src={images.radialCircle} alt="放射状の背景" className={styles.adial_circle}/>
                         <img src={images.characterEgg} alt="キャラクターたまご" className={styles.character_egg} />
                     </div>
                 </div>
-        
+
             </div>
 
 
