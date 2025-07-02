@@ -1,9 +1,64 @@
 import styles from "../styles/friend_home.module.scss";
+import images from "../hooks/images";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/Button";
 
 export default function Friend_home() {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/friend-list');
+  };
+
+  const QuestPage = () => {
+    navigate('/quest-create');
+  };
+
+
   return (
     <div className={styles.container}>
-      <h1>フレンド選択後のホーム</h1>
+      <div className={styles.header}>
+        <button className={styles.backBtn} onClick={handleBack}>
+          <img src={images.arrowBackBlack}  alt="戻る" />
+        </button>
+        <h1>あやか</h1>
+      </div>
+      <div className={styles.countInfo}>
+        <div className={styles.point}>
+          <img src={images.coin} alt="コイン" />
+          <span>100</span>
+        </div>
+        <div className={styles.goCount}>
+          <p>遊びに行った回数</p>
+          <span>06</span>
+        </div>
+        <div className={styles.questCount}>
+          <p>クエスト達成数</p>
+          <span>16</span>
+        </div>
+      </div>
+      <div className={styles.characterWrapper}>
+        <div className={styles.characterHeader}>
+          <p>
+            レベル<span>5</span>
+          </p>
+          <h2>ブラウン</h2>
+        </div>
+        <div className={styles.characterWrap}>
+          <img src={images.characterLowHands} alt="キャラクター" />
+        </div>
+      </div>
+      <div className={styles.btnWrap}>
+        <Button className={styles.subBtn} variant="buttonOther">
+          <img src={images.album} alt="アルバムのアイコン" />
+        </Button>
+        <Button className={styles.questBtn} variant="small" onClick={QuestPage}>
+          クエスト生成
+        </Button>
+        <Button className={styles.subBtn} variant="buttonOther">
+          <img src={images.dressUp} alt="着せ替えのアイコン" />
+        </Button>
+      </div>
     </div>
   );
 }
