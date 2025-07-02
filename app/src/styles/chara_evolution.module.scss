@@ -1,0 +1,57 @@
+@use '../styles/common.scss' as *;
+
+.wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+//背景画像
+.backImage {
+    background-color: rgba(68, 68, 68, 0.75);
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+
+    //テキスト
+    .evolution_text {
+        color: $main;
+        font-size: 3.2rem;
+        font-weight: 500;
+    }
+
+    //キャラクター
+    .image_placeholder {
+        width: 300px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        //マージントップ書くよ
+    }
+
+    .adial_circle {
+        width: 350px;
+        height: 350px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .character_egg {
+        position: absolute;
+        z-index: 2;
+        top: 50px;
+        left: 75px;
+    }
+
+}

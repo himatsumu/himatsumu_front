@@ -7,11 +7,13 @@ const images = {
     characterLowHands: './src/assets/character_low_hands.svg',              //キャラクター（手を下げている状態）
     characterCry: './src/assets/character_cry.svg',                         //キャラクター（泣いている状態）
     characterUpHands: './src/assets/character_up_hands.svg',                //キャラクター（手を挙げている状態）
+    characterEgg: './src/assets/character_egg.svg',                         //キャラクター（たまご）
 
     questNo: './src/assets/quest_failed.svg',                               //「クエスト失敗」
     questClear: './src/assets/quest_successful.svg',                        //「クエスト達成」
 
     coin: './src/assets/coin.svg',                                          //コイン
+    radialCircle: './src/assets/radial_circle.svg',                         //放射状の背景
 }
 
 export default images;
