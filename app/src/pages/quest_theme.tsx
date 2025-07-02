@@ -13,6 +13,11 @@ export default function Quest_theme() {
         navigate('/quest-create-check', { state: formData });
     };
 
+    const handleNextClick = () => {
+        navigate('/quest-location', { state: formData });
+    };
+
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -31,7 +36,7 @@ export default function Quest_theme() {
             <div className={styles.characterWrap}>
                 <img src={images.characterLowHands} alt="手をおろしているキャラクター"  />
             </div>
-            <Button className={styles.nextBtn} variant="small">目的地を選択する</Button>
+            <Button className={styles.nextBtn} variant="small" onClick={handleNextClick}>目的地を選択する</Button>
         </div>
     );
 }

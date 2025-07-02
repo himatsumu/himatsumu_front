@@ -1,0 +1,127 @@
+@use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
+
+.container{
+    @extend .container;
+    padding: 0;
+    background: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2.6rem 1.6rem 3rem;
+    background: linear-gradient(180deg, #FFF 44.52%, rgba(255, 255, 255, 0.00) 89.04%);
+    backdrop-filter: blur(2.5px);    
+    .backBtn{
+        width: 3.2rem;
+        aspect-ratio: 1/1;
+        filter: drop-shadow(0px 0px 4px $drop_shadow);
+    } 
+    h1{
+        font-size: $xl;
+        font-weight: bolder;
+        flex: 1;
+        text-align: center;
+        margin-left: -3.2rem;
+        text-shadow: 0px 0px 4px $drop_shadow;
+        span{
+            margin-left: 0.8rem;
+            font-size: $md;
+        }
+    }
+}
+
+.locationListWrap{
+    width: 100%;
+    height: 55dvh;
+    padding: 1.6rem 1.6rem 1.6rem;
+    background-color: $base;
+    border-radius: 3.2rem 3.2rem 0 0;
+    box-shadow: 0px 0px 32px 0px $drop_shadow;
+    position: relative;
+    transition: height 0.3s ease, transform 0.3s ease;
+    
+    &.minimized {
+        height: 6dvh;
+        overflow: hidden;
+    }
+    
+    .dragHandle {
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        .dragLine {
+            width: 9.6rem;
+            height: 0.4rem;
+            background-color: #ccc;
+            border-radius: 0.2rem;
+        }
+    }
+    
+    h2{
+        text-align: center;
+        font-size: $md;
+        margin-top: .8rem;
+        margin-bottom: .8rem;
+        span{
+            font-size: 4.8rem;
+            color: $text;
+            padding: 0 .8rem;
+            font-weight: bolder;
+        }
+    }
+    ul{ 
+        height: calc(50dvh - 9.6rem);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        row-gap: .8rem;
+        
+        .minimized & {
+            height: calc(3dvh - 3.2rem);
+        }
+        
+        .locationItem{
+            padding: 0.8rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.4rem;
+            border-radius: .8rem;
+            background: #fefefe;
+            box-shadow: 0px 0px 3px 0px $drop_shadow;
+            h3{
+                width: 100%;
+                font-size: $md;
+                font-weight: 700;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .locationText{
+                width: 100%;
+                font-size: $sm;
+                font-weight: 500;
+                .access{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .openTime{
+                    color: $main_btn_shadow;
+                }
+            }
+        }
+    }
+}

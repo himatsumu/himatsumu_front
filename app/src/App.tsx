@@ -7,6 +7,7 @@ import "./App.css";
 import Quest_create from "./pages/quest_create";
 import Quest_create_check from "./pages/quest_create_check";
 import Quest_theme from "./pages/quest_theme";
+import Quest_location from "./pages/quest_location";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/quest_no" element={<QuestNo />} />
           <Route path="/quest-create" element={<Quest_create />} />
           <Route path="/quest-create-check" element={<Quest_create_check />} />
-          <Route path="/quest-theme" element={<Quest_theme/>} />
+          <Route path="/quest-theme" element={<Quest_theme />} />
+          <Route path="/quest-location" element={<Quest_location/>} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>
