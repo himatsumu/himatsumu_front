@@ -1,5 +1,4 @@
 import styles from '../styles/quest_create_check.module.scss';
-import images from '../hooks/images';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 

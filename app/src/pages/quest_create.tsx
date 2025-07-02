@@ -1,19 +1,32 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "../styles/quest_create.module.scss";
 import { Button } from "../components/Button";
 import images from "../hooks/images";
 
+interface FormData {
+  plan: string;
+  endTime: string;
+  startLocation: string;
+  budget: string;
+  genre: string;
+}
+
 export default function Quest_create() {
-  const [selectedGenre, setSelectedGenre] = useState<string>("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // 戻ってきた場合のデータを取得
+  const previousData = location.state as FormData || {};
+  
+  const [selectedGenre, setSelectedGenre] = useState<string>(previousData.genre || "");
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [formData, setFormData] = useState({
-    plan: "",
-    endTime: "",
-    startLocation: "",
-    budget: ""
+    plan: previousData.plan || "",
+    endTime: previousData.endTime || "",
+    startLocation: previousData.startLocation || "",
+    budget: previousData.budget || ""
   });
-  const navigate = useNavigate();
 
   const GenreBtn = (genre: string) => {
     setSelectedGenre(genre);
@@ -90,19 +103,23 @@ export default function Quest_create() {
         </div>
         <div className={styles.formItem}>
           <label>予算</label>
-          <input 
-            type="number" 
-            name="budget" 
-            value={formData.budget}
-            onChange={handleInputChange}
-            min="0" 
-            placeholder="例：3000"
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-          />
+          <div className={styles.budgetInputWrapper}>
+            <span>¥</span>
+            <input 
+              type="number" 
+              name="budget" 
+              value={formData.budget}
+              onChange={handleInputChange}
+              min="0" 
+              placeholder="3000"
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              className={styles.budgetInput}
+            />
+          </div>
         </div>
         <div className={styles.formItem}>
-          <label>ジャンル選択</label>
+          <label className={styles.genreLabel}>ジャンル選択</label>
           <div className={styles.genreBtnWrap}>
             <button 
               type="button" 

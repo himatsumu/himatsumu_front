@@ -37,12 +37,11 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    row-gap: 3.2rem;
+    row-gap: 2.8rem;
     flex: 1;
     .formItem{
         width: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         column-gap: .8rem;
         .label{
@@ -51,11 +50,15 @@
             font-weight: bolder;
         }
         .value{
-            width: 30%;
-            max-width: 50%;
+            width: 65%;
             font-size: $lg;
             font-weight: bolder;
             color: $main_btn_shadow;
+            // 入力フィールドと同じ高さを保つ
+            padding: .8rem 1.6rem;
+            min-height: auto;
+            display: flex;
+            align-items: center;
         }
     }
 }
