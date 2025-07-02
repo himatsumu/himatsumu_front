@@ -8,6 +8,7 @@ import Quest_create from "./pages/quest_create";
 import Quest_create_check from "./pages/quest_create_check";
 import Quest_theme from "./pages/quest_theme";
 import Quest_location from "./pages/quest_location";
+import Friend_home from "./pages/friend_home";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/quest_clear" element={<QuestClear />} />
           <Route path="/chara_evolution" element={<CharaEvolution />} />
           <Route path="/quest_no" element={<QuestNo />} />
+          <Route path="/friend-home" element={<Friend_home />} />
           <Route path="/quest-create" element={<Quest_create />} />
           <Route path="/quest-create-check" element={<Quest_create_check />} />
           <Route path="/quest-theme" element={<Quest_theme />} />

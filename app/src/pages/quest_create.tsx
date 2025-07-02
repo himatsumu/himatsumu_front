@@ -59,10 +59,14 @@ export default function Quest_create() {
     });
   };
 
+  const handleBack = () => { 
+    navigate("/friend-home");
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button className={styles.backBtn}>
+        <button className={styles.backBtn} onClick={handleBack}>
           <img src={images.arrowBackBlack}  alt="戻る" />
         </button>
         <h1>クエスト生成<span>(1/2)</span></h1>
