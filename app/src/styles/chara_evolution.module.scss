@@ -42,7 +42,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto;       //真ん中
+        margin: 0 auto; //真ん中
         margin-top: 51px;
     }
 
@@ -58,11 +58,28 @@
     .character_egg {
         position: absolute;
         z-index: 2;
-        // top: 50%;
-        // left: 50%;
+        top: 50%;
+        left: 50%;
         width: 194px;
         height: 249px;
-        //transform: translate(-50%, -50%);   //卵の自分自身の幅と高さの半分だけずらして、完全に中央に持ってくる
+        transform: translate(-50%, -50%);   //卵の自分自身の幅と高さの半分だけずらして、完全に中央に持ってくる
+    }
+
+    //横揺れアニメーション用
+    .shake {
+        animation: shake-rotate 0.6s ease-in-out 5 forwards;
+    }
+
+    @keyframes shake-rotate {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+
+        25% { transform: translate(-50%, -50%) rotate(3deg); }
+
+        50% { transform: translate(-50%, -50%) rotate(0deg); }
+
+        75% { transform: translate(-50%, -50%) rotate(-3deg); }
+
+        100% { transform: translate(-50%, -50%) rotate(0deg); }
     }
 
 }
