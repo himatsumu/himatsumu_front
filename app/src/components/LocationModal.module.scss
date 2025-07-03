@@ -1,0 +1,68 @@
+@use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
+
+.modalWrapper{
+    @extend .container;
+    padding: 0 2.4rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(68, 68, 68, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+
+.modalContent {
+  background: $base;
+  padding: 2.4rem 1.6rem 1.6rem;
+  border-radius: .8rem;
+  box-shadow: 0px 0px 8px 0px $drop_shadow;
+}
+
+.locationInfo{
+    padding: 0 0 4rem .8rem;
+    color: $text;
+    h3 {
+      font-size: $lg;
+      font-weight: 700;
+      margin-bottom: .8rem;
+    }
+    .address {
+      font-size: $md;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    
+    .openTime {
+      font-size: $md;
+      color: $main;
+      font-weight: 700;
+    }
+}
+
+.btnWrap {
+    width: 100%;
+    display: flex;
+    column-gap: 1.6rem;
+    button {
+        border-radius: 3.2rem;
+        font-size: $lg;
+        font-weight: 600;
+        color: $base;
+    }
+    .selectBtn{
+        width: 45%;
+        padding: 1.2rem 1.2rem;
+        background-color: $sub;
+    }
+    .questBtn{
+        width: 65%;
+        padding: 1.2rem 1.6rem;
+        background-color: $main;
+    }
+}  
+

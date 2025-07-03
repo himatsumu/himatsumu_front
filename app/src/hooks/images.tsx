@@ -3,6 +3,7 @@
 const images = {
     butonnBackGround: './src/assets/button_background.svg',                 //ボタンの背景画像（ボツ）
     arrowBack: './src/assets/arrow_back.svg',                               //戻るボタン
+    arrowBackBlack: './src/assets/arrow_back_black.svg',                     //戻るボタン（黒）
 
     //キャラクター
     characterLowHands: './src/assets/character_low_hands.svg',              //キャラクター（手を下げている状態）
@@ -17,8 +18,12 @@ const images = {
     questNo: './src/assets/quest_failed.svg',                               //「クエスト失敗」
     questClear: './src/assets/quest_successful.svg',                        //「クエスト達成」
 
+
     coin: './src/assets/coin.svg',                                          //コイン
     radialCircle: './src/assets/radial_circle.svg',                         //放射状の背景
+    album: './src/assets/album.svg',                                       //アルバム
+    dressUp: './src/assets/dressUp.svg',
+
 }
 
 export default images;
