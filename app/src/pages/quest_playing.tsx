@@ -15,7 +15,7 @@ export default function QuestPlaying() {
         setIsLoading(true);             //ローディング開始
 
         setTimeout(() => {
-            navigate('/quest_no');
+            navigate('/chara_evolution');
         }, 3000);   //ローディング見るためにわざとtimeoutセットしてる
     };
 
