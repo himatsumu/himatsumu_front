@@ -3,23 +3,34 @@
 //import { useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from "react";
 import styles from "../styles/quest_clear.module.scss";
+import { useNavigate } from 'react-router-dom';
 import images from "../hooks/images";
 
 export default function QuestClear() {
 
-    const [isClear, setIsClear] = useState(false);
+    const [isClear, setIsClear] = useState(false);      //テキスト変化
+    const [progress, setProgress] = useState(0);        //ゲージ
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsClear(true); // 3秒後にtrueにする
         }, 5000);
 
-        return () => clearTimeout(timer); // クリーンアップ
+        //(擬似)バックエンドからゲージの値を取得する
+        // 実際は fetch や axios など使う
+        const feachProgress = async () => {
+            // ここでAPIから値を取得したと仮定（例：70）
+            const response = 70;
+            setProgress(response);
+        }
+
+        feachProgress();
+        return () => clearTimeout(timer); 
     }, []);
-    //参照(ref)を作る
-    // const dialogRef = useRef<HTMLDialogElement>(null);  //この参照はHTMLの<dialog>要素にくっつける(nullなので今はまだ何も参照してないよ)
-    // const handleShowModal = () => dialogRef.current?.showModal();   //showModal()　dialogを画面に表示する
-    // const handleCloseModal = () => dialogRef.current?.close();      //close()      dialogを閉じる
+
+    
+    
     return (
         <>
             <div className={styles.wrapper}>
@@ -49,6 +60,11 @@ export default function QuestClear() {
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
                         <img src={images.characterUpHands} alt="キャラクター手を下げている状態" />
+                    </div>
+
+                    {/*進化ゲージ*/}
+                    <div className={styles.bar_evolution}>
+                        <div style={{ width: `${progress}%` }}>72/100</div>   
                     </div>
 
 
