@@ -21,9 +21,10 @@ const images = {
 
     coin: './src/assets/coin.svg',                                          //コイン
     radialCircle: './src/assets/radial_circle.svg',                         //放射状の背景
-    album: './src/assets/album.svg',                                       //アルバム
+    album: './src/assets/album.svg',                                        //アルバム
     dressUp: './src/assets/dressUp.svg',
 
+    GoogleButton: './src/assets/web_light_rd_SI.svg',                       //google認証のためのボタン
 }
 
 export default images;
