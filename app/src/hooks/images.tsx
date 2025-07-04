@@ -23,7 +23,8 @@ const images = {
     radialCircle: './src/assets/radial_circle.svg',                         //放射状の背景
     album: './src/assets/album.svg',                                        //アルバム
     dressUp: './src/assets/dressUp.svg',
-
+    friendAdd: './src/assets/friendAdd.svg',
+    faceOnly: './src/assets/faceOnly.svg',
     GoogleButton: './src/assets/web_light_rd_SI.svg',                       //google認証のためのボタン
 }
 

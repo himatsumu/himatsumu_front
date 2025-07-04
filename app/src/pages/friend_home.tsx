@@ -7,10 +7,12 @@ export default function Friend_home() {
   const navigate = useNavigate();
 
   const handleBack = () => {
+    console.log("戻るボタン");
     navigate('/friend-list');
   };
 
   const QuestPage = () => {
+    console.log("進むボタン");
     navigate('/quest-create');
   };
 
