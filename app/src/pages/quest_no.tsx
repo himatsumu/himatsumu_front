@@ -2,8 +2,14 @@
 import styles from "../styles/quest_no.module.scss";
 import images from '../hooks/images';
 import { Button } from '../components/Button';
+import { useNavigate } from "react-router-dom";
 
 export default function QuestNo() {
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate('/')
+    }
     return (
         <>
             <div className={styles.no_wrapper}>
@@ -19,7 +25,7 @@ export default function QuestNo() {
                     </div>
 
                     <div className={styles.button_arrangement}>
-                        <Button variant="blueButton">やり直す</Button>
+                        <Button variant="blueButton" onClick={goToHome}>やり直す</Button>
                     </div>
                 </div>
             </div>

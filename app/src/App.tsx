@@ -10,6 +10,7 @@ import Quest_theme from "./pages/quest_theme";
 import Quest_location from "./pages/quest_location";
 import Friend_home from "./pages/friend_home";
 import Friend_list from "./pages/friend_list";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/quest-create-check" element={<Quest_create_check />} />
           <Route path="/quest-theme" element={<Quest_theme />} />
           <Route path="/quest-location" element={<Quest_location/>} />
+          <Route path="/login" element={<Login />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>
