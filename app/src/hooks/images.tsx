@@ -16,6 +16,8 @@ const images = {
     
     album: './src/assets/album.svg',                                       //アルバム
     dressUp: './src/assets/dressUp.svg',
+    friendAdd: './src/assets/friendAdd.svg',
+    faceOnly: './src/assets/faceOnly.svg',
 }
 
 export default images;
