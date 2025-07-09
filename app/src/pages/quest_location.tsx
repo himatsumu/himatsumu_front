@@ -1,13 +1,17 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import styles from "../styles/quest_location.module.scss"
 import images from "../hooks/images";
 import LocationModal from "../components/LocationModal";
+import MapView from "../components/MapView";
+import type { MapLocation } from "../components/MapView";
 import { useNavigate } from 'react-router-dom';
 
 interface LocationData {
     name: string;
     address: string;
     openTime: string;
+    lat: number;
+    lng: number;
 }
 
 export default function Quest_location() {
@@ -23,24 +27,45 @@ export default function Quest_location() {
         {
             name: "タリーズコーヒー 大阪梅田芝田店",
             address: "大阪府大阪市北区芝田1丁目1-35",
-            openTime: "07:30~22:00"
+            openTime: "07:30~22:00",
+            lat: 34.7024,
+            lng: 135.4959
         },
         {
             name: "カフェ バーンホーフ 三番街店",
             address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街 南館 B2F",
-            openTime: "11:00~20:40"
+            openTime: "11:00~20:40",
+            lat: 34.7020,
+            lng: 135.4977
         },
         {
             name: "梅田 阪急三番街 リバーカフェ",
             address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街南館 地下2階",
-            openTime: "11:00~22:30"
+            openTime: "11:00~22:30",
+            lat: 34.7018,
+            lng: 135.4975
         },
         {
             name: "上島珈琲店 阪急三番街店",
             address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街南館 B1F",
-            openTime: "10:00~21:00"
+            openTime: "10:00~21:00",
+            lat: 34.7022,
+            lng: 135.4976
         }
     ];
+
+    // マップ用のデータを作成（無限ループを避けるためuseMemoを使用）
+    const mapLocations: MapLocation[] = useMemo(() => 
+        locations.map(loc => ({
+            name: loc.name,
+            lat: loc.lat,
+            lng: loc.lng
+        })), []);
+
+    const mapCenter = useMemo(() => ({
+        lat: 34.7021, // 梅田駅周辺の中心座標
+        lng: 135.4969
+    }), []);
 
     const handleLocationClick = (location: LocationData) => {
         setSelectedLocation(location);
@@ -96,13 +121,18 @@ export default function Quest_location() {
 
     return (
         <div className={styles.container}>
+            {/* Google Map を背景として配置 */}
+            <div className={styles.mapBackground}>
+                <MapView locations={mapLocations} center={mapCenter} />
+            </div>
+            
             <div className={styles.header}>
                 <button className={styles.backBtn} onClick={handleBack}>
                     <img src={images.arrowBackBlack}  alt="戻る" />
                 </button>
                 <h1>目的地の設定</h1>
             </div>
-            
+                        
             <div 
                 ref={listWrapRef}
                 className={`${styles.locationListWrap} ${isMinimized ? styles.minimized : ''}`}
