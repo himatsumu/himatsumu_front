@@ -70,12 +70,25 @@
     .clear_text {
         font-size: 1.6rem;
         font-weight: bold;
+        margin-top: -10px;
+        text-align: center;
     }
 
     //２番目に表示されるテキスト
     .text_side {
         font-size: 2.0rem;
         display: flex;
+
+        img {
+            margin-top: 6px;
+            margin-right: 2px;
+        }
+    }
+
+    .text_accent {
+        color: $main;
+        font-size: $xxl;
+        margin-right: 4px;
     }
 
     //キャラクター
@@ -90,18 +103,52 @@
         background-color: $base;
         width: 274px;
         height: 24px;
-        margin: 0 auto;
-        margin-top: 40px;
+        position: fixed;
+        top: 75%;
+        left: 50%;
+        transform: translateX(-50%); //横中央
         border-radius: 32px;
         box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 
-        > div {
+        .barFill {
             height: 24px;
             background: $main;
             border-radius: 32px;
-            transition: width 0.4s ease;
+            transition: none; // ← デフォルトはアニメーションなし
             box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
         }
+
+        .animated {
+            transition: width 1s ease; //isAnimatedがtrueになったらゲージにアニメーションが入る
+        }
+    }
+
+    .gauge_text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $text;
+        font-size: $sm;
+        font-weight: bold;
+    }
+
+    //フェードアウト
+    .fadeOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $text;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none; // ユーザー操作を邪魔しない
+        z-index: 999;
+    }
+
+    .fadeOverlay.show {
+        opacity: 1;
     }
 }
 

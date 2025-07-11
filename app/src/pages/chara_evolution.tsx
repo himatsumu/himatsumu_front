@@ -53,13 +53,13 @@ export default function CharaEvolution() {
                     <div className={styles.evolution_text}>
                         {text ? (
                             <>
-                                <p>キャラクター名が</p>
+                                <p>ももが</p>
                                 <p>レベルアップしたよ！</p>
                             </>
                         ) : (
 
                             <>
-                                <p>キャラクター名が</p>
+                                <p>ももが</p>
                                 <p>進化しそう...</p>
                             </>
                         )}

@@ -59,9 +59,10 @@
 
     //吹き出し配置
     .fukidashi {
-        width: 300px;
-        margin: 0 auto;
-        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center; // 横中央揃え
+        // text-align: center;
         margin-top: 40px;
     }
 
@@ -71,15 +72,16 @@
         display: inline-block;
         width: 280px;
         margin-bottom: 20px;
-        padding: 18px 26px;
+        padding: 10px 20px;
         border: 2px solid #d9d9d9;
         border-radius: 24px;
         background-color: #fafaf8;
-        text-align: center;
+        // text-align: center;
         font-size: 16px;
         font-weight: 400;
         line-height: 1.5;
         color: #000000;
+        align-items: flex-start; // 左寄せ
     }
 
     .speechBubble::before {
@@ -108,17 +110,34 @@
         transform-origin: top;
     }
 
+    .left_text {
+        align-items: flex-start; // 左寄せ
+    }
+
+    .right_text {
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    //吹き出し内の太文字テキスト
+    .texxt_accent {
+        font-weight: 800;
+        color: $text;
+        font-size: $xl;
+    }
+
+
     //クエストクリアorクエスト失敗に遷移するボタン
     .button_arrangement {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 65px;
     }
 
 
     //ローディング
     .loader {
         margin-left: 60px;
-        margin-bottom: 60px;    //後で綺麗に整える
+        margin-bottom: 60px; //後で綺麗に整える
         --w: 10ch;
         font-weight: bold;
         font-family: monospace;

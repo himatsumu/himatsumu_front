@@ -15,7 +15,7 @@ export default function QuestPlaying() {
         setIsLoading(true);             //ローディング開始
 
         setTimeout(() => {
-            navigate('/chara_evolution');
+            navigate('/quest_clear');
         }, 3000);   //ローディング見るためにわざとtimeoutセットしてる
     };
 
@@ -35,12 +35,20 @@ export default function QuestPlaying() {
 
                     {/*吹き出し*/}
                     <div className={styles.fukidashi}>
-                        <div className={styles.speechBubble}>カフェに行こう</div>
+                        <div className={styles.speechBubble}>
+                            <div className={styles.left_text}>
+                                <span className={styles.texxt_accent}>きりん寺 油そば <br />梅田店</span>
+                            </div>
+                            <div className={styles.right_text}>
+                                <p className={styles.text_arrangement}>に行こう！</p>
+                            </div>
+                        </div>
                     </div>
 
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
-                        <img src={images.characterLowHands} alt="キャラクター手を下げている状態" />
+                        {/* <img src={images.characterLowHands} alt="キャラクター手を下げている状態" /> */}
+                        <img src={images.characterEgg} alt="たまご" />
                     </div>
 
                     {/*クエストクリアorクエスト失敗に遷移*/}
