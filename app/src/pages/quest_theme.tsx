@@ -27,15 +27,9 @@ export default function Quest_theme() {
             </div>
             <div className={styles.speechBubble}>
                 <p className={styles.speechBubbleText}>次に目的地を選ぼう!</p>
-                {/* <p className={styles.speechBubbleText}>
-                    今回のクエストは...
-                </p>
-                <p className={styles.themeText}>
-                    <span>ラーメン</span>だよ
-                </p> */}
             </div>
             <div className={styles.characterWrap}>
-                <img src={images.characterLowHands} alt="手をおろしているキャラクター"  />
+                <img src={images.characterEgg} alt="キャラクター"  />
             </div>
             <Button className={styles.nextBtn} variant="small" onClick={handleNextClick}>目的地を選択する</Button>
         </div>
