@@ -24,46 +24,63 @@ export default function Quest_location() {
 
     const locations: LocationData[] = [
         {
-            name: "タリーズコーヒー 大阪梅田芝田店",
-            address: "大阪府大阪市北区芝田1丁目1-35",
-            openTime: "07:30~22:00",
-            lat: 34.7024,
-            lng: 135.4959
+            name: "丸亀製麺 梅田店",
+            address: "大阪府大阪市北区梅田1丁目11-4 大阪駅前第4ビル B1F",
+            openTime: "11:00~22:00",
+            lat: 34.7035,
+            lng: 135.4992
         },
         {
-            name: "カフェ バーンホーフ 三番街店",
-            address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街 南館 B2F",
-            openTime: "11:00~20:40",
-            lat: 34.7020,
-            lng: 135.4977
+            name: "やよい軒 梅田店",
+            address: "大阪府大阪市北区梅田1丁目1-3 大阪駅前第1ビル B2F",
+            openTime: "07:00~23:00",
+            lat: 34.7041,
+            lng: 135.4988
         },
         {
-            name: "梅田 阪急三番街 リバーカフェ",
-            address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街南館 地下2階",
-            openTime: "11:00~22:30",
-            lat: 34.7018,
-            lng: 135.4975
+            name: "松屋 梅田店",
+            address: "大阪府大阪市北区梅田1丁目2-2 大阪駅前第2ビル 1F",
+            openTime: "24時間営業",
+            lat: 34.7044,
+            lng: 135.4985
         },
         {
-            name: "上島珈琲店 阪急三番街店",
-            address: "大阪府大阪市北区芝田１丁目１−３ 阪急三番街南館 B1F",
-            openTime: "10:00~21:00",
-            lat: 34.7022,
-            lng: 135.4976
+            name: "大阪王将 梅田店",
+            address: "大阪府大阪市北区梅田1丁目3-1 大阪駅前第3ビル B1F",
+            openTime: "11:00~23:00",
+            lat: 34.7039,
+            lng: 135.4995
         }
     ];
 
     // マップ用のデータを作成（無限ループを避けるためuseMemoを使用）
-    const mapLocations: MapLocation[] = useMemo(() => 
-        locations.map(loc => ({
-            name: loc.name,
-            lat: loc.lat,
-            lng: loc.lng
-        })), []);
+    const mapLocations: MapLocation[] = useMemo(() => {
+        // TOHOシネマズ梅田本館を追加（特別なマーカーとして設定）
+        const tohoLocation: MapLocation = {
+            name: "TOHOシネマズ 梅田 本館",
+            lat: 34.70278,
+            lng: 135.49744,
+            isSpecial: true, // 青いマーカーにするためのフラグ
+            address: "大阪府大阪市北区梅田1丁目12-6 E-MA 6F-7F",
+            openTime: "9:00~23:00"
+        };
+        
+        // レストランの位置情報とTOHOシネマズを合わせて返す
+        return [
+            tohoLocation,
+            ...locations.map(loc => ({
+                name: loc.name,
+                lat: loc.lat,
+                lng: loc.lng,
+                address: loc.address,
+                openTime: loc.openTime
+            }))
+        ];
+    }, []);
 
     const mapCenter = useMemo(() => ({
-        lat: 34.7068639, // 中崎町駅の座標
-        lng: 135.5052444
+        lat: 34.70278, 
+        lng: 135.49744
     }), []);
 
     const handleLocationClick = (location: LocationData) => {
@@ -143,7 +160,7 @@ export default function Quest_location() {
                     <div className={styles.dragLine}></div>
                 </div>
                 <h2>
-                    開始場所近くのカフェ<span>{locations.length}</span>件
+                    開始場所近くのご飯系スポット<span>{locations.length}</span>件
                 </h2>
                 <ul>
                     {locations.map((location, index) => (
