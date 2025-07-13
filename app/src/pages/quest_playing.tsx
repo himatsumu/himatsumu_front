@@ -2,13 +2,25 @@
 //ローディング
 import { useState } from "react";
 import styles from "../styles/quest_playing.module.scss";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../components/Button';
 import images from '../hooks/images';
+
+interface LocationData {
+    name: string;
+    address: string;
+    openTime: string;
+    lat: number;
+    lng: number;
+}
 
 export default function QuestPlaying() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    
+    // quest_locationから渡された店舗情報を取得
+    const selectedStore = location.state?.selectedStore as LocationData | undefined;
 
     //遷移：クエストクリア
     const goToHome = () => {
@@ -37,7 +49,9 @@ export default function QuestPlaying() {
                     <div className={styles.fukidashi}>
                         <div className={styles.speechBubble}>
                             <div className={styles.left_text}>
-                                <span className={styles.texxt_accent}>きりん寺 油そば <br />梅田店</span>
+                                <span className={styles.texxt_accent}>
+                                    {selectedStore ? selectedStore.name : 'きりん寺 油そば 梅田店'}
+                                </span>
                             </div>
                             <div className={styles.right_text}>
                                 <p className={styles.text_arrangement}>に行こう！</p>

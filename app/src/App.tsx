@@ -19,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<QuestPlaying />} />
+          <Route path="/quest_playing" element={<QuestPlaying />} />
           <Route path="/quest_clear" element={<QuestClear />} />
           <Route path="/chara_evolution" element={<CharaEvolution />} />
           <Route path="/quest_no" element={<QuestNo />} />

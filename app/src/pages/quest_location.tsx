@@ -3,7 +3,8 @@ import styles from "../styles/quest_location.module.scss"
 import LocationModal from "../components/LocationModal";
 import MapView from "../components/MapView";
 import type { MapLocation } from "../components/MapView";
-// import { useNavigate } from 'react-router-dom';
+import images from "../hooks/images";
+import { useNavigate } from 'react-router-dom';
 
 interface LocationData {
     name: string;
@@ -20,7 +21,7 @@ export default function Quest_location() {
     const [isDragging, setIsDragging] = useState(false);
     const [startY, setStartY] = useState(0);
     const listWrapRef = useRef<HTMLDivElement>(null);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const locations: LocationData[] = [
         {
@@ -99,14 +100,20 @@ export default function Quest_location() {
     };
 
     const handleStartQuest = () => {
-        // クエスト開始のロジック
-        console.log('クエスト開始:', selectedLocation);
+        // クエスト開始のロジック - 選択された店舗情報を含めて遷移
+        if (selectedLocation) {
+            navigate('/quest_playing', { 
+                state: { 
+                    selectedStore: selectedLocation 
+                } 
+            });
+        }
         handleCloseModal();
     };
 
-    // const handleBack = () => {
-    //     navigate('/quest-theme');
-    // };
+    const handleBack = () => {
+        navigate('/quest-theme');
+    };
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
@@ -143,10 +150,10 @@ export default function Quest_location() {
             </div>
             
             <div className={styles.header}>
-                {/* <button className={styles.backBtn} onClick={handleBack}>
+                <button className={styles.backBtn} onClick={handleBack}>
                     <img src={images.arrowBackBlack}  alt="戻る" />
                 </button>
-                <h1>目的地の設定</h1> */}
+                <h1>目的地の設定</h1>
             </div>
                         
             <div 

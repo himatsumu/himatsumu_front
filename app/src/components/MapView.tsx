@@ -31,7 +31,17 @@ const MapView: React.FC<MapViewProps> = ({ locations, center }) => {
   if (!isLoaded) return <div>Loading Map...</div>;
 
   return (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
+    <GoogleMap 
+      mapContainerStyle={containerStyle} 
+      center={center} 
+      zoom={17}
+      options={{
+        mapTypeControl: false, // マップタイプコントロール（Map/Satelliteなど）を非表示
+        streetViewControl: false, // ストリートビューコントロールを非表示
+        fullscreenControl: false, // フルスクリーンコントロールを非表示
+        zoomControl: true, // ズームコントロールは表示（必要に応じてfalseに変更可能）
+      }}
+    >
       {locations.map((loc, index) => (
         <React.Fragment key={index}>
           <Marker
