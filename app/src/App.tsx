@@ -11,6 +11,7 @@ import Quest_location from "./pages/quest_location";
 import Friend_home from "./pages/friend_home";
 import Friend_list from "./pages/friend_list";
 import Login from "./pages/login";
+import Friend_home_finish from "./pages/friend_home_finish";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/quest-theme" element={<Quest_theme />} />
           <Route path="/quest-location" element={<Quest_location/>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/friend-home-finish" element={<Friend_home_finish />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>

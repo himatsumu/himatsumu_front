@@ -37,7 +37,7 @@ export default function CharaEvolution() {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
-        navigate('/friend-home');
+        navigate('/friend-home-finish');
       };
 
     const goToQuest = () => {

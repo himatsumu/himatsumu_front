@@ -75,7 +75,7 @@ export default function QuestClear() {
                                 </>
                             ) : (
                                 <>
-                                    <p>あやかが</p>
+                                    <p>るいが</p>
                                     <p>クエスト達成するまで待っててね</p>
                                 </>
                             )}
