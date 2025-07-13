@@ -86,7 +86,7 @@ export default function QuestClear() {
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
                         {/* <img src={images.characterUpHands} alt="キャラクター手を下げている状態" /> */}
-                        <img src={images.characterEgg} className={styles.korokoro} alt="たまご" />
+                        <img src={images.characterEgg} className={styles.poyooon} alt="たまご" />
                     </div>
 
                     {/*進化ゲージ*/}
