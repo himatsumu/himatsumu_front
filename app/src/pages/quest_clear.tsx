@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import styles from "../styles/quest_clear.module.scss";
 import { useNavigate } from 'react-router-dom';
 import images from "../hooks/images";
+import { style } from "framer-motion/m";
 
 export default function QuestClear() {
 
@@ -85,7 +86,7 @@ export default function QuestClear() {
                     {/*キャラクター*/}
                     <div className={styles.image_placeholder}>
                         {/* <img src={images.characterUpHands} alt="キャラクター手を下げている状態" /> */}
-                        <img src={images.characterEgg} alt="たまご" />
+                        <img src={images.characterEgg} className={styles.korokoro} alt="たまご" />
                     </div>
 
                     {/*進化ゲージ*/}
