@@ -20,7 +20,7 @@ const containerStyle = {
 
 const MapView: React.FC<MapViewProps> = ({ locations, center }) => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY || "",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_KEY,
   });
 
   if (!isLoaded) return <div>Loading Map...</div>;

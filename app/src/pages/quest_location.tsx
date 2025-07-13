@@ -1,10 +1,9 @@
 import { useState, useRef, useMemo } from 'react';
 import styles from "../styles/quest_location.module.scss"
-import images from "../hooks/images";
 import LocationModal from "../components/LocationModal";
 import MapView from "../components/MapView";
 import type { MapLocation } from "../components/MapView";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 interface LocationData {
     name: string;
@@ -21,7 +20,7 @@ export default function Quest_location() {
     const [isDragging, setIsDragging] = useState(false);
     const [startY, setStartY] = useState(0);
     const listWrapRef = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const locations: LocationData[] = [
         {
@@ -63,8 +62,8 @@ export default function Quest_location() {
         })), []);
 
     const mapCenter = useMemo(() => ({
-        lat: 34.7021, // 梅田駅周辺の中心座標
-        lng: 135.4969
+        lat: 34.7068639, // 中崎町駅の座標
+        lng: 135.5052444
     }), []);
 
     const handleLocationClick = (location: LocationData) => {
@@ -88,9 +87,9 @@ export default function Quest_location() {
         handleCloseModal();
     };
 
-    const handleBack = () => {
-        navigate('/quest-theme');
-    };
+    // const handleBack = () => {
+    //     navigate('/quest-theme');
+    // };
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
@@ -127,10 +126,10 @@ export default function Quest_location() {
             </div>
             
             <div className={styles.header}>
-                <button className={styles.backBtn} onClick={handleBack}>
+                {/* <button className={styles.backBtn} onClick={handleBack}>
                     <img src={images.arrowBackBlack}  alt="戻る" />
                 </button>
-                <h1>目的地の設定</h1>
+                <h1>目的地の設定</h1> */}
             </div>
                         
             <div 
