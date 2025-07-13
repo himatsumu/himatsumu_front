@@ -4,7 +4,6 @@ import images from '../hooks/images';
 import { Button } from '../components/Button';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { div } from "framer-motion/client";
 // import { style } from "framer-motion/client";
 
 export default function QuestNo() {

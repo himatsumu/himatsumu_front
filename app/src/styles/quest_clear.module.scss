@@ -95,7 +95,8 @@
     .image_placeholder {
         display: flex;
         justify-content: center; //横方向に中央寄せ
-        margin-top: 28px;
+        margin-top: 65px;
+
     }
 
     //進化ゲージ
@@ -104,7 +105,7 @@
         width: 274px;
         height: 24px;
         position: fixed;
-        top: 75%;
+        top: 80%;
         left: 50%;
         transform: translateX(-50%); //横中央
         border-radius: 32px;
@@ -149,6 +150,44 @@
 
     .fadeOverlay.show {
         opacity: 1;
+    }
+
+    .poyooon {
+        animation: poyooon 1s linear 0s 8;
+    }
+
+    @keyframes poyooon {
+        0% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
+
+        10% {
+            transform: scale(1.1, 0.9) translate(0%, 5%);
+        }
+
+        40% {
+            transform: scale(1.2, 0.8) translate(0%, 15%);
+        }
+
+        50% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
+
+        60% {
+            transform: scale(0.9, 1.1) translate(0%, -15%);
+        }
+
+        75% {
+            transform: scale(0.9, 1.1) translate(0%, -13%);
+        }
+
+        85% {
+            transform: scale(1.2, 0.8) translate(0%, 15%);
+        }
+
+        100% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
     }
 }
 
