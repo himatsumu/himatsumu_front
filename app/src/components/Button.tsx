@@ -10,7 +10,8 @@ const buttonStyle = {
     common: styles.buttonCommon,
     small: `${styles.buttonCommon} ${styles.buttonNomal}`,
     blueButton: `${styles.buttonCommon} ${styles.buttonNoQuest}`,
-    buttonOther: `${styles.buttonCommon} ${styles.buttonOther}`
+    buttonOther: `${styles.buttonCommon} ${styles.buttonOther}`,
+    buttonLogin: `${styles.buttonLogin} ${styles.buttonCommon}`
 } as const
 
 //共通のボタンデザイン
