@@ -24,9 +24,9 @@ export default function Login() {
 
     return (
         <>
-        <div>
-            <img src={images.faceOnly} alt="ロゴ入れる" />
-        </div>
+            <div className={styles.image_placeholder}>
+                <img src={images.faceOnly} alt="ロゴ入れる" />
+            </div>
 
             <div className={styles.form_container}>
                 <input className={styles.email_form} type="email" name="email" id="email" placeholder="メールアドレス" required />
@@ -34,11 +34,13 @@ export default function Login() {
             </div>
 
 
-            <Button variant="small">ログイン</Button>
-            <p>または</p>
-            <button onClick={handleGoogleLogin} className={styles.google_button}>
-                <img src={images.GoogleButton} alt="Google認証" />
-            </button>
+            <div className={styles.button_container}>
+                <Button variant="buttonLogin" className={styles.login_button}>ログイン</Button>
+                <p className={styles.form_divider}>または</p>
+                <button onClick={handleGoogleLogin} className={styles.google_button}>
+                    <img src={images.GoogleButton} alt="Google認証" />
+                </button>
+            </div>
 
 
 
