@@ -1,0 +1,17 @@
+@use "../styles/common.scss" as *;
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+
+    .email_form ,
+    .pass_form {
+        border: 2px solid $drop_shadow;
+    }
+}
+
+.google_button img {
+    margin-top: 300px;
+    height: 56px;
+    width: 245px;
+}
