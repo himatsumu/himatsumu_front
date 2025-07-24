@@ -42,6 +42,58 @@
       color: $main;
       font-weight: 700;
     }
+    
+    .types {
+        margin-top: 1.6rem;
+        
+        h4 {
+            font-size: $md;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .typeList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            
+            .typeTag {
+                background-color: $sub;
+                color: $base;
+                padding: 0.2rem 0.6rem;
+                border-radius: 1.2rem;
+                font-size: $sm;
+                font-weight: 500;
+            }
+        }
+    }
+    
+    .reviews {
+        margin-top: 1.6rem;
+        
+        h4 {
+            font-size: $md;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .reviewList {
+            max-height: 12rem;
+            overflow-y: auto;
+            
+            .reviewItem {
+                background-color: #f8f8f8;
+                padding: 0.8rem;
+                border-radius: 0.4rem;
+                margin-bottom: 0.8rem;
+                
+                p {
+                    font-size: $sm;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
 }
 
 .btnWrap {

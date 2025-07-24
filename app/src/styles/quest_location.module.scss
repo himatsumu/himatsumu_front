@@ -140,4 +140,21 @@
             }
         }
     }
+    
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(50dvh - 9.6rem);
+        
+        .minimized & {
+            height: calc(3dvh - 3.2rem);
+        }
+        
+        p {
+            font-size: $md;
+            color: $main_btn_shadow;
+            text-align: center;
+        }
+    }
 }
