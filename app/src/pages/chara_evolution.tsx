@@ -21,7 +21,7 @@ export default function CharaEvolution() {
         if (eggIndex < eggs.length - 1) {               //egg4じゃない時だけ処理実行
             const timer = setTimeout(() => {
                 setEggIndex((prev) => prev + 1);        //setEggIndex(eggIndex + 1);ではない理由→非同期ですぐ対応されるとは限らないから　prevは前の状態、prev + 1前の状態に1を足す
-            }, 800); // 0.8秒たったらeggIndexに１増やす
+            }, 1500); // 0.8秒たったらeggIndexに１増やす
             return () => clearTimeout(timer);           //前回のsettimeoutをキャンセルして二重実行を防ぐ
         }
     }, [eggIndex]);     //eggIndexが変わった時だけuseEffect動かすよ
@@ -29,15 +29,15 @@ export default function CharaEvolution() {
     
     useEffect(() => {
         // 3秒後にアニメーションを開始
-        const timer = setTimeout(() => setBgAnimate(true), 3000);   //背景を3秒後にかえる
-        setTimeout(() => setText(true), 3500);                      //テキストを3.5秒後に変える
-        setTimeout(() => { setIsModalOpen(true); }, 7000);
+        const timer = setTimeout(() => setBgAnimate(true), 5500);   //背景を3秒後にかえる
+        setTimeout(() => setText(true), 5800);                      //テキストを3.5秒後に変える
+        setTimeout(() => { setIsModalOpen(true); }, 10000);
         return () => clearTimeout(timer);
     }, []);
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
-        navigate('/friend-home');
+        navigate('/friend-home-finish');
       };
 
     const goToQuest = () => {
@@ -53,13 +53,13 @@ export default function CharaEvolution() {
                     <div className={styles.evolution_text}>
                         {text ? (
                             <>
-                                <p>キャラクター名が</p>
+                                <p>ももが</p>
                                 <p>レベルアップしたよ！</p>
                             </>
                         ) : (
 
                             <>
-                                <p>キャラクター名が</p>
+                                <p>ももが</p>
                                 <p>進化しそう...</p>
                             </>
                         )}

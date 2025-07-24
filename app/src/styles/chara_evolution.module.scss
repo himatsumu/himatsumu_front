@@ -133,7 +133,7 @@
 
     //横揺れアニメーション用
     .shake {
-        animation: shake-rotate 0.6s ease-in-out 5 forwards;
+        animation: shake-rotate 0.6s ease-in-out 8 forwards;
     }
 
     @keyframes shake-rotate {
