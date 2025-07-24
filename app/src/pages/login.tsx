@@ -2,8 +2,39 @@
 import images from "../hooks/images";
 import styles from "../styles/login.module.scss";
 import { Button } from '../components/Button';
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Login() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate(); 
+    const location = useLocation();
+
+
+    useEffect(() => {
+        const fetchToken = async () => {
+            try {
+                const res = await fetch("http://localhost:18080/auth/user/", {
+                    credentials: "include", // cookie送るために必要
+                });
+                const data = await res.json();
+
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    setIsLoggedIn(true);
+                    console.log("トークン取得成功！");
+                    navigate("/friend-list");
+                } else {
+                    console.error("トークンが含まれてないよ");
+                }
+            } catch (err) {
+                console.error("トークン取得失敗", err);
+            }
+        };
+        fetchToken();
+    }, [location]);
+
+
     const handleGoogleLogin = () => {
         window.location.href = "http://localhost:18080/auth/google";
 
@@ -19,6 +50,7 @@ export default function Login() {
         //     } catch (error) {
         //         console.error("認証取得エラー:", error);
         //     }
+
     };
 
 
