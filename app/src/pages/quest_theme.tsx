@@ -35,7 +35,7 @@ export default function Quest_theme() {
                 </p> */}
             </div>
             <div className={styles.characterWrap}>
-                <img src={images.characterLowHands} alt="手をおろしているキャラクター"  />
+                <img src={images.characterEgg} alt="手をおろしているキャラクター"  />
             </div>
             <Button className={styles.nextBtn} variant="small" onClick={handleNextClick}>目的地を選択する</Button>
         </div>
