@@ -4,18 +4,10 @@ import images from "../hooks/images";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-interface FormData {
-    plan: string;
-    endTime: string;
-    startLocation: string;
-    budget: number;
-    genre: string;
-}
-
 export default function Quest_theme() {
     const navigate = useNavigate();
     const location = useLocation();
-    const formData = location.state as FormData || {};
+    const formData = location.state || {};
     const [isLoading, setIsLoading] = useState(false);
 
     const handleBack = (e: React.MouseEvent) => {
@@ -27,41 +19,60 @@ export default function Quest_theme() {
         setIsLoading(true);
         
         try {
-            const response = await fetch('http://go-server:18080/auth/quest/quests', {
+            // localStorageからトークンを取得
+            const token = localStorage.getItem('token');
+            console.log('localStorage token:', token);
+            
+            if (!token) {
+                console.error('トークンが見つかりません');
+                throw new Error('認証トークンが見つかりません');
+            }
+            
+            // APIリクエストの送信
+            const requestBody = {
+                "schedule": "映画",
+                "end_time": "21:00",
+                "start_prace": "梅田",
+                "budget": 5000,
+                "genre": "ご飯系"
+            };
+
+            const response = await fetch('http://localhost:18888/auth/quest/quests', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({
-                    schedule: formData.plan || "映画",
-                    end_time: formData.endTime || "21:00",
-                    start_prace: formData.startLocation || "梅田",
-                    budget: formData.budget || 5000,
-                    genre: formData.genre || "ご飯系"
-                })
+                body: JSON.stringify(requestBody)
             });
 
             if (!response.ok) {
                 throw new Error('API request failed');
             }
 
-            const apiResponse = await response.json();
+            const responseData = await response.json();
+            console.log('APIレスポンス', responseData);
             
-            // API レスポンスを quest_location に渡す
+            // レスポンスの店舗データを安全に取得
+            const stores = responseData?.Data?.data?.stores || [];
+            console.log('店舗データ', stores);
+            
+            // レスポンスの店舗データを quest_location に渡す
             navigate('/quest-location', { 
                 state: { 
                     ...formData,
-                    questData: apiResponse 
+                    apiStores: stores 
                 } 
             });
         } catch (error) {
-            console.error('API fetch error:', error);
-            // エラー時はformDataのみで遷移
+            console.error('API request error:', error);
+            // エラーが発生した場合も遷移（既存のダミーデータを使用）
             navigate('/quest-location', { state: formData });
         } finally {
             setIsLoading(false);
         }
     };
+
 
     return (
         <div className={styles.container}>
@@ -74,15 +85,10 @@ export default function Quest_theme() {
                 <p className={styles.speechBubbleText}>次に目的地を選ぼう!</p>
             </div>
             <div className={styles.characterWrap}>
-                <img src={images.characterEgg} alt="手をおろしているキャラクター" />
+                <img src={images.characterEgg} alt="手をおろしているキャラクター"  />
             </div>
-            <Button 
-                className={styles.nextBtn} 
-                variant="small" 
-                onClick={handleNextClick}
-                disabled={isLoading}
-            >
-                {isLoading ? 'データ取得中...' : '目的地を選択する'}
+            <Button className={styles.nextBtn} variant="small" onClick={handleNextClick} disabled={isLoading}>
+                {isLoading ? '検索中...' : '目的地を選択する'}
             </Button>
         </div>
     );

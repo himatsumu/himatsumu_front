@@ -40,7 +40,7 @@ export default function LocationModal({
                 <p className={styles.address}>{location.address}</p>
                 <p className={styles.openTime}>{location.openTime}</p>
                 
-                {location.types && location.types.length > 0 && (
+                {/* {location.types && location.types.length > 0 && (
                     <div className={styles.types}>
                         <h4>カテゴリ:</h4>
                         <div className={styles.typeList}>
@@ -64,7 +64,7 @@ export default function LocationModal({
                             ))}
                         </div>
                     </div>
-                )}
+                )} */}
             </div>
             <div className={styles.btnWrap}>
                 <Button
