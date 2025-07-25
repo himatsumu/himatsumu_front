@@ -37,7 +37,7 @@ export default function Quest_theme() {
                 "genre": "ご飯系"
             };
 
-            const response = await fetch('http://localhost:18888/auth/quest/quests', {
+            const response = await fetch('http://localhost:8888/auth/quest/quests', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
