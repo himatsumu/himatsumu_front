@@ -29,8 +29,8 @@ export default function CharaEvolution() {
     
     useEffect(() => {
         // 3秒後にアニメーションを開始
-        const timer = setTimeout(() => setBgAnimate(true), 5500);   //背景を3秒後にかえる
-        setTimeout(() => setText(true), 5800);                      //テキストを3.5秒後に変える
+        const timer = setTimeout(() => setBgAnimate(true), 5500);   //背景を５秒後にかえる
+        setTimeout(() => setText(true), 5800);                      //テキストを5.8秒後に変える
         setTimeout(() => { setIsModalOpen(true); }, 10000);
         return () => clearTimeout(timer);
     }, []);
@@ -77,7 +77,7 @@ export default function CharaEvolution() {
                     </div>
 
 
-                    {/*ダイアログ */}
+                    {/*モーダル*/}
                     {isModalOpen && (
                         <div className={styles.modalWrapper}>
                             <div className={styles.modalContent}>
