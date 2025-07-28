@@ -12,6 +12,12 @@ import Friend_home from "./pages/friend_home";
 import Friend_list from "./pages/friend_list";
 import Login from "./pages/login";
 import Friend_home_finish from "./pages/friend_home_finish";
+import UserSetup from "./pages/user_setup";
+import FriendAdd from "./pages/friend_add";
+import FriendApply from "./pages/friend_apply";
+import CharaNameSetup from "./pages/chara_name_setup";
+import SetupFinish from "./pages/setup_finish";
+
 
 function App() {
   return (
@@ -31,6 +37,11 @@ function App() {
           <Route path="/quest-location" element={<Quest_location/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/friend-home-finish" element={<Friend_home_finish />} />
+          <Route path="/user_setup" element={<UserSetup />} />
+          <Route path="/friend_add" element={<FriendAdd />} />
+          <Route path="/friend_apply" element={<FriendApply />} />
+          <Route path="/chara_name_setup" element={<CharaNameSetup />} />
+          <Route path="/setup_finish" element={<SetupFinish />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>
