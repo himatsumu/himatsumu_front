@@ -3,9 +3,14 @@ import images from "../hooks/images";
 import styles from "../styles/user_setup.module.scss";
 import { Button } from '../components/Button';
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserSetup() {
+    const navigate = useNavigate();
+
+    const handleClick = (() => {
+        navigate("/friend_add")
+    })
     return (
         <>
         
@@ -23,7 +28,7 @@ export default function UserSetup() {
             </div>
 
             <div className={styles.user_button}>
-                <Button variant="buttonUserLogin">登録</Button>
+                <Button variant="buttonUserLogin" onClick={handleClick}>登録</Button>
             </div>
         </>
     );
