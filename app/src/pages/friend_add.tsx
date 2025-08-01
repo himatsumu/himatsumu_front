@@ -15,16 +15,22 @@ export default function FriendAdd() {
             </div>
 
             <div className={styles.search_bar}>
-                <search>
+                <div className={styles.input_box}>
                     <input type="search" name="search" placeholder="名前 または ユーザーネーム" />
                     <img src={images.search} alt="検索虫眼鏡" />
-                </search>
+                </div>
             </div>
 
             <div className={styles.request_container}>
-                <img src={images.human} alt="人間" />
-                <button>申請リクエスト</button>
-                <img src={images.arrowForward} alt="オレンジ色の次へボタン" />
+                <button className={styles.request_button}>
+                    <img src={images.human} alt="人間" />
+                    <p className={styles.request_text}>申請リクエスト</p>
+                    <img src={images.arrowForward} alt="オレンジ色の次へボタン" />
+                </button>
+            </div>
+
+            <div>
+                {/*検索かけたらフレンド出てくるところ */}
             </div>
 
 
