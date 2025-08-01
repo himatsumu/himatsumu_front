@@ -30,11 +30,11 @@ export default function Quest_theme() {
             
             // APIリクエストの送信
             const requestBody = {
-                "schedule": "映画",
-                "end_time": "21:00",
-                "start_prace": "梅田",
-                "budget": 5000,
-                "genre": "ご飯系"
+                "schedule": formData.plan,
+                "end_time": formData.endTime,
+                "start_prace": formData.startLocation,
+                "budget": parseInt(formData.budget) || 0,
+                "genre": formData.genre
             };
 
             const go_port = import.meta.env.VITE_GO_PORT
