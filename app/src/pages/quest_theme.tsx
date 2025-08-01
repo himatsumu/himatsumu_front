@@ -37,7 +37,9 @@ export default function Quest_theme() {
                 "genre": "ご飯系"
             };
 
-            const response = await fetch('http://localhost:18888/auth/quest/quests', {
+            const go_port = import.meta.env.VITE_GO_PORT
+
+            const response = await fetch(`http://localhost:${go_port}/auth/quest/quests`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

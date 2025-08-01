@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/quest_clear.module.scss";
 import { useNavigate } from 'react-router-dom';
 import images from "../hooks/images";
+import confetti from "canvas-confetti";
 
 
 export default function QuestClear() {
@@ -16,6 +17,32 @@ export default function QuestClear() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        setTimeout(() => {
+            const canvas = document.getElementById("confetti-canvas") as HTMLCanvasElement;
+            if (!canvas) return;
+
+            const myConfetti = confetti.create(canvas, {
+                resize: true,
+                useWorker: true,
+            });
+
+            // 左から右へ
+            myConfetti({
+                particleCount: 100,
+                angle: 45,              // 右上へ
+                spread: 55,
+                origin: { x: 0, y: 0.4 },
+            });
+
+            // 右から左へ
+            myConfetti({
+                particleCount: 100,
+                angle: 135,             // 左上へ
+                spread: 55,
+                origin: { x: 1, y: 0.4 },
+            })
+
+        }, 1400)
 
         //(擬似)バックエンドからゲージの値を取得する
         // 実際は fetch や axios など使う
@@ -57,6 +84,7 @@ export default function QuestClear() {
     return (
         <>
             <div className={styles.wrapper}>
+                <canvas id="confetti-canvas" className={styles.confettiCanvas}></canvas>
                 <div className={styles.backGra} />
                 <div className={styles.content}>
                     <div className={styles.top_element}>

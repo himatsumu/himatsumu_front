@@ -1,3 +1,4 @@
+//ログイン画面
 //import { useNavigate } from 'react-router-dom';
 import images from "../hooks/images";
 import styles from "../styles/login.module.scss";
@@ -23,7 +24,7 @@ export default function Login() {
                     localStorage.setItem("token", data.token);
                     setIsLoggedIn(true);
                     console.log("トークン取得成功！");
-                    navigate("/friend-list");
+                    navigate("/user_setup");
                 } else {
                     console.error("トークンが含まれてないよ");
                 }

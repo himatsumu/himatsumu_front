@@ -51,7 +51,9 @@ export default function QuestPlaying() {
                 }
             };
 
-            fetch("http://localhost:8888/auth/quest/check", {
+            const go_port = import.meta.env.VITE_GO_PORT
+
+            fetch(`http://localhost:${go_port}/auth/quest/check`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,6 +88,10 @@ export default function QuestPlaying() {
         setIsLoading(true);
     };
 
+    const handleback = () => {
+        navigate("/quest-location");
+    }
+
 
     return (
         <>
@@ -97,7 +103,7 @@ export default function QuestPlaying() {
 
                     {/*クエスト生成画面に戻る*/}
                     <div className={styles.top_element}>
-                        <img className={styles.arrow_back} onClick={goToHome} src={images.arrowBack} alt="クエスト生成画面に戻る" />
+                        <img className={styles.arrow_back} onClick={handleback} src={images.arrowBack} alt="クエスト生成画面に戻る" />
                         <p className={styles.text_quest}>クエスト進行中...</p>
                     </div>
 

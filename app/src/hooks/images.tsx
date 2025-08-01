@@ -26,6 +26,10 @@ const images = {
     friendAdd: './src/assets/friendAdd.svg',
     faceOnly: './src/assets/faceOnly.svg',
     GoogleButton: './src/assets/web_light_rd_SI.svg',                       //google認証のためのボタン
+    closeButton: './src/assets/close.svg',                                  //閉じるボタン
+    search: './src/assets/search.svg',                                      //虫眼鏡
+    arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
+    human: './src/assets/human.svg',                                        //申請の人間
 }
 
 export default images;
