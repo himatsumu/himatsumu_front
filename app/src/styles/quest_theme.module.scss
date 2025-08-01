@@ -58,16 +58,18 @@
     }
     .speechBubbleText{
         font-size: $md;
+        text-align: center;
+        font-weight: bolder;
     }
-    .themeText{
-        font-size: $md;
-        text-align: end;
-        span{
-            font-size: $xl;
-            font-weight: bolder;
-            padding-right: .8rem;
-        }
-    }
+    // .themeText{
+    //     font-size: $md;
+    //     text-align: end;
+    //     span{
+    //         font-size: $xl;
+    //         font-weight: bolder;
+    //         padding-right: .8rem;
+    //     }
+    // }
 }
 
 .characterWrap{

@@ -3,7 +3,8 @@ import images from "../hooks/images";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 
-export default function Friend_home() {
+// 最終プレゼンのデモ用
+export default function Friend_home_finish() {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -28,27 +29,26 @@ export default function Friend_home() {
       <div className={styles.countInfo}>
         <div className={styles.point}>
           <img src={images.coin} alt="コイン" />
-          <span>60</span>
+          <span>80</span>
         </div>
         <div className={styles.goCount}>
           <p>遊びに行った回数</p>
-          <span>01</span>
+          <span>02</span>
         </div>
         <div className={styles.questCount}>
           <p>クエスト達成数</p>
-          <span>03</span>
+          <span>04</span>
         </div>
       </div>
       <div className={styles.characterWrapper}>
         <div className={styles.characterHeader}>
           <p>
-            レベル<span>1</span>
+            レベル<span>2</span>
           </p>
           <h2>もも</h2>
         </div>
         <div className={styles.characterWrap}>
-          <img src={images.characterEgg} alt="キャラクター" />
-          {/* <img src={images.characterLowHands} alt="キャラクター" /> */}
+          <img src={images.egg4} alt="キャラクター" />
         </div>
       </div>
       <div className={styles.btnWrap}>

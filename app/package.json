@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.10",
+    "@react-google-maps/api": "^2.20.7",
     "axios": "^1.10.0",
+    "canvas-confetti": "^1.9.3",
     "framer-motion": "^12.22.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

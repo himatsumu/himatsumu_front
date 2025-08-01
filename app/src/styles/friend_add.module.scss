@@ -1,0 +1,20 @@
+@use "../styles/common.scss" as *;
+
+.top_element {
+    display: flex;
+
+    .top_text {
+        color: $text;
+        font-size: $xl;
+        font-weight: bold;
+    }
+}
+//検索バー
+.search_bar {
+
+}
+
+//申請リクエストのコンテナ
+.request_container {
+    display: flex;
+}
