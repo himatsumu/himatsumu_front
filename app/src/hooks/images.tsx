@@ -26,6 +26,7 @@ const images = {
     friendAdd: './src/assets/friendAdd.svg',
     faceOnly: './src/assets/faceOnly.svg',
     GoogleButton: './src/assets/web_light_rd_SI.svg',                       //google認証のためのボタン
+    GoogleButtonSU: './src/assets/web_light_rd_SU.svg',                     //google認証のためのボタン(サインアップ)
     closeButton: './src/assets/close.svg',                                  //閉じるボタン
     search: './src/assets/search.svg',                                      //虫眼鏡
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
