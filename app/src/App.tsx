@@ -17,6 +17,7 @@ import FriendAdd from "./pages/friend_add";
 import FriendApply from "./pages/friend_apply";
 import CharaNameSetup from "./pages/chara_name_setup";
 import SetupFinish from "./pages/setup_finish";
+import Signup from "./pages/signup";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/friend_apply" element={<FriendApply />} />
           <Route path="/chara_name_setup" element={<CharaNameSetup />} />
           <Route path="/setup_finish" element={<SetupFinish />} />
+          <Route path="/signup" element={<Signup />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>
