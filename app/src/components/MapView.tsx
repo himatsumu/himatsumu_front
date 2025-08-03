@@ -54,20 +54,20 @@ const MapView: React.FC<MapViewProps> = ({ locations, center }) => {
           >
             {selectedMarker && selectedMarker.lat === loc.lat && selectedMarker.lng === loc.lng && (
               <InfoWindow
-                onCloseClick={() => setSelectedMarker(null)}
+                options={{ disableAutoPan: true }}
               >
                 <div style={{ padding: '8px', minWidth: '200px' }}>
-                  <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                    {selectedMarker.name}
-                  </h3>
+                    <h3 style={{ margin: '0', fontSize: '16px', fontWeight: 'bold' }}>
+                      {selectedMarker.name}
+                    </h3>
                   {selectedMarker.address && (
-                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#666', fontWeight: 'normal' }}>
-                      📍 {selectedMarker.address}
+                    <p style={{ margin: '4px 0', fontSize: '12px', color: '#666', fontWeight: 'normal' }}>
+                      {selectedMarker.address}
                     </p>
                   )}
                   {selectedMarker.openTime && (
-                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#666', fontWeight: 'normal' }}>
-                      🕒 {selectedMarker.openTime}
+                    <p style={{ margin: '4px 0', fontSize: '12px', color: '#666', fontWeight: 'normal' }}>
+                       {selectedMarker.openTime}
                     </p>
                   )}
                 </div>
