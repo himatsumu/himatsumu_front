@@ -7,6 +7,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { style } from "framer-motion/client";
 
 export default function FriendAdd() {
+    const navigate = useNavigate();
+
+    const handleClick = (() => {
+        navigate("/friend_apply")
+    })
     return (
         <>
             <div className={styles.top_element}>
@@ -22,7 +27,7 @@ export default function FriendAdd() {
             </div>
 
             <div className={styles.request_container}>
-                <button className={styles.request_button}>
+                <button className={styles.request_button} onClick={handleClick}>
                     <img src={images.human} alt="人間" />
                     <p className={styles.request_text}>申請リクエスト</p>
                     <img src={images.arrowForward} alt="オレンジ色の次へボタン" />
