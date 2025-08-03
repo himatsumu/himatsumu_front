@@ -93,19 +93,26 @@ export default function Quest_location() {
 
     // マップ用のデータを作成（無限ループを避けるためuseMemoを使用）
     const mapLocations: MapLocation[] = useMemo(() => {
-        // TOHOシネマズ梅田本館を追加（特別なマーカーとして設定）
-        const tohoLocation: MapLocation = {
-            name: "TOHOシネマズ 梅田 本館",
-            lat: 34.70278,
-            lng: 135.49744,
+        // デバッグ用ログ
+        console.log('formData:', formData);
+        console.log('formData.start_location:', formData.start_location);
+        console.log('formData.start_location_name:', formData.start_location_name);
+        console.log('formData.start_location_address:', formData.start_location_address);
+        
+        // 開始場所の情報をformDataから取得
+        const startLocation: MapLocation = {
+            name: formData.start_location_name || "開始場所",
+            lat: formData.start_location?.lat || 34.70278, // ユニバーサル・スタジオ・ジャパンの座標
+            lng: formData.start_location?.lng || 135.49744, // ユニバーサル・スタジオ・ジャパンの座標
             isSpecial: true, // 青いマーカーにするためのフラグ
-            address: "大阪府大阪市北区梅田1丁目12-6 E-MA 6F-7F",
-            openTime: "9:00~23:00"
+            address: formData.start_location_address || ""
         };
         
-        // レストランの位置情報とTOHOシネマズを合わせて返す
+        console.log('使用される開始場所:', startLocation);
+        
+        // レストランの位置情報と開始場所を合わせて返す
         return [
-            tohoLocation,
+            startLocation,
             ...locations.map(loc => ({
                 name: loc.name,
                 lat: loc.lat,
@@ -114,12 +121,16 @@ export default function Quest_location() {
                 openTime: loc.openTime
             }))
         ];
-    }, [locations]);
+    }, [locations, formData.start_location_name, formData.start_location, formData.start_location_address]);
 
-    const mapCenter = useMemo(() => ({
-        lat: 34.70278, 
-        lng: 135.49744
-    }), []);
+    const mapCenter = useMemo(() => {
+        const center = {
+            lat: formData.start_location?.lat || 34.70278,
+            lng: formData.start_location?.lng || 135.49744,
+        };
+        console.log('マップセンター:', center);
+        return center;
+    }, [formData.start_location]);
 
     const handleLocationClick = (location: LocationData) => {
         setSelectedLocation(location);
@@ -136,15 +147,74 @@ export default function Quest_location() {
         handleCloseModal();
     };
 
-    const handleStartQuest = () => {
-        // クエスト開始のロジック - 選択された店舗情報を含めて遷移
-        if (selectedLocation) {
+    const handleStartQuest = async () => {
+        // クエスト開始のロジック - 選択された店舗情報をAPIに送信
+        if (!selectedLocation) {
+            return;
+        }
+
+        try {
+            // localStorageからトークンを取得
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('トークンが見つかりません');
+                throw new Error('認証トークンが見つかりません');
+            }
+
+            // friend_uuidを取得（formDataから取得するか、別途設定する必要があります）
+            // TODO: 実際のfriend_uuidの取得方法に応じて修正してください
+            const friendUuid = formData.friend_uuid || "f111-2222-1111-2222-222222222222";
+
+            // APIリクエストボディを作成
+            const requestBody = {
+                friend_uuid: friendUuid,
+                store_name: selectedLocation.name,
+                store_address: selectedLocation.address,
+                types: selectedLocation.types || ["restaurant", "food", "point_of_interest", "establishment"],
+                reviews: selectedLocation.reviews || [],
+                store_place: {
+                    lat: selectedLocation.lat,
+                    lon: selectedLocation.lng
+                }
+            };
+
+            const go_port = import.meta.env.VITE_GO_PORT;
+
+            const response = await fetch(`http://localhost:${go_port}/auth/quest/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API request failed:', errorData);
+                throw new Error(errorData.Message || 'API request failed');
+            }
+
+            const responseData = await response.json();
+            console.log('クエスト作成APIレスポンス:', responseData);
+
+            // 成功時は quest_playing に遷移
+            navigate('/quest_playing', { 
+                state: { 
+                    selectedStore: selectedLocation,
+                    questUuid: responseData?.Data?.quest_uuid
+                } 
+            });
+        } catch (error) {
+            console.error('Quest creation error:', error);
+            // エラーが発生した場合もquest_playingに遷移（既存の動作を保持）
             navigate('/quest_playing', { 
                 state: { 
                     selectedStore: selectedLocation 
                 } 
             });
         }
+        
         handleCloseModal();
     };
 
