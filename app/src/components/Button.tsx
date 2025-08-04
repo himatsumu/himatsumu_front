@@ -13,7 +13,9 @@ const buttonStyle = {
     buttonOther: `${styles.buttonCommon} ${styles.buttonOther}`,
     buttonLogin: `${styles.buttonLogin} ${styles.buttonCommon}`,
     buttonUserLogin: `${styles.buttonUserLogin} ${styles.buttonCommon}`,
-    buttonCreate: `${styles.buttonCommon} ${styles.buttonCreate}`
+    buttonCreate: `${styles.buttonCommon} ${styles.buttonCreate}`,
+    buttonAddRequest: `${styles.buttonAddRequest}`,
+    buttonDelete: `${styles.buttonDelete}`
 } as const
 
 //共通のボタンデザイン
