@@ -1,0 +1,61 @@
+@use '../styles/common.scss' as *;
+
+.no_wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+//背景グラデーション
+.no_backGra {
+    background: linear-gradient(180deg, #1F456C 0%, #444 100%);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+.no_content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column; //積み重なるように配置
+    align-items: center;
+    justify-content: center;
+
+    .quest_no_text {
+        color: $base;
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .text_accent {
+        color: $main;
+        font-size: $xxl;
+    }
+
+
+    .quest_miss {
+        width: 300px;
+        height: 44px;
+        margin-top: 70px;
+    }
+
+    //キャラクター
+    .image_placeholder {
+        margin-top: 54px;
+    }
+
+    .button_arrangement {
+        margin-top: 30px;
+    }
+
+
+
+}

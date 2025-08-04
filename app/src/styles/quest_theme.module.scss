@@ -1,0 +1,89 @@
+@use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
+
+.container{
+    @extend .container;
+    padding: 0 1.6rem 8dvh;
+    background-image: url("../assets/room_background.png");
+    background-size: cover;
+    justify-content: space-between;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2.6rem 0 4dvh;
+    .backBtn{
+        width: 3.2rem;
+        aspect-ratio: 1/1;
+    } 
+}
+
+.speechBubble {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.6rem;
+    padding: 1.6rem;
+    border: 2px solid $drop_shadow;
+    border-radius: 24px;
+    background-color: $base;
+    font-size: $md;
+    font-weight: 500;
+    color: $text;
+    margin: 0 2.4rem 1.6rem;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      border-style: solid;
+      border-width: 16px 0 0 20px;
+      border-color: $drop_shadow transparent transparent;
+      translate: -50% 100%;
+      transform: skew(6deg);
+      transform-origin: top;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      border-style: solid;
+      border-width: 11.8px 0 0 14.8px;
+      border-color: #fafaf8 transparent transparent;
+      translate: calc(-50% + 0.6px) 100%;
+      transform: skew(6deg);
+      transform-origin: top;
+    }
+    .speechBubbleText{
+        font-size: $md;
+        text-align: center;
+        font-weight: bolder;
+    }
+    // .themeText{
+    //     font-size: $md;
+    //     text-align: end;
+    //     span{
+    //         font-size: $xl;
+    //         font-weight: bolder;
+    //         padding-right: .8rem;
+    //     }
+    // }
+}
+
+.characterWrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1.6rem 0;
+}
+
+.nextBtn{
+    font-size: $lg;
+    display: block;
+    margin: 0 auto;
+    padding: 1.2rem 2.4rem;
+    margin-top: auto;
+}
+  

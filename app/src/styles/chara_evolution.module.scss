@@ -1,0 +1,226 @@
+@use '../styles/common.scss' as *;
+@use "../styles/common.module.scss" as *;
+@use "sass:color";
+
+.wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+//背景画像
+.backImage {
+    background-color: rgba(68, 68, 68, 0.75);
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+
+    &.animateBg {
+        animation: bg-color 2s ease forwards;
+    }
+
+}
+
+@keyframes bg-color {
+    0% {
+        background-color: rgba(68, 68, 68, 0.75);
+    }
+
+    // 10% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 10%); }
+
+    // 20% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 20%); }
+
+    // 30% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 30%); }
+
+    // 40% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 40%); }
+
+    // 50% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 50%); }
+
+    // 60% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 60%); }
+
+    // 70% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 70%); }
+
+    // 80% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 80%); }
+
+    // 90% { background-color: color.mix($base, rgba(68, 68, 68, 0.75), 90%); }
+
+    100% {
+        background-color: $base;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+
+    //テキスト
+    .evolution_text {
+        color: $main;
+        font-size: 3.2rem;
+        font-weight: 500;
+        display: flex;
+        flex-flow: column; //縦方向
+        align-items: center; //真ん中
+        padding-top: 32px;
+    }
+
+    //キャラクター（親）
+    .image_placeholder {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; //真ん中
+        margin-top: 51px;
+    }
+
+    //放射状の背景（子）
+    .adial_circle {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        transform: scale(1.5);
+    }
+
+    .expansion {
+        animation: expansion-circle 1s infinite forwards;
+    }
+
+    @keyframes expansion-circle {
+        0% {
+            transform: scale(1);
+        }
+
+        20% {
+            transform: scale(1.05);
+        }
+
+        40% {
+            transform: scale(1.1);
+        }
+
+        60% {
+            transform: scale(1.08);
+        }
+
+        80% {
+            transform: scale(1.03);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    //キャラクター（子）
+    .character_egg {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        width: 194px;
+        height: 249px;
+        transform: translate(-50%, -50%); //卵の自分自身の幅と高さの半分だけずらして、完全に中央に持ってくる
+    }
+
+    //横揺れアニメーション用
+    .shake {
+        animation: shake-rotate 0.6s ease-in-out 8 forwards;
+    }
+
+    @keyframes shake-rotate {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        25% {
+            transform: translate(-50%, -50%) rotate(3deg);
+        }
+
+        50% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        75% {
+            transform: translate(-50%, -50%) rotate(-3deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+    }
+
+    .modalWrapper {
+        @extend .container;
+        padding: 0 2.4rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(68, 68, 68, 0.75);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+
+    .modalContent {
+        background: $base;
+        padding: 2.4rem 2.4rem 1.6rem;
+        height: 245px;
+        width: 322px;
+        border-radius: 0.8rem;
+        box-shadow: 0 0 8px 0 $drop_shadow;
+        text-align: center;
+    }
+
+    .dialogIntext {
+        padding: 0 0 2.4rem;
+        margin-top: 40px;
+        font-size: $lg;
+        font-weight: 600;
+        color: $text;
+        white-space: nowrap; // 改行しない
+    }
+
+
+
+    .btnWrap {
+        width: 100%;
+        display: flex;
+        column-gap: 1.6rem;
+        margin-top: 25px;
+
+        button {
+            font-size: $lg;
+            font-weight: 600;
+            color: $base;
+        }
+
+        .selectBtn {
+            width: 45%;
+            padding: 1.2rem 1.2rem;
+            background-color: $main;
+            box-shadow: 0px 6px 0px $main_btn_shadow;
+        }
+
+        .questBtn {
+            width: 65%;
+            padding: 1.2rem 1.6rem;
+            background-color: $sub;
+            box-shadow: 0px 6px 0px $accent_btn_shadow;
+        }
+    }
+
+}

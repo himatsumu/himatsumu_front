@@ -1,0 +1,238 @@
+@use '../styles/common' as *;
+
+// .image-placeholder {
+//     width: 200px; // 幅
+//     height: 200px; // 高さ
+//     background-color: #ddd;
+//     border: 2px dashed #aaa; // 点線
+// }
+
+.wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+//紙吹雪
+.confettiCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; }
+
+//背景グラデーション
+.backGra {
+    background: linear-gradient(180deg, #FAFAF8 0%, #F1DA6A 100%);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+
+    .top_element {
+        display: flex;
+        flex-direction: column; //積み重なるように配置
+        align-items: center;
+        justify-content: center;
+    }
+
+    //クエスト達成！の画像
+    .quest_success {
+        width: 100%;
+        margin-top: 70px;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    //クエスト達成のアニメーション
+    .anime {
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .anime img {
+        animation: anime1 0.5s ease 0s infinite alternate;
+        transform-origin: center;
+    }
+
+    @keyframes anime1 {
+        from {
+            transform: scale(0.9, 0.9);
+        }
+
+        to {
+            transform: scale(1, 1);
+        }
+    }
+
+    //最初に表示されるテキスト
+    .clear_text {
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-top: -10px;
+        text-align: center;
+    }
+
+    //２番目に表示されるテキスト
+    .text_side {
+        font-size: 2.0rem;
+        display: flex;
+
+        img {
+            margin-top: 6px;
+            margin-right: 2px;
+        }
+    }
+
+    .text_accent {
+        color: $main;
+        font-size: $xxl;
+        margin-right: 4px;
+    }
+
+    //キャラクター
+    .image_placeholder {
+        display: flex;
+        justify-content: center; //横方向に中央寄せ
+        margin-top: 65px;
+        position: relative;
+        z-index: 1;
+
+    }
+
+    //進化ゲージ
+    .bar_evolution {
+        background-color: $base;
+        width: 274px;
+        height: 24px;
+        position: fixed;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%); //横中央
+        border-radius: 32px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+
+        .barFill {
+            height: 24px;
+            background: $main;
+            border-radius: 32px;
+            transition: none; // ← デフォルトはアニメーションなし
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .animated {
+            transition: width 1s ease; //isAnimatedがtrueになったらゲージにアニメーションが入る
+        }
+    }
+
+    .gauge_text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $text;
+        font-size: $sm;
+        font-weight: bold;
+    }
+
+    //フェードアウト
+    .fadeOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $text;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none; // ユーザー操作を邪魔しない
+        z-index: 999;
+    }
+
+    .fadeOverlay.show {
+        opacity: 1;
+    }
+
+    .poyooon {
+        animation: poyooon 1s linear 0s 8;
+    }
+
+    @keyframes poyooon {
+        0% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
+
+        10% {
+            transform: scale(1.1, 0.9) translate(0%, 5%);
+        }
+
+        40% {
+            transform: scale(1.2, 0.8) translate(0%, 15%);
+        }
+
+        50% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
+
+        60% {
+            transform: scale(0.9, 1.1) translate(0%, -15%);
+        }
+
+        75% {
+            transform: scale(0.9, 1.1) translate(0%, -13%);
+        }
+
+        85% {
+            transform: scale(1.2, 0.8) translate(0%, 15%);
+        }
+
+        100% {
+            transform: scale(1.0, 1.0) translate(0%, 0%);
+        }
+    }
+}
+
+
+
+
+/*ダイアログ*/
+// .quest-dialog {
+//     background-color: $base;
+//     color: #FFF;
+//     width: 322px;
+//     height: 300px;
+//     border-radius: 24px;
+//     position: relative;
+//     overflow: visible; //はみ出たものを表示
+// }
+
+// /*ダイアログ内のテキスト*/
+// .dialog-intext {
+//     background-color: $main;
+//     height: 48px;
+//     width: 258px;
+//     display: flex; //*中のテキストを水平、垂直で真ん中にするよう
+//     align-items: center; //*垂直中央揃え 
+//     justify-content: center; //*水平方向中央揃え 
+//     margin: 0 auto; //上下：０　左右：autoで均等に
+
+//     position: absolute;
+//     top: -10px;
+//     left: 12%;
+
+//     // text-align: center; //クエスト続ける？を中央に
+//     // margin: 0 auto; //中央寄せ
+// }
