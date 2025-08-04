@@ -1,0 +1,45 @@
+@use "../styles/common.scss" as *;
+
+.friend_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .friend_box {
+        display: flex;
+        gap: 70px;
+        padding: 6px 0;
+        width: 90%;
+        border-top: 1px solid $drop_shadow;
+        border-bottom: 1px solid $drop_shadow;
+
+        .user_info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+
+            .user_name {
+                font-weight: bold;
+                color: $text;
+                font-size: $lg;
+            }
+
+            .user_id {
+                font-weight: 400;
+                color: $text;
+                font-size: $md;
+                opacity: 0.5;
+            }
+        }
+
+        .button_box {
+            align-self: center;
+            padding: 6px 0;
+
+            .button_flex {
+                display: flex;
+                gap: 8px;
+            }
+        }
+    }
+}

@@ -2,8 +2,8 @@
 import images from "../hooks/images";
 import styles from "../styles/setup_finish.module.scss";
 import { Button } from '../components/Button';
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+//import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function SetupFinish() {
     const navigate = useNavigate();

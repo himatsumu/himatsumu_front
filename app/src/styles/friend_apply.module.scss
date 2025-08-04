@@ -1,1 +1,13 @@
 @use "../styles/common.scss" as *;
+
+.header {
+    display: flex;
+    gap: 55px;
+    padding: 24px 16px;
+
+    .top_text {
+        color: $text;
+        font-size: $xl;
+        font-weight: bold;
+    }
+}
