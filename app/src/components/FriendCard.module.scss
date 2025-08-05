@@ -4,10 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px 0;
 
     .friend_box {
         display: flex;
-        gap: 70px;
+        gap: 95px;
         padding: 6px 0;
         width: 90%;
         border-top: 1px solid $drop_shadow;

@@ -3,7 +3,7 @@
 .top_element {
     display: flex;
     gap: 60px;
-    padding: 24px 16px;
+    padding: 22px 16px;
 
     .top_text {
         color: $text;
@@ -40,7 +40,7 @@
             top: 50%;
             right: 16px;
             transform: translateY(-50%);
-            pointer-events: none;
+            
         }
 
         input::placeholder {
@@ -54,7 +54,7 @@
 
 //申請リクエスト
 .request_container {
-    padding: 32px 0;
+    padding: 28px 0;
 
     .request_button {
         display: flex;
