@@ -21,9 +21,11 @@ export default function FriendApply() {
                 <h1 className={styles.top_text}>申請リクエスト</h1>
             </div>
 
-            <FriendCard />
-            
-            
+            {/* <div className={styles.component_card}>
+                <FriendCard />
+            </div> */}
+
+
         </>
     );
 };
