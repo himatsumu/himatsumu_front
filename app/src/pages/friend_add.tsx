@@ -29,6 +29,13 @@ export default function FriendAdd() {
 
     const handleSearch = async () => {
         console.log("検索ボタン押された！");
+
+        if (searchInput.trim() === "") {
+            setUserData(null);
+            setError("");
+            return;
+        }
+        
         try {
             const token = localStorage.getItem("token");
             const res = await axios.get(`http://localhost:8888/auth/user/${searchInput}`, {
