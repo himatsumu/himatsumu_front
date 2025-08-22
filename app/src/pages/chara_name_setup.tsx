@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function CharaNameSetup() {
     const [startText, setStartText] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -17,6 +18,10 @@ export default function CharaNameSetup() {
             return () => clearTimeout(timer);
         }, 3000)
     })
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    }
 
     return (
         <>
@@ -42,13 +47,36 @@ export default function CharaNameSetup() {
             {startText ? (
                 <div>
                     <div className={styles.button_box}>
-                        <Button variant="buttonCreate">名前をつける</Button>
+                        <Button variant="buttonCreate" onClick={handleOpenModal}>名前をつける</Button>
                     </div >
                 </div>
             ) : (
                 <></>
             )
             }
+
+
+            {/*モーダル*/}
+            {isModalOpen && (
+                <div className={styles.modalWrapper}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.dialogIntext}>
+                            <p>名前を考えてね</p>
+                        </div>
+
+                        <div className={styles.name_create_box}>
+                            <input type="text" className={styles.name_create} required />
+                            <button>
+                                <img src={images.shuffle} alt="名前ランダム生成" />
+                            </button>
+                        </div>
+
+                        <div className={styles.btnWrap}>
+                            <Button variant="buttonNameCreate" >確認 </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

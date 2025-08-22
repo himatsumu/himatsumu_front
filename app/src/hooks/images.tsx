@@ -31,6 +31,7 @@ const images = {
     search: './src/assets/search.svg',                                      //虫眼鏡
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
     human: './src/assets/human.svg',                                        //申請の人間
+    shuffle: "./src/assets/shuffle.svg",                                    //名前ランダム生成
 }
 
 export default images;
