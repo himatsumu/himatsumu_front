@@ -71,14 +71,36 @@
 
 //input
 .name_create {
-    padding: 11px 63px;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 300px;
     border: 1px solid $drop_shadow;
     border-radius: 8px;
     box-shadow: inset 0 0 4px $drop_shadow;
+    font-size: $md;
+    font-weight: 400;
+
+}
+
+.confirm_text {
+    font-size: $md;
+    font-weight: bold;
+    padding: 34px 0 0 0;
+
+    span {
+        font-size: $lg;
+        font-weight: bolder;
+    }
 }
 
 .btnWrap {
     width: 100%;
     margin-top: 20px;
+}
 
+.btnWrapFlex {
+    width: 100%;
+    margin-top: 45px;
+    display: flex;
+    gap: 8px;
 }
