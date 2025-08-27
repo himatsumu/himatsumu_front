@@ -14,7 +14,7 @@ export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // JWTを使ってユーザー登録状況をチェック
+    //JWTを使ってユーザー登録状況をチェック
     const checkUser = async (token: string) => {
         try {
             const response = await fetch("http://localhost:8888/auth/user/", {
@@ -28,10 +28,10 @@ export default function Login() {
             console.log("ユーザー情報確認:", data);
 
             if (data.Data?.IsFind) {
-                // アプリに登録済み → ホームへ
-                navigate("/home");
+                //アプリに登録済み → ホームへ
+                navigate("/friend-list");
             } else {
-                // 未登録 → ユーザー初期設定へ
+                //未登録 → ユーザー初期設定へ
                 navigate("/user_setup");
             }
 
@@ -40,7 +40,7 @@ export default function Login() {
         }
     }
 
-    // Googleログイン後にtokenを取得
+    //Googleログイン後にtokenを取得
     useEffect(() => {
         const fetchToken = async () => {
             try {
@@ -84,7 +84,7 @@ export default function Login() {
                 console.log(data)
                 localStorage.setItem("token", data.token);
                 await checkUser(data.token);
-                // ここで画面遷移させたり、UUIDを保存したり
+                //ここで画面遷移させたり、UUIDを保存したり
                 navigate("/user_setup")
             } else {
                 alert(`エラー: ${data.error || data.message || "登録に失敗しました"}`);
