@@ -5,13 +5,16 @@ import styles from "../styles/login.module.scss";
 import { Button } from '../components/Button';
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { feFuncA } from "framer-motion/client";
 
 export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const location = useLocation();
 
-
+    // Googleログイン後にtokenを取得
     useEffect(() => {
         const fetchToken = async () => {
             try {
@@ -35,24 +38,53 @@ export default function Login() {
         fetchToken();
     }, [location]);
 
+    //メールとパスワードでログイン
+    const handleLogin = async () => {
+        try {
+            const response = await fetch("http://localhost:18080/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
 
-    const handleGoogleLogin = () => {
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log(data)
+                // ここで画面遷移させたり、UUIDを保存したり
+                navigate("/user_setup")
+            } else {
+                alert(`エラー: ${data.error || data.message || "登録に失敗しました"}`);
+            }
+
+        } catch (error) {
+            console.error("ログインエラー:", error);
+        }
+    }
+
+    //Googleログイン
+     const handleGoogleLogin = () => {
         window.location.href = "http://localhost:18080/auth/google";
 
-        //     try {
-        //         const res = await fetch("http://localhost:18080/auth/google");
-        //         const data = await res.json();
+    //     //     try {
+    //     //         const res = await fetch("http://localhost:18080/auth/google");
+    //     //         const data = await res.json();
 
-        //         if (data.url) {
-        //             window.location.href = data.url;
-        //         } else {
-        //             console.error("認証URLが見つかりません");
-        //         }
-        //     } catch (error) {
-        //         console.error("認証取得エラー:", error);
-        //     }
+    //     //         if (data.url) {
+    //     //             window.location.href = data.url;
+    //     //         } else {
+    //     //             console.error("認証URLが見つかりません");
+    //     //         }
+    //     //     } catch (error) {
+    //     //         console.error("認証取得エラー:", error);
+    //     //     }
 
-    };
+     };
 
 
     return (
@@ -62,13 +94,31 @@ export default function Login() {
             </div>
 
             <div className={styles.form_container}>
-                <input className={styles.email_form} type="email" name="email" id="email" placeholder="メールアドレス" required />
-                <input className={styles.pass_form} type="password" name="pass" id="pass" placeholder="パスワード" required />
+                <input
+                    className={styles.email_form}
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="メールアドレス"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    className={styles.pass_form}
+                    type="password"
+                    name="pass"
+                    id="pass"
+                    placeholder="パスワード"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
             </div>
 
 
             <div className={styles.button_container}>
-                <Button variant="buttonLogin" className={styles.login_button}>ログイン</Button>
+                <Button variant="buttonLogin" className={styles.login_button} onClick={handleLogin}>ログイン</Button>
                 <p className={styles.form_divider}>または</p>
                 <button onClick={handleGoogleLogin} className={styles.google_button}>
                     <img src={images.GoogleButton} alt="Google認証" />
