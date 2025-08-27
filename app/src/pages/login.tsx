@@ -14,7 +14,33 @@ export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Googleログイン後にtokenを取得
+    //JWTを使ってユーザー登録状況をチェック
+    const checkUser = async (token: string) => {
+        try {
+            const response = await fetch("http://localhost:8888/auth/user/", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            const data = await response.json();
+            console.log("ユーザー情報確認:", data);
+
+            if (data.Data?.IsFind) {
+                //アプリに登録済み → ホームへ
+                navigate("/friend-list");
+            } else {
+                //未登録 → ユーザー初期設定へ
+                navigate("/user_setup");
+            }
+
+        } catch (error) {
+            console.log("ユーザ確認エラー", error)
+        }
+    }
+
+    //Googleログイン後にtokenを取得
     useEffect(() => {
         const fetchToken = async () => {
             try {
@@ -54,9 +80,11 @@ export default function Login() {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data.token) {
                 console.log(data)
-                // ここで画面遷移させたり、UUIDを保存したり
+                localStorage.setItem("token", data.token);
+                await checkUser(data.token);
+                //ここで画面遷移させたり、UUIDを保存したり
                 navigate("/user_setup")
             } else {
                 alert(`エラー: ${data.error || data.message || "登録に失敗しました"}`);
@@ -68,23 +96,23 @@ export default function Login() {
     }
 
     //Googleログイン
-     const handleGoogleLogin = () => {
+    const handleGoogleLogin = () => {
         window.location.href = "http://localhost:18080/auth/google";
 
-    //     //     try {
-    //     //         const res = await fetch("http://localhost:18080/auth/google");
-    //     //         const data = await res.json();
+        //     //     try {
+        //     //         const res = await fetch("http://localhost:18080/auth/google");
+        //     //         const data = await res.json();
 
-    //     //         if (data.url) {
-    //     //             window.location.href = data.url;
-    //     //         } else {
-    //     //             console.error("認証URLが見つかりません");
-    //     //         }
-    //     //     } catch (error) {
-    //     //         console.error("認証取得エラー:", error);
-    //     //     }
+        //     //         if (data.url) {
+        //     //             window.location.href = data.url;
+        //     //         } else {
+        //     //             console.error("認証URLが見つかりません");
+        //     //         }
+        //     //     } catch (error) {
+        //     //         console.error("認証取得エラー:", error);
+        //     //     }
 
-     };
+    };
 
 
     return (
