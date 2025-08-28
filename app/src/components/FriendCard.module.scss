@@ -13,6 +13,7 @@
         width: 90%;
         border-top: 1px solid $drop_shadow;
         border-bottom: 1px solid $drop_shadow;
+        justify-content: space-between;
 
         .user_info {
             display: flex;
@@ -36,6 +37,7 @@
         .button_box {
             align-self: center;
             padding: 6px 0;
+            margin-right: 8px;
 
             .button_flex {
                 display: flex;
