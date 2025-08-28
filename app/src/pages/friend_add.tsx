@@ -11,8 +11,9 @@ import axios from "axios";
 export default function FriendAdd() {
 
     type UserData = {
-        id: string;
+        uuid: string;
         name: string;
+        id: string;
     };
 
     const navigate = useNavigate();
@@ -35,19 +36,19 @@ export default function FriendAdd() {
             setError("");
             return;
         }
-        
+
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get(`http://localhost:8888/auth/user/${searchInput}`, {
+            const response = await axios.get(`http://localhost:8888/auth/user/${searchInput}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data.Data.
-                IsFind)
-            if (res.data.Data.
-                IsFind === undefined) {
-                setUserData(res.data.Data);
+
+            const user = response.data.Data;
+            console.log(response.data)
+            if (user && user.uuid) {
+                setUserData(user);
                 setError("");
             } else {
                 setUserData(null);
@@ -60,6 +61,34 @@ export default function FriendAdd() {
             setError("ユーザーが見つかりませんでした");
         }
     };
+
+    const handleSendRequest = async (receiverUuid: string) => {
+        try {
+            //tokenの確認
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("トークンがありません。ログインしてください。");
+                return;
+            }
+
+            const response = await fetch(`http://localhost:8888/auth/request/send/${receiverUuid}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw data;
+            }
+            console.log("フレンド申請成功:", data);
+        } catch (error) {
+            console.log("申請エラー", error);
+        }
+    }
 
 
     return (
@@ -100,6 +129,7 @@ export default function FriendAdd() {
                     <FriendCard
                         name={userData.name}
                         id={userData.id}
+                        onSendRequest={() => handleSendRequest(userData.uuid)}
                     />
                 )}
                 {error && <p className={styles.error_text}>{error}</p>}
