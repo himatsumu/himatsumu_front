@@ -32,6 +32,8 @@ const images = {
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
     human: './src/assets/human.svg',                                        //申請の人間
     shuffle: "./src/assets/shuffle.svg",                                    //名前ランダム生成
+
+    DressupCharacter: "./src/assets/dressup_character.svg",                 //着せ替えキャラ
 }
 
 export default images;
