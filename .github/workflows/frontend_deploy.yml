@@ -24,7 +24,7 @@ jobs:
               run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
             - name: log in to container registry
-              uses: actions/login-actions@v3
+              uses: docker/login-actions@v3
               with:
                   registry: ${{ env.REGISTRY }}
                   username: ${{ github.actor }}
