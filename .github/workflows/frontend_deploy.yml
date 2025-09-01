@@ -39,3 +39,8 @@ jobs:
                 tags: |
                   ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
                   ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+                build-args: |
+                  GOOGLE_MAP_KEY=${{ secrets.GOOGLE_MAP_KEY }}
+                  GO_PORT=${{ secrets.GO_PORT }}
+                  AUTH_PORT=${{ secrets.AUTH_PORT }}
+                  REACT_PORT=${{ secrets.REACT_PORT }}
