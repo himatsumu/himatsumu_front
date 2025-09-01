@@ -1,0 +1,22 @@
+FROM node:20-slim AS build
+WORKDIR /app
+
+ARG VITE_GOOGLE_MAP_KEY
+ARG VITE_GO_PORT
+ARG VITE_AUTH_PORT
+ARG VITE_REACT_PORT
+
+ENV VITE_GOOGLE_MAP_KEY=$VITE_GOOGLE_MAP_KEY
+ENV VITE_GO_PORT=$VITE_GO_PORT
+ENV VITE_AUTH_PORT=$VITE_AUTH_PORT
+ENV VITE_REACT_PORT=$VITE_REACT_PORT
+
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:1.27-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
