@@ -7,7 +7,6 @@ on:
 
 env:
     REGISTRY: ghcr.io
-    IMAGE_NAME: ${{ github.repository }}
 
 jobs:
     build:
@@ -20,9 +19,12 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+            
+            - name: Prepare image name
+              run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
             - name: log in to container registry
-              uses: actions/setup-node@v3
+              uses: actions/login-actions@v3
               with:
                   registry: ${{ env.REGISTRY }}
                   username: ${{ github.actor }}
