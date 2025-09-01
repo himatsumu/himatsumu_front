@@ -37,10 +37,10 @@ jobs:
                 file: ./app/Dockerfile.prod
                 push: true
                 tags: |
-                  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-                  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+                    ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+                    ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
                 build-args: |
-                  VITE_GOOGLE_MAP_KEY=${{ secrets.VITE_GOOGLE_MAP_KEY }}
-                  VITE_GO_PORT=${{ secrets.VITE_GO_PORT }}
-                  VITE_AUTH_PORT=${{ secrets.VITE_AUTH_PORT }}
-                  VITE_REACT_PORT=${{ secrets.VITE_REACT_PORT }}
+                    VITE_GOOGLE_MAP_KEY=${{ secrets.VITE_GOOGLE_MAP_KEY }}
+                    VITE_GO_PORT=${{ secrets.VITE_GO_PORT }}
+                    VITE_AUTH_PORT=${{ secrets.VITE_AUTH_PORT }}
+                    VITE_REACT_PORT=${{ secrets.VITE_REACT_PORT }}
