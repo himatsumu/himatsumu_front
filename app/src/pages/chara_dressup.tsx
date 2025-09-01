@@ -10,6 +10,7 @@ import { button, style } from "framer-motion/client";
 export default function CharaDressup() {
 
     const [activeTab, setActiveTab] = useState("owned") //初期のタブはは所得済み
+    const [activeOwnedTab, setActiveOwnedTab] = useState("clothes")
 
     const tabs = [
         { id: "owned", label: "所得済み" },
@@ -19,6 +20,21 @@ export default function CharaDressup() {
         { id: "belongings", label: "持ち物" },
         { id: "others", label: "その他" },
     ];
+
+    const ownedTabs = [
+        { id: "clothes", label: "服" },
+        { id: "hat", label: "ぼうし" },
+        { id: "belongings", label: "持ち物" },
+        { id: "others", label: "その他" },
+    ]
+    //タブごとのアイテム一覧
+    const itemsByTab: Record<string, string[]> = {
+        limited: [images.SuitThumb],
+        clothes: [images.SuitThumb, images.ChildThumb, images.MaidThumb, images.RaincoatThumb, images.SantaThumb, images.MarineThumb, images.InsectThumb],
+        hat: [images.SuitHatThumb, images.ChildHatThumb, images.MaidHatThumb, images.SantaHatThumb, images.MarineHatThumb, images.InsectHatThumb],
+        belongings: [images.ChildBelongingsThumb, images.InsectBelongingsThumb, images.InsectBelongingsBagThumb],
+        others: [],
+      };
 
     return (
         <>
@@ -41,8 +57,9 @@ export default function CharaDressup() {
                         <img src={images.DressupCharacter} alt="キャラクター画像" />
                     </div>
 
-                    {/*横スクロール*/}
+                    {/*着せ替えアイテム一覧*/}
                     <div className={styles.dress_up_menu}>
+                        {/*タブ*/}
                         <div className={styles.category_tabs}>
 
                             {tabs.map((tab) => (
@@ -60,7 +77,28 @@ export default function CharaDressup() {
                         <div className={styles.tab_content}>
                             {activeTab === "owned" && (
                                 <div className={styles.tab_content_description}>
-                                    {/*所得済みの中身*/}
+                                    <div className={styles.owned_tabs}>
+                                        {/*所得済みの中身*/}
+                                        {ownedTabs.map((tab) => (
+                                            <button
+                                                key={tab.id}
+                                                className={`${styles.tab_item} ${activeTab === tab.id ? styles.active : ""
+                                                    }`}
+                                                onClick={() => setActiveOwnedTab(tab.id)}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    <div className={styles.dress_box}>
+                                        <img src={images.SuitThumb} alt="スーツ（服）" />
+                                        <div>
+                                            <img src={images.coin} alt="コイン" />
+                                            <span className={styles.coin_num}>100</span>
+                                        </div>
+                                    </div>
+
                                 </div>
                             )}
                             {activeTab === "limited" && (

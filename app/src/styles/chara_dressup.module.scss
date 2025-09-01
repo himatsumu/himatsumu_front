@@ -72,7 +72,7 @@
 
 
         .tab_item {
-            padding: 12px;
+            padding: 10px;
             font-size: $md;
             font-weight: bold;
             color: rgba(250, 250, 248, 0.3);
@@ -82,6 +82,52 @@
             color: $base;
         }
 
+    }
+
+    .tab_content {
+        background-color: $base;
+        width: 100%;
+        white-space: nowrap;
+
+        .tab_content_description {
+
+            .owned_tabs {
+                display: flex;
+                overflow-x: scroll;
+                white-space: nowrap; // 折り返さない
+                background-color: $base;
+
+                .tab_item {
+                    padding: 8px 12px;
+                    font-size: $md;
+                    font-weight: bold;
+                    color: rgba(68, 68, 68, 0.3);
+
+                    .active{
+                        color: $text;
+                    }
+                }
+            }
+
+
+
+
+            .dress_box {
+                width: 100px;
+                height: 100px;
+                box-shadow: inset 0 0 8px 0 $drop_shadow;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    max-width: 80%; // 枠に合わせて縮小
+                    max-height: 80%; // 枠に収まるように
+                    object-fit: contain;
+                }
+            }
+        }
     }
 
 
