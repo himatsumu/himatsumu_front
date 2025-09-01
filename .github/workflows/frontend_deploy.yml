@@ -1,17 +1,13 @@
-# ワークフローの名前
 name: Frontend CI/CD
 
-# ワークフローが実行されるタイミング
 on:
   push:
     branches:
       - 'cicd'
 
-# ワークフロー全体で使える変数を設定
 env:
   REGISTRY: ghcr.io
 
-# 実行するジョブを定義
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -19,36 +15,20 @@ jobs:
       contents: read
       packages: write
 
-    # 実行する手順
     steps:
-      # 手順1: リポジトリのソースコードをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ★★★ ここからデバッグ用のステップを追加 ★★★
-      - name: 🧐 [Debug] Install Dependencies
-        # appディレクトリに移動して、npm installを実行
-        run: cd ./app && npm install
-
-      - name: 🧐 [Debug] Run Build Command
-        # appディレクトリに移動して、npm run buildを直接実行
-        # これで詳細なエラーログが表示されるはず
-        run: cd ./app && npm run build
-      # ★★★ ここまでデバッグ用のステップを追加 ★★★
-
-      # 手順2: イメージ名を小文字に変換して設定
       - name: Prepare image name
         run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      # 手順3: GHCRへログイン
-      - name: Log in to container registry
+      - name: log in to container registry
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 手順4: Dockerイメージをビルドしてプッシュ
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
