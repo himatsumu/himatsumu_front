@@ -1,0 +1,49 @@
+@use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
+
+.container{
+    @extend .container;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2.6rem 0 2.4rem;
+    h1{
+        font-size: $xl;
+        font-weight: bolder;
+        flex: 1;
+        text-align: center;
+    }
+}
+
+.photoGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 40px;
+    .photoItem {
+        aspect-ratio: 1;
+        overflow: hidden;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+}
+
+.btnWrap{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    .addBtn{
+        padding: 12px 32px;
+        position: fixed;
+        bottom: 8dvh;
+    }
+}

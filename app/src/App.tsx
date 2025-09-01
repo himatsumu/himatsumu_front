@@ -18,6 +18,8 @@ import FriendApply from "./pages/friend_apply";
 import CharaNameSetup from "./pages/chara_name_setup";
 import SetupFinish from "./pages/setup_finish";
 import Signup from "./pages/signup";
+import AlbumHome from "./pages/album_home";
+import AddPhotos from "./pages/add_photos";
 
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
           <Route path="/chara_name_setup" element={<CharaNameSetup />} />
           <Route path="/setup_finish" element={<SetupFinish />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/album-home" element={<AlbumHome />} />
+          <Route path="/add-photos" element={<AddPhotos />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>

@@ -30,7 +30,8 @@ const images = {
     closeButton: './src/assets/close.svg',                                  //閉じるボタン
     search: './src/assets/search.svg',                                      //虫眼鏡
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
-    human: './src/assets/human.svg',                                        //申請の人間
+    human: './src/assets/human.svg',
+    albumFolder: './src/assets/folder.svg'
 }
 
 export default images;
