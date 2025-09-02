@@ -3,7 +3,7 @@ name: Frontend CI/CD
 on:
   push:
     branches:
-      - 'develop'
+      - 'feature/images_deploy'
 
 env:
   REGISTRY: ghcr.io
