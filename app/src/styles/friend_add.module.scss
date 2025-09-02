@@ -3,7 +3,7 @@
 .top_element {
     display: flex;
     gap: 60px;
-    padding: 24px 16px;
+    padding: 22px 16px;
 
     .top_text {
         color: $text;
@@ -31,8 +31,19 @@
 
         input {
             width: 100%;
+            max-width: calc(100% - 45px);
             padding-right: 40px; //(入力)虫眼鏡用に余白を作る
             font-size: 1.2rem;
+            min-width: 30%;
+            background: transparent;
+
+            &::selection {
+                background-color: $base;
+            }
+        }
+        //入力候補を入力した時に出る×ボタンを消す
+        input[type="search"]::-webkit-search-cancel-button {
+            display: none;
         }
 
         img {
@@ -40,7 +51,6 @@
             top: 50%;
             right: 16px;
             transform: translateY(-50%);
-            pointer-events: none;
         }
 
         input::placeholder {
@@ -48,13 +58,14 @@
             color: $drop_shadow;
             font-weight: 400;
         }
+
     }
 }
 
 
 //申請リクエスト
 .request_container {
-    padding: 32px 0;
+    padding: 28px 0;
 
     .request_button {
         display: flex;
@@ -75,7 +86,7 @@
     }
 
     .request_button img:first-of-type {
-        margin-left: 12px; 
+        margin-left: 12px;
         margin-right: 10px;
     }
 }

@@ -22,6 +22,7 @@ import AlbumHome from "./pages/album_home";
 import AlbumDetail from "./pages/album_detail";
 import AddPhotos from "./pages/add_photos";
 import CreateFolder from "./pages/create_folder";
+import CharaDressup from "./pages/chara_dressup";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/album-detail/:date" element={<AlbumDetail />} />
           <Route path="/add-photos" element={<AddPhotos />} />
           <Route path="/create-folder" element={<CreateFolder />} />
+          <Route path="/chara_dressup" element={<CharaDressup />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>

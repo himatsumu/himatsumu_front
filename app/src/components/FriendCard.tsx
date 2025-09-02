@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 
-export default function FriendCard() {
+export default function FriendCard({ name, id, onSendRequest, }: { name: string; id: string; onSendRequest?: () => void; }) {
     const location = useLocation();
     const path = location.pathname;
 
@@ -13,12 +13,12 @@ export default function FriendCard() {
             <div className={styles.friend_card}>
                 <div className={styles.friend_box}>
                     <div className={styles.user_info}>
-                        <span className={styles.user_name}>あやか</span>
-                        <span className={styles.user_id}>@s7chan</span>
+                        <span className={styles.user_name}>{name}</span>
+                        <span className={styles.user_id}>@{id}</span>
                     </div>
                     {path === "/friend_add" && (
                         <div className={styles.button_box}>
-                            <Button variant="buttonAddRequest">追加申請</Button>
+                            <Button variant="buttonAddRequest" onClick={onSendRequest}>追加申請</Button>
                         </div>
                     )}
                     {path === "/friend_apply" && (

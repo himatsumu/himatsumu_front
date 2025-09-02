@@ -9,7 +9,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 
 export default function CharaNameSetup() {
+    const navigate = useNavigate();
     const [startText, setStartText] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [text, setText] = useState("");
+    const [changeModal, setChangeModal] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -17,6 +21,20 @@ export default function CharaNameSetup() {
             return () => clearTimeout(timer);
         }, 3000)
     })
+
+    //モーダルを開く
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    }
+
+    //モーダルの中身変化
+    const handleChangeModal = () => {
+        setChangeModal(true);
+    }
+
+    const goToFinish = () => {
+        navigate("/setup_finish",{ state : { name : text } })
+    }
 
     return (
         <>
@@ -42,11 +60,75 @@ export default function CharaNameSetup() {
             {startText ? (
                 <div>
                     <div className={styles.button_box}>
-                        <Button variant="buttonCreate">名前をつける</Button>
+                        <Button variant="buttonCreate" onClick={handleOpenModal}>名前をつける</Button>
                     </div >
                 </div>
             ) : (
                 <></>
+            )
+            }
+
+
+            {/*モーダル*/}
+            {isModalOpen && (
+                <div className={styles.modalWrapper}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.dialogIntext}>
+                            <p>名前を考えてね</p>
+                        </div>
+
+                        {changeModal ? (
+                            <>
+                                <div className={styles.confirm_text}>
+                                    <p><span>{text}</span>で登録する？</p>
+                                </div>
+                            </>
+                        ) : (
+
+                            <div className={styles.name_create_box}>
+                                <input type="text"
+                                    value={text}
+                                    onChange={(event) => setText(event.target.value)}
+                                    className={styles.name_create} 
+                                    placeholder="5文字以内"
+                                    maxLength={5}
+                                    required
+                                />
+                                <button>
+                                    <img src={images.shuffle} alt="名前ランダム生成" />
+                                </button>
+                            </div>
+
+                        )}
+
+
+                        {changeModal ? (
+                            <>
+                                <div className={styles.btnWrapFlex}>
+                                    <Button variant="changeNameButton" onClick={() => setChangeModal(false)}>名前を修正する </Button>
+                                    <Button variant="buttonNameCreate" onClick={goToFinish} >決定! </Button>
+                                </div>
+                            </>
+                        ) : (
+
+                            <>
+                                <div className={styles.btnWrap}>
+                                    <Button variant="buttonNameCreate" onClick={() => {
+                                        if (text.trim() === "") {
+                                            alert("名前を入力してね");
+                                            return;
+                                        }
+                                        handleChangeModal();
+                                    }}
+                                    >
+                                        確認
+                                    </Button>
+                                </div>
+                            </>
+                        )}
+
+                    </div >
+                </div >
             )
             }
         </>

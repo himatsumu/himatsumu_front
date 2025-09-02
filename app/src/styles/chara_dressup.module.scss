@@ -1,0 +1,137 @@
+@use '../styles/common.scss' as *;
+@use "../styles/common.module.scss" as *;
+@use "sass:color";
+
+
+.wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+//背景画像
+.backImage {
+    background-image: url('../assets/room_background.png');
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    position: absolute;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+
+    .top_element {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 27px 8px 0px 12px;
+    }
+
+    .top_text {
+        font-size: $xl;
+        color: $text;
+        font-weight: 600;
+        padding-left: 30px;
+    }
+
+    .coin_box {
+        display: flex;
+        background-color: $base;
+        border-radius: 8px;
+        box-shadow: inset 0px 0px 8px 0px $drop_shadow;
+        padding: .2rem .8rem .2rem .4rem;
+        align-items: center;
+        gap: 8px;
+
+
+        img {
+            width: 3.2rem;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .coin_num {
+            font-size: $lg;
+            font-weight: bold;
+        }
+
+    }
+
+    .category_tabs {
+        display: flex;
+        overflow-x: scroll;
+        white-space: nowrap; // 折り返さない
+        background-color: $sub;
+
+
+        .tab_item {
+            padding: 10px;
+            font-size: $md;
+            font-weight: bold;
+            color: rgba(250, 250, 248, 0.3);
+        }
+
+        .active {
+            color: $base;
+        }
+
+    }
+
+    .tab_content {
+        background-color: $base;
+        width: 100%;
+        white-space: nowrap;
+
+        .tab_content_description {
+
+            .owned_tabs {
+                display: flex;
+                overflow-x: scroll;
+                white-space: nowrap; // 折り返さない
+                background-color: $base;
+
+                .tab_item {
+                    padding: 8px 12px;
+                    font-size: $md;
+                    font-weight: bold;
+                    color: rgba(68, 68, 68, 0.3);
+
+                    .active{
+                        color: $text;
+                    }
+                }
+            }
+
+
+
+
+            .dress_box {
+                width: 100px;
+                height: 100px;
+                box-shadow: inset 0 0 8px 0 $drop_shadow;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    max-width: 80%; // 枠に合わせて縮小
+                    max-height: 80%; // 枠に収まるように
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+
+
+
+
+
+}

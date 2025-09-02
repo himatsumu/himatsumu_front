@@ -4,14 +4,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px 0;
 
     .friend_box {
         display: flex;
-        gap: 70px;
+        gap: 95px;
         padding: 6px 0;
         width: 90%;
         border-top: 1px solid $drop_shadow;
         border-bottom: 1px solid $drop_shadow;
+        justify-content: space-between;
 
         .user_info {
             display: flex;
@@ -35,6 +37,7 @@
         .button_box {
             align-self: center;
             padding: 6px 0;
+            margin-right: 8px;
 
             .button_flex {
                 display: flex;

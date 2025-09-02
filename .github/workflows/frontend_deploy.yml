@@ -1,0 +1,60 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - 'develop'
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      IMAGE_NAME: ${{ steps.prepare_name.outputs.IMAGE_NAME }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare image name
+        id: prepare_name
+        run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: log in to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app
+          file: ./app/Dockerfile.prod
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ steps.prepare_name.outputs.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ steps.prepare_name.outputs.IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            VITE_GOOGLE_MAP_KEY=${{ secrets.VITE_GOOGLE_MAP_KEY }}
+            VITE_GO_PORT=${{ secrets.VITE_GO_PORT }}
+            VITE_AUTH_PORT=${{ secrets.VITE_AUTH_PORT }}
+            VITE_REACT_PORT=${{ secrets.VITE_REACT_PORT }}
+
+  deploy:
+    needs: build-and-push
+
+    runs-on: self-hosted
+
+    steps:
+
+        - name: Deploy to Kubernetes
+          run: |
+              kubectl set image deployment/frontend-deployment frontend-container=${{ env.REGISTRY }}/${{ needs.build-and-push.outputs.IMAGE_NAME }}:${{ github.sha }}
+              kubectl rollout status deployment/frontend-deployment

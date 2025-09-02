@@ -12,6 +12,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.10",
     "@react-google-maps/api": "^2.20.7",
+    "@react-oauth/google": "^0.12.2",
     "axios": "^1.10.0",
     "canvas-confetti": "^1.9.3",
     "framer-motion": "^12.22.0",
