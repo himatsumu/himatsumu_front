@@ -16,6 +16,10 @@ export default function Friend_home() {
     navigate('/quest-create');
   };
 
+  const AlbumHome = () => {
+    console.log("アルバム");
+    navigate('/album-home');
+  };
 
   return (
     <div className={styles.container}>
@@ -52,7 +56,7 @@ export default function Friend_home() {
         </div>
       </div>
       <div className={styles.btnWrap}>
-        <Button className={styles.subBtn} variant="buttonOther">
+        <Button className={styles.subBtn} variant="buttonOther" onClick={AlbumHome}>
           <img src={images.album} alt="アルバムのアイコン" />
         </Button>
         <Button className={styles.questBtn} variant="small" onClick={QuestPage}>

@@ -30,6 +30,8 @@ const images = {
     closeButton: './src/assets/close.svg',                                  //閉じるボタン
     search: './src/assets/search.svg',                                      //虫眼鏡
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
+    human: './src/assets/human.svg',
+    albumFolder: './src/assets/folder.svg'
     human: './src/assets/human.svg',                                        //申請の人間
     shuffle: "./src/assets/shuffle.svg",                                    //名前ランダム生成
 
@@ -57,9 +59,6 @@ const images = {
     ChildBelongingsThumb: "./src/assets/child_belongings_thumb.svg",        //幼稚園児（アイテム欄）
     InsectBelongingsThumb: "./src/assets/insect_belongings_thumb.svg",      //虫取り（アイテム欄）
     InsectBelongingsBagThumb: "./src/assets/insect_belongings2_thumb.svg",  //虫取り（アイテム欄）
-
-
-
 }
 
 export default images;

@@ -11,6 +11,7 @@ export default function CharaEvolution() {
     const [bgAnimate, setBgAnimate] = useState(false);                  //アニメーションのタイミング制御
     const [text, setText] = useState(false);                            //テキストの表示変更タイミング制御
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -40,9 +41,54 @@ export default function CharaEvolution() {
         navigate('/friend-home-finish');
       };
 
+    const handleFinishToday = () => {
+        setIsModalOpen(false);
+        setIsSecondModalOpen(true);
+    };
+
     const goToQuest = () => {
         navigate('/quest-create');
     }
+
+    const selectPhotos = () => {
+        // hidden input要素を作成してファイル選択ダイアログを開く
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*'; // 画像ファイルのみ受け入れ
+        input.multiple = true; // 複数ファイル選択可能
+        
+        // ファイルが選択されたときの処理
+        input.onchange = (event) => {
+            const files = (event.target as HTMLInputElement).files;
+            if (files && files.length > 0) {
+                console.log('選択された画像ファイル:', files);
+                // ここで選択されたファイルの処理を行う
+                // 例: アップロード処理、プレビュー表示など
+                handleSelectedFiles(files);
+            }
+        };
+        
+        // ファイル選択ダイアログを開く
+        input.click();
+    };
+
+    const handleSelectedFiles = (files: FileList) => {
+        // 選択されたファイルの処理を行う関数
+        console.log('選択されたファイル数:', files.length);
+        Array.from(files).forEach((file) => {
+            console.log('ファイル名:', file.name);
+            console.log('ファイルサイズ:', file.size);
+            console.log('ファイルタイプ:', file.type);
+        });
+        
+        // モーダルを閉じる
+        setIsSecondModalOpen(false);
+        
+        // 写真確認画面に遷移（選択したファイルを渡す）
+        navigate('/add-photos', { 
+            state: { files } 
+        });
+    };
 
 
     return (
@@ -86,8 +132,25 @@ export default function CharaEvolution() {
                                     <p>それとも今日は終了？</p>
                                 </div>
                                 <div className={styles.btnWrap}>            
-                                    <Button variant="common" className={styles.questBtn} onClick={handleCloseModal}>今日は終了</Button>
-                                    <Button variant="common" className={styles.selectBtn} onClick={goToQuest}>続ける </Button>
+                                    <Button variant="common" className={styles.questBtn} onClick={handleFinishToday}>今日は終了</Button>
+                                    <Button variant="common" className={styles.selectBtn} onClick={goToQuest}>続ける</Button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {isSecondModalOpen && (
+                        <div className={styles.modalWrapper}>
+                            <div className={styles.modalContent}>
+                                <div className={styles.dialogIntext}>
+                                    <p>
+                                        ついでに、アルバムに<br/>
+                                        今日の写真を追加しますか？
+                                    </p>
+                                </div>
+                                <div className={styles.btnWrap}>            
+                                    <Button variant="common" className={styles.selectBtn} onClick={handleCloseModal}>あとで</Button>
+                                    <Button variant="common" className={styles.questBtn} onClick={selectPhotos}>追加する</Button>
                                 </div>
                             </div>
                         </div>

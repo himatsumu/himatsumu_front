@@ -1,0 +1,62 @@
+@use "../styles/common.scss" as *;
+@use "../styles/common.module.scss" as *;
+
+.container{
+    @extend .container;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2.6rem 0 0;
+    .CloseBtnWrap{
+        width: 3.2rem;
+        aspect-ratio: 1/1;
+    } 
+    h1{
+        font-size: $xl;
+        font-weight: bolder;
+        flex: 1;
+        text-align: center;
+    }
+}
+
+.dateSelectWrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 56px;
+}
+
+.dateLabel {
+    font-size: $sm;
+    color: $text;
+    margin-bottom: 4px;
+}
+
+.date {
+    width: 100%;
+    padding: 5px 0;
+    border: 1px solid rgba(68, 68, 68, 0.25);
+    border-radius: 8px;
+    font-size: $lg;
+    text-align: center;
+    background-color: $base;
+    box-shadow: 0 0 4px 0 rgba(68, 68, 68, 0.25) inset;
+}
+
+.btnWrap {
+    position: fixed;
+    bottom: 8dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.6rem;
+    left: 0;
+    right: 0;
+    .cancelBtn {
+        color: $sub;
+    }
+}    
+
+
