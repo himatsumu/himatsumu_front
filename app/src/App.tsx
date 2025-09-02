@@ -19,7 +19,9 @@ import CharaNameSetup from "./pages/chara_name_setup";
 import SetupFinish from "./pages/setup_finish";
 import Signup from "./pages/signup";
 import AlbumHome from "./pages/album_home";
+import AlbumDetail from "./pages/album_detail";
 import AddPhotos from "./pages/add_photos";
+import CreateFolder from "./pages/create_folder";
 
 
 function App() {
@@ -47,7 +49,9 @@ function App() {
           <Route path="/setup_finish" element={<SetupFinish />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/album-home" element={<AlbumHome />} />
+          <Route path="/album-detail/:date" element={<AlbumDetail />} />
           <Route path="/add-photos" element={<AddPhotos />} />
+          <Route path="/create-folder" element={<CreateFolder />} />
           {/* Add more routes as needed */}
         </Routes>
       </BrowserRouter>

@@ -41,9 +41,12 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 8dvh;
+    left: 0;
+    right: 0;
+
     .addBtn{
         padding: 12px 32px;
-        position: fixed;
-        bottom: 8dvh;
     }
 }

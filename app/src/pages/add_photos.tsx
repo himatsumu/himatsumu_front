@@ -14,12 +14,22 @@ export default function AddPhotos() {
     const location = useLocation();
     const [photos, setPhotos] = useState<PhotoData[]>([]);
     const [currentDate, setCurrentDate] = useState<string>("");
+    const [albumDate, setAlbumDate] = useState<string | null>(null);
     
     useEffect(() => {
-        // 現在の日付を設定
-        const today = new Date();
-        const formattedDate = `${today.getFullYear()}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getDate().toString().padStart(2, '0')}`;
-        setCurrentDate(formattedDate);
+        // URLパラメータまたはstateからアルバムの日付を取得
+        const existingAlbumDate = location.state?.albumDate;
+        
+        if (existingAlbumDate) {
+            // 既存のアルバムに追加する場合
+            setAlbumDate(existingAlbumDate);
+            setCurrentDate(existingAlbumDate);
+        } else {
+            // 新しいアルバムを作成する場合
+            const today = new Date();
+            const formattedDate = `${today.getFullYear()}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getDate().toString().padStart(2, '0')}`;
+            setCurrentDate(formattedDate);
+        }
         
         // 前の画面から渡されたファイルを取得
         const selectedFiles = location.state?.files as FileList;
@@ -45,25 +55,47 @@ export default function AddPhotos() {
     }, [photos]);
 
     const handleAddToAlbum = () => {
-        // アルバムに写真を追加する処理
-        const albumData = {
-            date: currentDate,
-            photos: photos.map(photo => ({
-                file: photo.file,
-                preview: photo.preview,
-                name: photo.file.name
-            }))
-        };
-        
-        // ローカルストレージに保存（実際のアプリではAPIに送信）
-        const existingAlbums = JSON.parse(localStorage.getItem('albums') || '[]');
-        existingAlbums.push(albumData);
-        localStorage.setItem('albums', JSON.stringify(existingAlbums));
-        
-        console.log('アルバムに追加されました:', albumData);
-        
-        // アルバムホームに遷移
-        navigate('/album-home');
+        if (albumDate) {
+            // 既存のアルバムに写真を追加
+            const existingAlbums = JSON.parse(localStorage.getItem('albums') || '[]');
+            const updatedAlbums = existingAlbums.map((album: any) => {
+                if (album.date === albumDate) {
+                    return {
+                        ...album,
+                        photos: [
+                            ...album.photos,
+                            ...photos.map(photo => ({
+                                file: photo.file,
+                                preview: photo.preview,
+                                name: photo.file.name
+                            }))
+                        ]
+                    };
+                }
+                return album;
+            });
+            localStorage.setItem('albums', JSON.stringify(updatedAlbums));
+            
+            // アルバム詳細画面に戻る
+            navigate(`/album-detail/${encodeURIComponent(albumDate)}`);
+        } else {
+            // 新しいアルバムを作成
+            const albumData = {
+                date: currentDate,
+                photos: photos.map(photo => ({
+                    file: photo.file,
+                    preview: photo.preview,
+                    name: photo.file.name
+                }))
+            };
+            
+            const existingAlbums = JSON.parse(localStorage.getItem('albums') || '[]');
+            existingAlbums.push(albumData);
+            localStorage.setItem('albums', JSON.stringify(existingAlbums));
+            
+            // アルバムホームに遷移
+            navigate('/album-home');
+        }
     };
 
 

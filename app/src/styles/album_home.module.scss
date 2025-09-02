@@ -13,6 +13,7 @@
     .CloseBtnWrap{
         width: 3.2rem;
         aspect-ratio: 1/1;
+        z-index: 1000;
     } 
     h1{
         font-size: $xl;
@@ -52,44 +53,35 @@
     
     .albumItem {
         position: relative;
+        transition: all 0.2s ease;
         
-        .albumInfo {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            
-            .photoCount {
-                font-size: $sm;
-                color: #666;
-                font-weight: normal;
-            }
-        }
-        
-        .deleteItemBtn {
-            background: #ff4757;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: $sm;
-            font-weight: bold;
+        &.deleteModeItem {
             cursor: pointer;
-            transition: background 0.3s ease;
-            
-            &:hover {
-                background: #ff3838;
-            }
         }
+        
+        &.clickable {
+            cursor: pointer;
+        }
+        
+        &.selected {
+            border: 2px solid $accent_btn_shadow;
+        }
+        
     }
 }
 
 .btnWrap{
     position: fixed;
-    display: flex;
-    column-gap: .8rem;
     bottom: 8dvh;
-    .deleteBtn, .createBtn{
-        padding: 1.2rem 2rem;
+    display: flex;
+    column-gap: .8rem ;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    .deleteBtn, .createBtn, .cancelBtn{
+        padding: 1.2rem 1.6rem;
+    }
+    .cancelBtn{
+        color: $sub;
     }
 }
