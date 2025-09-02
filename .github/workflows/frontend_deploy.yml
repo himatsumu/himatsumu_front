@@ -21,6 +21,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: 🧐 [Debug] Install Dependencies
+      # appディレクトリに移動して、npm installを実行
+        run: cd ./app && npm install
+
+      - name: 🧐 [Debug] Run Build Command
+        # appディレクトリに移動して、npm run buildを直接実行
+        # これで詳細なエラーログが表示されるはず
+        run: cd ./app && npm run build
+
       - name: Prepare image name
         id: prepare_name
         run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
