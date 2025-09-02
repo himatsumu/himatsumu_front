@@ -18,6 +18,9 @@ export default function CharaDressup() {
     const [dressupHat, setDressupHat] = useState<string | null>(null);
     const [dressupBelongings, setDressupBelongings] = useState<string | null>(null);
     const showButtonTabs = ["limited", "clothes", "hat", "belongings", "others"];
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 
     const selectedItem =
         activeTab === "clothes" ? selectedClothesItem :
@@ -60,8 +63,12 @@ export default function CharaDressup() {
     };
 
     const handleModalOpen = () => {
-        
+        setIsModalOpen(true);
     };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false)
+    }
 
     return (
         <>
@@ -88,6 +95,36 @@ export default function CharaDressup() {
                     <div className={styles.button_box}>
                         {shouldShowButton && (<Button variant="dressupBuy" onClick={handleModalOpen}>購入画面へ</Button>)}
                     </div>
+
+                    {isModalOpen && (
+                        <div className={styles.modalWrapper}>
+                            <div className={styles.modalContent}>
+                                <div className={styles.modalBuyDress}>
+                                    <div className={styles.dressImg}>
+                                        {/*購入するアイテムの画像*/}
+                                        {selectedItem && <img src={selectedItem} alt="購入アイテム" />}
+                                        <div className={styles.price_box}>
+                                            <img src={images.coin} alt="コイン" />
+                                            <span className={styles.coin_num}>50</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles.dialogIntext}>
+                                        <p>このアイテムを</p>
+                                        <p>購入しますか？</p>
+                                        <div className={styles.rest_text}>
+                                            <p>購入後；残り</p>
+                                            <span><img src={images.coin} alt="コイン" />50</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.btnWrap}>
+                                    <Button variant="common" className={styles.questBtn} onClick={handleModalClose}>キャンセル</Button>
+                                    <Button variant="common" className={styles.selectBtn} >購入 </Button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
 
                     {/*着せ替えアイテム一覧*/}
