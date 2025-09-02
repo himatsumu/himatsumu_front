@@ -3,7 +3,7 @@ name: Frontend CI/CD
 on:
   push:
     branches:
-      - 'feature/images_deploy'
+      - 'develop'
 
 env:
   REGISTRY: ghcr.io
@@ -20,15 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: 🧐 [Debug] Install Dependencies
-      # appディレクトリに移動して、npm installを実行
-        run: cd ./app && npm install
-
-      - name: 🧐 [Debug] Run Build Command
-        # appディレクトリに移動して、npm run buildを直接実行
-        # これで詳細なエラーログが表示されるはず
-        run: cd ./app && npm run build
 
       - name: Prepare image name
         id: prepare_name
