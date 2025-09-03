@@ -19,6 +19,7 @@ export default function CharaDressup() {
     const [dressupBelongings, setDressupBelongings] = useState<string | null>(null);
     const showButtonTabs = ["limited", "clothes", "hat", "belongings", "others"];
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMode, setModalMode] = useState<"buy" | "owned">("buy");
 
 
 
@@ -28,8 +29,16 @@ export default function CharaDressup() {
                 activeTab === "belongings" ? selectedBelongingsItem :
                     null;
 
+    // 所得済みタブで選択されているアイテム
+    const ownedSelectedItem =
+        activeOwnedTab === "clothes" ? dressupClothed :
+            activeOwnedTab === "hat" ? dressupHat :
+                activeOwnedTab === "belongings" ? dressupBelongings :
+                    null;
+
 
     const shouldShowButton = showButtonTabs.includes(activeTab) && activeTab !== "owned" && selectedItem !== null;
+    const shouldShowOwnedButton = activeTab === "owned" && ownedSelectedItem !== null;
 
     const tabs = [
         { id: "owned", label: "所得済み" },
@@ -62,10 +71,7 @@ export default function CharaDressup() {
         others: [],
     };
 
-    const handleModalOpen = () => {
-        setIsModalOpen(true);
-    };
-
+    //モーダルを閉じる
     const handleModalClose = () => {
         setIsModalOpen(false)
     }
@@ -93,34 +99,68 @@ export default function CharaDressup() {
 
 
                     <div className={styles.button_box}>
-                        {shouldShowButton && (<Button variant="dressupBuy" onClick={handleModalOpen}>購入画面へ</Button>)}
+                        {shouldShowButton && (
+                            <Button variant="dressupBuy" onClick={() => {
+                                setModalMode("buy");
+                                setIsModalOpen(true);
+                            }}>
+                                購入画面へ
+                            </Button>
+                        )}
+                        {shouldShowOwnedButton && (
+                            <Button variant="dressupBuy" onClick={() => {
+                                setModalMode("owned");
+                                setIsModalOpen(true);
+                            }}>
+                                決定
+                            </Button>
+                        )}
                     </div>
 
                     {isModalOpen && (
                         <div className={styles.modalWrapper}>
                             <div className={styles.modalContent}>
                                 <div className={styles.modalBuyDress}>
-                                    <div className={styles.dressImg}>
-                                        {/*購入するアイテムの画像*/}
-                                        {selectedItem && <img src={selectedItem} alt="購入アイテム" />}
-                                        <div className={styles.price_box}>
-                                            <img src={images.coin} alt="コイン" />
-                                            <span className={styles.coin_num}>50</span>
+                                    {modalMode === "buy" && (
+                                        <div className={styles.dressImg}>
+                                            {/*購入するアイテムの画像*/}
+                                            {selectedItem && <img src={selectedItem} alt="購入アイテム" />}
+                                            <div className={styles.price_box}>
+                                                <img src={images.coin} alt="コイン" />
+                                                <span className={styles.coin_num}>50</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                     <div className={styles.dialogIntext}>
-                                        <p>このアイテムを</p>
-                                        <p>購入しますか？</p>
-                                        <div className={styles.rest_text}>
-                                            <p>購入後；残り</p>
-                                            <span><img src={images.coin} alt="コイン" />50</span>
-
-                                        </div>
+                                        {modalMode === "buy" ? (
+                                            <>
+                                                <p>このアイテムを</p>
+                                                <p>購入しますか？</p>
+                                                <div className={styles.rest_text}>
+                                                    <p>購入後；残り</p>
+                                                    <span><img src={images.coin} alt="コイン" />50</span>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className={styles.owned_modal_text}>
+                                                    <p>コーディネートこれで決定？</p>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div className={styles.btnWrap}>
                                     <Button variant="common" className={styles.questBtn} onClick={handleModalClose}>キャンセル</Button>
-                                    <Button variant="common" className={styles.selectBtn} >購入 </Button>
+                                    {modalMode === "buy" ? (
+                                        <>
+                                            <Button variant="common" className={styles.selectBtn} >購入 </Button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Button variant="common" className={styles.selectBtn} >決定 </Button>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

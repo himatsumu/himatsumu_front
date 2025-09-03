@@ -123,6 +123,9 @@
 
     .modalBuyDress {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        
     }
 
     .dressImg {
@@ -152,6 +155,10 @@
             display: flex;
             align-items: center;
         }
+    }
+
+    .owned_modal_text {
+        padding: 4.8rem 1.8rem 2.4rem 0;
     }
 
     .btnWrap {
