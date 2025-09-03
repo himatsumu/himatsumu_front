@@ -2,6 +2,7 @@ import styles from "../styles/friend_home.module.scss";
 import images from "../hooks/images";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
+import { useDressup } from "../hooks/useDressup";
 
 export default function Friend_home() {
   const navigate = useNavigate();
@@ -20,6 +21,12 @@ export default function Friend_home() {
     console.log("アルバム");
     navigate('/album-home');
   };
+
+  // const handleDressup = () => {
+  //   navigate('/chara_dressup');
+  // }
+
+  const { dressupClothed, dressupHat, dressupBelongings } = useDressup();
 
   return (
     <div className={styles.container}>
@@ -52,6 +59,9 @@ export default function Friend_home() {
         </div>
         <div className={styles.characterWrap}>
           <img src={images.characterEgg} alt="キャラクター" />
+          {/* {dressupClothed && <img src={dressupClothed} alt="服" />}
+          {dressupHat && <img src={dressupHat} alt="帽子" />}
+          {dressupBelongings && <img src={dressupBelongings} alt="持ち物" />} */}
           {/* <img src={images.characterLowHands} alt="キャラクター" /> */}
         </div>
       </div>

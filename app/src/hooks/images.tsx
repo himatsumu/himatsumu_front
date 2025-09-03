@@ -43,6 +43,22 @@ import InsectHatThumb from "../assets/insect_hat_thumb.svg";
 import ChildBelongingsThumb from "../assets/child_belongings_thumb.svg";
 import InsectBelongingsThumb from "../assets/insect_belongings_thumb.svg";
 import InsectBelongingsBagThumb from "../assets/insect_belongings2_thumb.svg";
+import InsectDress from "../assets/insect_dress.svg";
+import MaidDress from "../assets/maid_dress.svg";
+import MarineDress from "../assets/marine_dress.svg";
+import RaincoatDress from "../assets/raincoat_dress.svg";
+import SantaDress from "../assets/santa_dress.svg";
+import SuitDress from "../assets/suit_dress.svg";
+import ChildDress from "../assets/child_dress.svg";
+import SuitHatDress from "../assets/suit_hat_dress.svg";
+import ChildHatDress from "../assets/child_hat_dress.svg";
+import MaidHatDress from "../assets/maid_hat_dress.svg";
+import SantaHatDress from "../assets/santa_hat_dress.svg";
+import MarineHatDress from "../assets/marine_hat_dress.svg";
+import InsectHatDress from "../assets/insect_hat_dress.svg";
+import ChildBelongingsDress from "../assets/child_belongings_dress.svg";
+import InsectBelongingsDress from "../assets/insect_belongings_dress.svg";
+import InsectBelongingsBagDress from "../assets/insect_belongings2_dress.svg";
 
 const images = {
     butonnBackGround,
@@ -90,6 +106,22 @@ const images = {
     ChildBelongingsThumb,
     InsectBelongingsThumb,
     InsectBelongingsBagThumb,
+    InsectDress,
+    MaidDress,
+    MarineDress,
+    RaincoatDress,
+    SantaDress,
+    SuitDress,
+    ChildDress,
+    SuitHatDress,
+    ChildHatDress,
+    MaidHatDress,
+    SantaHatDress,
+    MarineHatDress,
+    InsectHatDress,
+    ChildBelongingsDress,
+    InsectBelongingsDress,
+    InsectBelongingsBagDress,
 };
 
 export default images;

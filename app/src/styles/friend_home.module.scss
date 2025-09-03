@@ -1,128 +1,171 @@
 @use "../styles/common.scss" as *;
 @use "../styles/common.module.scss" as *;
 
-.container{
+.container {
     @extend .container;
     background-image: url("../assets/room_background.png");
     justify-content: space-between;
 }
 
-.header{
+.header {
     width: 100%;
     display: flex;
     align-items: center;
     padding: 2.6rem 0 1.6rem;
-    .backBtn{
+
+    .backBtn {
         width: 3.2rem;
         aspect-ratio: 1/1;
         position: relative;
-        z-index: 100;  
-        img{
+        z-index: 100;
+
+        img {
             width: 100%;
             height: 100%;
             pointer-events: none;
         }
-    } 
-    h1{
+    }
+
+    h1 {
         font-size: $xl;
         font-weight: bolder;
         flex: 1;
         text-align: center;
         margin-left: -3.2rem;
-        span{
+
+        span {
             margin-left: 0.8rem;
             font-size: $md;
         }
     }
 }
 
-.countInfo{
+.countInfo {
     width: 100%;
     display: flex;
     column-gap: .4rem;
-    div{
+
+    div {
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-radius: .8rem;
         background: $base;
         box-shadow: 0px 0px 8px 0px $drop_shadow inset;
-        span{
+
+        span {
             font-size: $md;
             font-weight: 700;
         }
-        p{
+
+        p {
             font-size: $sm;
             font-weight: bolder;
             color: $main;
         }
     }
-    .point{
+
+    .point {
         width: 20%;
         padding: .2rem .8rem .2rem .4rem;
-        img{
+
+        img {
             width: 3.2rem;
             aspect-ratio: 1/1;
             object-fit: cover;
         }
     }
-    .goCount{
+
+    .goCount {
         width: 42%;
         padding: .2rem .8rem;
     }
-    .questCount{
+
+    .questCount {
         width: 38%;
         padding: .2rem .8rem;
     }
 }
 
-.characterWrapper{
+.characterWrapper {
     padding: 3.2rem 0 3.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 1.6rem;
-    .characterHeader{
+
+    .characterHeader {
         display: flex;
         align-items: center;
         font-weight: bolder;
         column-gap: .8rem;
-        p{
+
+        p {
             display: flex;
             align-items: baseline;
             font-size: $sm;
             padding: .4rem .8rem .6rem;
             position: relative;
             border-radius: 3.2rem;
-            background-color: rgba(250, 250, 248,.5);
-            span{
+            background-color: rgba(250, 250, 248, .5);
+
+            span {
                 font-size: $md;
                 padding-left: .2rem;
             }
         }
-        h2{
+
+        h2 {
             font-size: $xl;
         }
     }
 }
 
-.btnWrap{
+.btnWrap {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 1.6rem;
-    .subBtn{
+
+    .subBtn {
         width: 20%;
         padding: 1rem 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .questBtn{
+
+    .questBtn {
         width: 60%;
         padding: 1.2rem 2rem;
         font-size: $lg;
         font-weight: bolder;
+    }
+}
+
+
+//friend-home-finishの着せ替え後のキャラクター
+
+.chara_box {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 0 auto;
+
+    img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .overlay_item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px; // 固定
+        height: 300px; // 固定
+        z-index: 2;
+        pointer-events: none;
     }
 }
