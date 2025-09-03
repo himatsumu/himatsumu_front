@@ -17,7 +17,9 @@ const buttonStyle = {
     buttonAddRequest: `${styles.buttonAddRequest}`,
     buttonDelete: `${styles.buttonDelete}`,
     buttonNameCreate: `${styles.charaNameButton}`,
-    changeNameButton: `${styles.changeNameButton}`
+    changeNameButton: `${styles.changeNameButton}`,
+    dressupBuy: `${styles.dressupBuy}`,
+    buttonReset: `${styles.buttonReset}`
 } as const
 
 //共通のボタンデザイン
