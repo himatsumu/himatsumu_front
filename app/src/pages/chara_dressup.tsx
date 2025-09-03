@@ -56,18 +56,58 @@ export default function CharaDressup() {
         { id: "others", label: "その他" },
     ]
     //タブごとのアイテム一覧
-    const itemsByTab: Record<string, string[]> = {
-        limited: [images.SuitThumb],
-        clothes: [images.SuitThumb, images.ChildThumb, images.MaidThumb, images.RaincoatThumb, images.SantaThumb, images.MarineThumb, images.InsectThumb],
-        hat: [images.SuitHatThumb, images.ChildHatThumb, images.MaidHatThumb, images.SantaHatThumb, images.MarineHatThumb, images.InsectHatThumb],
-        belongings: [images.ChildBelongingsThumb, images.InsectBelongingsThumb, images.InsectBelongingsBagThumb],
+    const itemsByTab: Record<string, { thumb: string; dressImg: string }[]> = {
+        limited: [
+            { thumb: images.SuitThumb, dressImg: images.SuitDress },
+            { thumb: images.ChildThumb, dressImg: images.ChildDress },
+            { thumb: images.MaidThumb, dressImg: images.MaidDress },
+        ],
+        clothes: [
+            { thumb: images.SuitThumb, dressImg: images.SuitDress },
+            { thumb: images.ChildThumb, dressImg: images.ChildDress },
+            { thumb: images.MaidThumb, dressImg: images.MaidDress },
+            { thumb: images.RaincoatThumb, dressImg: images.RaincoatDress },
+            { thumb: images.SantaThumb, dressImg: images.SantaDress },
+            { thumb: images.MarineThumb, dressImg: images.MarineDress },
+            { thumb: images.InsectThumb, dressImg: images.InsectDress },
+        ],
+        hat: [
+            { thumb: images.SuitHatThumb, dressImg: images.SuitHatDress },
+            { thumb: images.ChildHatThumb, dressImg: images.ChildHatDress },
+            { thumb: images.MaidHatThumb, dressImg: images.MaidHatDress },
+            { thumb: images.SantaHatThumb, dressImg: images.SantaHatDress },
+            // { thumb: images.MarineHatThumb, dressImg: images.MarineHatDress },
+            { thumb: images.InsectHatThumb, dressImg: images.InsectHatDress }
+        ],
+        belongings: [
+            { thumb: images.ChildBelongingsThumb, dressImg: images.ChildBelongingsDress },
+            // { thumb: images.InsectBelongingsThumb, dressImg: images.InsectBelongingsDress },
+            { thumb: images.InsectBelongingsBagThumb, dressImg: images.InsectBelongingsBagDress },
+        ],
         others: [],
     };
 
-    const ownedTab: Record<string, string[]> = {
-        clothes: [images.ChildThumb],
-        hat: [images.ChildHatThumb],
-        belongings: [images.ChildBelongingsThumb],
+    const ownedTab: Record<string, { thumb: string; dressImg: string }[]> = {
+        clothes: [
+            { thumb: images.SuitThumb, dressImg: images.SuitDress },
+            { thumb: images.ChildThumb, dressImg: images.ChildDress },
+            { thumb: images.MaidThumb, dressImg: images.MaidDress },
+            { thumb: images.RaincoatThumb, dressImg: images.RaincoatDress },
+            { thumb: images.SantaThumb, dressImg: images.SantaDress },
+            { thumb: images.MarineThumb, dressImg: images.MarineDress },
+            { thumb: images.InsectThumb, dressImg: images.InsectDress }
+        ],
+        hat: [
+            { thumb: images.SuitHatThumb, dressImg: images.SuitHatDress },
+            { thumb: images.ChildHatThumb, dressImg: images.ChildHatDress },
+            { thumb: images.MaidHatThumb, dressImg: images.MaidHatDress },
+            { thumb: images.SantaHatThumb, dressImg: images.SantaHatDress },
+            { thumb: images.InsectHatThumb, dressImg: images.InsectHatDress }
+        ],
+        belongings: [
+            { thumb: images.ChildBelongingsThumb, dressImg: images.ChildBelongingsDress },
+            { thumb: images.InsectBelongingsBagThumb, dressImg: images.InsectBelongingsBagDress },
+        ],
         others: [],
     };
 
@@ -93,8 +133,27 @@ export default function CharaDressup() {
                         </div>
                     </div>
 
+                    {/* キャラクター */}
                     <div className={styles.chara_box}>
                         <img src={images.DressupCharacter} alt="キャラクター画像" />
+                        {(selectedClothesItem || dressupClothed) &&
+                            <img
+                                src={selectedClothesItem || dressupClothed!}
+                                alt="服"
+                                className={styles.overlay_item}
+                            />}
+                        {(selectedHatItem || dressupHat) &&
+                            <img
+                                src={selectedHatItem || dressupHat!}
+                                alt="帽子"
+                                className={styles.overlay_item}
+                            />}
+                        {(selectedBelongingsItem || dressupBelongings) &&
+                            <img
+                                src={selectedBelongingsItem || dressupBelongings!}
+                                alt="持ち物"
+                                className={styles.overlay_item}
+                            />}
                     </div>
 
 
@@ -188,7 +247,14 @@ export default function CharaDressup() {
                                     )}
                                     {modalMode === "reset" && (
                                         <>
-                                            <Button variant="common" className={styles.selectBtn} >はい </Button>
+                                            <Button variant="common" className={styles.selectBtn} onClick={() => {
+                                                setDressupClothed(null);
+                                                setDressupHat(null);
+                                                setDressupBelongings(null);
+                                                setIsModalOpen(false)
+                                            }}>
+                                                はい
+                                            </Button>
                                         </>
                                     )}
                                 </div>
@@ -207,7 +273,22 @@ export default function CharaDressup() {
                                     key={tab.id}
                                     className={`${styles.tab_item} ${activeTab === tab.id ? styles.active : ""
                                         }`}
-                                    onClick={() => setActiveTab(tab.id)}
+                                    onClick={() => {
+                                        setActiveTab(tab.id)
+
+                                        // 所持済みタブに移動したら購入プレビューをリセット
+                                        if (tab.id === "owned") {
+                                            setSelectedClothesItem(null);
+                                            setSelectedHatItem(null);
+                                            setSelectedBelongingsItem(null);
+                                        } else {
+                                            // 購入系タブに移動したら着せ替え済みをリセット
+                                            setDressupClothed(null);
+                                            setDressupHat(null);
+                                            setDressupBelongings(null);
+                                        }
+
+                                    }}
                                 >
                                     {tab.label}
                                 </button>
@@ -238,10 +319,14 @@ export default function CharaDressup() {
                                                 {ownedTab.clothes.map((item, index) => (
                                                     <div
                                                         key={index}
-                                                        className={`${styles.dress_box} ${dressupClothed === item ? styles.selected : ''}`}
-                                                        onClick={() => setDressupClothed(item)}
+                                                        className={`${styles.dress_box} ${dressupClothed === item.dressImg ? styles.selected : ''}`}
+                                                        onClick={() =>
+                                                            setDressupClothed(
+                                                                dressupClothed === item.dressImg ? null : item.dressImg
+                                                            )
+                                                        }
                                                     >
-                                                        <img src={item} alt="幼稚園児（服）" />
+                                                        <img src={item.thumb} alt="幼稚園児（服）" />
                                                         <div className={styles.price_box}>
                                                             <img src={images.coin} alt="コイン" />
                                                             <span className={styles.coin_num}>50</span>
@@ -259,10 +344,15 @@ export default function CharaDressup() {
                                                 {ownedTab.hat.map((item, index) => (
                                                     <div
                                                         key={index}
-                                                        className={`${styles.dress_box} ${dressupHat === item ? styles.selected : ''}`}
-                                                        onClick={() => setDressupHat(item)}
+                                                        className={`${styles.dress_box} ${dressupHat === item.dressImg ? styles.selected : ''}`}
+                                                        onClick={() =>
+                                                            setDressupHat(
+                                                                dressupHat === item.dressImg ? null : item.dressImg
+                                                            )
+                                                        }
+
                                                     >
-                                                        <img src={item} alt="幼稚園児（帽子）" />
+                                                        <img src={item.thumb} alt="幼稚園児（帽子）" />
                                                         <div className={styles.price_box}>
                                                             <img src={images.coin} alt="コイン" />
                                                             <span className={styles.coin_num}>50</span>
@@ -280,10 +370,15 @@ export default function CharaDressup() {
                                                 {ownedTab.belongings.map((item, index) => (
                                                     <div
                                                         key={index}
-                                                        className={`${styles.dress_box} ${dressupBelongings === item ? styles.selected : ''}`}
-                                                        onClick={() => setDressupBelongings(item)}
+                                                        className={`${styles.dress_box} ${dressupBelongings === item.dressImg ? styles.selected : ''}`}
+                                                        onClick={() =>
+                                                            setDressupBelongings(
+                                                                dressupBelongings === item.dressImg ? null : item.dressImg
+                                                            )
+                                                        }
+
                                                     >
-                                                        <img src={item} alt="幼稚園児（持ち物）" />
+                                                        <img src={item.thumb} alt="幼稚園児（持ち物）" />
                                                         <div className={styles.price_box}>
                                                             <img src={images.coin} alt="コイン" />
                                                             <span className={styles.coin_num}>50</span>
@@ -312,10 +407,14 @@ export default function CharaDressup() {
                                         {itemsByTab.clothes.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className={`${styles.dress_box} ${selectedClothesItem === item ? styles.selected : ''}`}
-                                                onClick={() => setSelectedClothesItem(item)}
+                                                className={`${styles.dress_box} ${selectedClothesItem === item.dressImg ? styles.selected : ''}`}
+                                                onClick={() =>
+                                                    setSelectedClothesItem(
+                                                        selectedClothesItem === item.dressImg ? null : item.dressImg
+                                                    )
+                                                }
                                             >
-                                                <img src={item} alt={`服アイテム${index}`} />
+                                                <img src={item.thumb} alt={`服アイテム${index}`} />
                                                 <div className={styles.price_box}>
                                                     <img src={images.coin} alt="コイン" />
                                                     <span className={styles.coin_num}>50</span>
@@ -332,10 +431,14 @@ export default function CharaDressup() {
                                         {itemsByTab.hat.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className={`${styles.dress_box} ${selectedHatItem === item ? styles.selected : ''}`}
-                                                onClick={() => setSelectedHatItem(item)}
+                                                className={`${styles.dress_box} ${selectedHatItem === item.dressImg ? styles.selected : ''}`}
+                                                onClick={() =>
+                                                    setSelectedHatItem(
+                                                        selectedHatItem === item.dressImg ? null : item.dressImg
+                                                    )
+                                                }
                                             >
-                                                <img src={item} alt={`帽子アイテム${index}`} />
+                                                <img src={item.thumb} alt={`帽子アイテム${index}`} />
                                                 <div className={styles.price_box}>
                                                     <img src={images.coin} alt="コイン" />
                                                     <span className={styles.coin_num}>50</span>
@@ -352,10 +455,14 @@ export default function CharaDressup() {
                                         {itemsByTab.belongings.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className={`${styles.dress_box} ${selectedBelongingsItem === item ? styles.selected : ''}`}
-                                                onClick={() => setSelectedBelongingsItem(item)}
+                                                className={`${styles.dress_box} ${selectedBelongingsItem === item.dressImg ? styles.selected : ''}`}
+                                                onClick={() =>
+                                                    setSelectedBelongingsItem(
+                                                        selectedBelongingsItem === item.dressImg ? null : item.dressImg
+                                                    )
+                                                }
                                             >
-                                                <img src={item} alt={`持ち物アイテム${index}`} />
+                                                <img src={item.thumb} alt={`持ち物アイテム${index}`} />
                                                 <div className={styles.price_box}>
                                                     <img src={images.coin} alt="コイン" />
                                                     <span className={styles.coin_num}>50</span>
