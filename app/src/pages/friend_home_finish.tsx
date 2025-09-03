@@ -2,6 +2,7 @@ import styles from "../styles/friend_home.module.scss";
 import images from "../hooks/images";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
+import { useDressup } from "../hooks/useDressup";
 
 // 最終プレゼンのデモ用
 export default function Friend_home_finish() {
@@ -17,6 +18,11 @@ export default function Friend_home_finish() {
     navigate('/quest-create');
   };
 
+  const handleDressup = () => {
+    navigate('/chara_dressup');
+  }
+
+  const { dressupClothed, dressupHat, dressupBelongings } = useDressup();
 
   return (
     <div className={styles.container}>
@@ -47,8 +53,11 @@ export default function Friend_home_finish() {
           </p>
           <h2>もも</h2>
         </div>
-        <div className={styles.characterWrap}>
-          <img src={images.egg4} alt="キャラクター" />
+        <div className={styles.chara_box}>
+          <img src={images.DressupCharacter} alt="キャラクター" />
+          {dressupClothed && <img className={styles.overlay_item} src={dressupClothed} alt="服" />}
+          {dressupHat && <img className={styles.overlay_item} src={dressupHat} alt="帽子" />}
+          {dressupBelongings && <img className={styles.overlay_item} src={dressupBelongings} alt="持ち物" />}
         </div>
       </div>
       <div className={styles.btnWrap}>
@@ -58,7 +67,7 @@ export default function Friend_home_finish() {
         <Button className={styles.questBtn} variant="small" onClick={QuestPage}>
           クエスト生成
         </Button>
-        <Button className={styles.subBtn} variant="buttonOther">
+        <Button className={styles.subBtn} variant="buttonOther" onClick={handleDressup}>
           <img src={images.dressUp} alt="着せ替えのアイコン" />
         </Button>
       </div>
