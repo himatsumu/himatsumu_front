@@ -102,6 +102,14 @@
     color: $main;
     filter: drop-shadow(0 0 4px rgba(68, 68, 68, 0.25))
 }
+//リセット
+.buttonReset {
+    padding: 10px 14px;
+    background-color: $base;
+    box-shadow: 0px 6px 0px $base_btn_shadow;
+    color: $main;
+    filter: drop-shadow(0 0 4px rgba(68, 68, 68, 0.25))
+}
 
 // 画面全体のスタイル
 .container {

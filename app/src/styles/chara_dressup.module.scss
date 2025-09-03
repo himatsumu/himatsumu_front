@@ -88,8 +88,17 @@
         display: flex;
         justify-content: flex-end;
         margin-top: -40px;
-        margin-right: 4px;
         height: 45px;
+        padding: 0 0.6rem;
+    }
+
+    //リセット・決定  
+    .button_owned_box {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -40px;
+        height: 45px;
+        padding: 0 0.8rem
     }
 
     //モーダル
@@ -125,11 +134,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        
+
     }
 
     .dressImg {
-      @include item-box;
+        @include item-box;
     }
 
     .dialogIntext {
@@ -160,6 +169,11 @@
     .owned_modal_text {
         padding: 4.8rem 1.8rem 2.4rem 0;
     }
+
+    .reset_modal_text {
+        padding: 4.8rem 1.8rem 0rem 0rem;
+    }
+
 
     .btnWrap {
         width: 100%;
@@ -271,7 +285,7 @@
 
 
                 .dress_box {
-                   @include item-box;
+                    @include item-box;
                 }
             }
         }

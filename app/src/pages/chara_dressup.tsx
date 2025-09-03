@@ -19,7 +19,7 @@ export default function CharaDressup() {
     const [dressupBelongings, setDressupBelongings] = useState<string | null>(null);
     const showButtonTabs = ["limited", "clothes", "hat", "belongings", "others"];
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalMode, setModalMode] = useState<"buy" | "owned">("buy");
+    const [modalMode, setModalMode] = useState<"buy" | "owned" | "reset">("buy");
 
 
 
@@ -100,20 +100,34 @@ export default function CharaDressup() {
 
                     <div className={styles.button_box}>
                         {shouldShowButton && (
-                            <Button variant="dressupBuy" onClick={() => {
-                                setModalMode("buy");
-                                setIsModalOpen(true);
-                            }}>
-                                購入画面へ
-                            </Button>
+                            <div className={styles.right_buttons}>
+                                <Button variant="dressupBuy" onClick={() => {
+                                    setModalMode("buy");
+                                    setIsModalOpen(true);
+                                }}>
+                                    購入画面へ
+                                </Button>
+                            </div>
                         )}
+                    </div>
+                    <div className={styles.button_owned_box}>
                         {shouldShowOwnedButton && (
-                            <Button variant="dressupBuy" onClick={() => {
-                                setModalMode("owned");
-                                setIsModalOpen(true);
-                            }}>
-                                決定
-                            </Button>
+                            <>
+                                <Button variant="buttonReset" onClick={() => {
+                                    setModalMode("reset");
+                                    setIsModalOpen(true);
+                                }}>
+                                    リセット
+                                </Button>
+
+                                <Button variant="dressupBuy" onClick={() => {
+                                    setModalMode("owned");
+                                    setIsModalOpen(true);
+                                }}>
+                                    決定
+                                </Button>
+
+                            </>
                         )}
                     </div>
 
@@ -132,7 +146,7 @@ export default function CharaDressup() {
                                         </div>
                                     )}
                                     <div className={styles.dialogIntext}>
-                                        {modalMode === "buy" ? (
+                                        {modalMode === "buy" && (
                                             <>
                                                 <p>このアイテムを</p>
                                                 <p>購入しますか？</p>
@@ -141,24 +155,40 @@ export default function CharaDressup() {
                                                     <span><img src={images.coin} alt="コイン" />50</span>
                                                 </div>
                                             </>
-                                        ) : (
+                                        )}
+
+                                        {modalMode === "owned" && (
                                             <>
                                                 <div className={styles.owned_modal_text}>
                                                     <p>コーディネートこれで決定？</p>
                                                 </div>
                                             </>
                                         )}
+
+
+                                        {modalMode === "reset" && (
+                                            <div className={styles.reset_modal_text}>
+                                                <p>コーディネート</p>
+                                                <p>リセットしますか？</p>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className={styles.btnWrap}>
                                     <Button variant="common" className={styles.questBtn} onClick={handleModalClose}>キャンセル</Button>
-                                    {modalMode === "buy" ? (
+                                    {modalMode === "buy" && (
                                         <>
                                             <Button variant="common" className={styles.selectBtn} >購入 </Button>
                                         </>
-                                    ) : (
+                                    )}
+                                    {modalMode === "owned" && (
                                         <>
                                             <Button variant="common" className={styles.selectBtn} >決定 </Button>
+                                        </>
+                                    )}
+                                    {modalMode === "reset" && (
+                                        <>
+                                            <Button variant="common" className={styles.selectBtn} >はい </Button>
                                         </>
                                     )}
                                 </div>
