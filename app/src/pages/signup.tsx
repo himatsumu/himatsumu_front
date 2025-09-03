@@ -12,7 +12,7 @@ export default function Signup() {
 
     const handleSignup = async () => {
         try {
-            const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/register`;
+            const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/register`;
             const response = await fetch(apiUrl, {
                 method: "POST",
                 headers: {
