@@ -46,6 +46,8 @@ jobs:
             VITE_GO_PORT=${{ secrets.VITE_GO_PORT }}
             VITE_AUTH_PORT=${{ secrets.VITE_AUTH_PORT }}
             VITE_REACT_PORT=${{ secrets.VITE_REACT_PORT }}
+            VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
+            VITE_AUTH_BASE_URL=${{ secrets.VITE_AUTH_BASE_URL }}
 
   deploy:
     needs: build-and-push
