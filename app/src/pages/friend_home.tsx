@@ -3,6 +3,7 @@ import images from "../hooks/images";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { useDressup } from "../hooks/useDressup";
+import { useEffect, useState } from "react";
 
 export default function Friend_home() {
   const navigate = useNavigate();
@@ -22,11 +23,36 @@ export default function Friend_home() {
     navigate('/album-home');
   };
 
-  // const handleDressup = () => {
-  //   navigate('/chara_dressup');
-  // }
+  const handleDressup = () => {
+    navigate('/chara_dressup');
+  }
 
   const { dressupClothed, dressupHat, dressupBelongings } = useDressup();
+  const [isEvolved, setIsEvolved] = useState(false);
+
+  //e展用にリロードしたらキャラの状態リセットされる
+  useEffect(() => {
+    const resetCharacter = () => {
+      localStorage.removeItem("characterImage");
+      localStorage.removeItem("dressupClothes");
+      localStorage.removeItem("dressupHat");
+      localStorage.removeItem("dressupBelongings");
+    };
+
+    // ページがリロード/閉じられる時に実行
+    window.addEventListener("beforeunload", resetCharacter);
+
+    return () => {
+      window.removeEventListener("beforeunload", resetCharacter);
+    };
+  }, []);
+
+  useEffect(() => {
+    const savedCharacter = localStorage.getItem("characterImage");
+    if (savedCharacter) {
+      setIsEvolved(true);
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -57,11 +83,22 @@ export default function Friend_home() {
           </p>
           <h2>もも</h2>
         </div>
-        <div className={styles.characterWrap}>
-          <img src={images.characterEgg} alt="キャラクター" />
-          {/* {dressupClothed && <img src={dressupClothed} alt="服" />}
-          {dressupHat && <img src={dressupHat} alt="帽子" />}
-          {dressupBelongings && <img src={dressupBelongings} alt="持ち物" />} */}
+        {/* <div className={styles.characterWrap}> */}
+          <div className={styles.chara_box}>
+          {isEvolved ? (
+            <img src={images.DressupCharacter} alt="キャラクター" />
+          ) : (
+            <img src={images.characterEgg} alt="キャラクター（卵）" />
+          )}
+          {isEvolved && dressupClothed && (
+            <img src={dressupClothed} className={styles.overlay_item} alt="服" />
+          )}
+          {isEvolved && dressupHat && (
+            <img src={dressupHat} className={styles.overlay_item} alt="帽子" />
+          )}
+          {isEvolved && dressupBelongings && (
+            <img src={dressupBelongings} className={styles.overlay_item} alt="持ち物" />
+          )}
           {/* <img src={images.characterLowHands} alt="キャラクター" /> */}
         </div>
       </div>
@@ -72,7 +109,7 @@ export default function Friend_home() {
         <Button className={styles.questBtn} variant="small" onClick={QuestPage}>
           クエスト生成
         </Button>
-        <Button className={styles.subBtn} variant="buttonOther">
+        <Button className={styles.subBtn} variant="buttonOther" onClick={handleDressup}>
           <img src={images.dressUp} alt="着せ替えのアイコン" />
         </Button>
       </div>

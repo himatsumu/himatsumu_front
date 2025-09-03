@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 import { useNavigate } from 'react-router-dom';
 
 export default function CharaEvolution() {
-    const eggs = [images.egg1, images.egg2, images.egg3, images.egg4];  //卵の画像（表示順番も管理）
+    const eggs = [images.egg1, images.egg2, images.egg3, images.egg4,images.characterLowHands];  //卵の画像（表示順番も管理）
     const [eggIndex, setEggIndex] = useState(0);                        //現在表示している卵のインデックスを保存（初期は０）
     const [bgAnimate, setBgAnimate] = useState(false);                  //アニメーションのタイミング制御
     const [text, setText] = useState(false);                            //テキストの表示変更タイミング制御
@@ -23,7 +23,8 @@ export default function CharaEvolution() {
             const timer = setTimeout(() => {
                 setEggIndex((prev) => prev + 1);        //setEggIndex(eggIndex + 1);ではない理由→非同期ですぐ対応されるとは限らないから　prevは前の状態、prev + 1前の状態に1を足す
             }, 1500); // 0.8秒たったらeggIndexに１増やす
-            return () => clearTimeout(timer);           //前回のsettimeoutをキャンセルして二重実行を防ぐ
+            localStorage.setItem("characterImage", images.characterLowHands);
+            return () => clearTimeout(timer);           //前回のsettimeoutをキャンセルして二重実行を防ぐ  
         }
     }, [eggIndex]);     //eggIndexが変わった時だけuseEffect動かすよ
 
