@@ -163,8 +163,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 200px; // 固定
-        height: 300px; // 固定
+        width: 100%; // 親要素に合わせる
+        height: 100%; // 親要素に合わせる
         z-index: 2;
         pointer-events: none;
     }
