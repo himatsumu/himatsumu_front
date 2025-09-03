@@ -12,7 +12,8 @@ export default function Signup() {
 
     const handleSignup = async () => {
         try {
-            const response = await fetch("http://localhost:18080/auth/register", {
+            const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/register`;
+            const response = await fetch(apiUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
