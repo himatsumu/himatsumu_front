@@ -31,8 +31,7 @@ const images = {
     search: './src/assets/search.svg',                                      //虫眼鏡
     arrowForward: './src/assets/arrow_forward_ios.svg',                     //申請リクエスト　>
     human: './src/assets/human.svg',
-    albumFolder: './src/assets/folder.svg'
-    human: './src/assets/human.svg',                                        //申請の人間
+    albumFolder: './src/assets/folder.svg',
     shuffle: "./src/assets/shuffle.svg",                                    //名前ランダム生成
 
     DressupCharacter: "./src/assets/dressup_character.svg",                 //着せ替えキャラ
