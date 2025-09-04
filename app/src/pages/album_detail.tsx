@@ -5,9 +5,10 @@ import images from '../hooks/images';
 import styles from '../styles/album_detail.module.scss';
 
 interface PhotoData {
-    file: File;
-    preview: string;
     name: string;
+    data: string;  // Base64エンコードされた画像データ
+    size: number;
+    type: string;
 }
 
 interface AlbumData {
@@ -30,12 +31,41 @@ export default function AlbumDetail() {
         if (storedAlbums) {
             const parsedAlbums: AlbumData[] = JSON.parse(storedAlbums);
             const targetAlbum = parsedAlbums.find(album => album.date === decodeURIComponent(date));
-            setAlbum(targetAlbum || null);
+            
+            // 古いデータ形式（File/preview）から新しい形式（Base64）への変換チェック
+            if (targetAlbum && targetAlbum.photos.length > 0) {
+                const firstPhoto = targetAlbum.photos[0] as any;
+                if (firstPhoto.file || firstPhoto.preview) {
+                    // 古い形式のデータが残っている場合は空にする
+                    console.warn('古い形式のアルバムデータが検出されました。データをクリアします。');
+                    const updatedAlbum = { ...targetAlbum, photos: [] };
+                    setAlbum(updatedAlbum);
+                    
+                    // ローカルストレージも更新
+                    const updatedAlbums = parsedAlbums.map(a => 
+                        a.date === targetAlbum.date ? updatedAlbum : a
+                    );
+                    localStorage.setItem('albums', JSON.stringify(updatedAlbums));
+                } else {
+                    setAlbum(targetAlbum);
+                }
+            } else {
+                setAlbum(targetAlbum || null);
+            }
         }
     }, [date]);
 
     const handleBack = () => {
         navigate('/album-home');
+    };
+
+    const convertFileToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
     };
 
     const handleAddPhotos = () => {
@@ -45,16 +75,37 @@ export default function AlbumDetail() {
         input.multiple = true;
         input.accept = 'image/*';
         
-        input.onchange = (event) => {
+        input.onchange = async (event) => {
             const files = (event.target as HTMLInputElement).files;
             if (files && files.length > 0) {
-                // 選択されたファイルと現在のアルバムの日付を写真追加画面に渡す
-                navigate('/add-photos', { 
-                    state: { 
-                        files: files,
-                        albumDate: album?.date 
-                    } 
-                });
+                // ファイルをBase64に変換
+                const newPhotos = await Promise.all(
+                    Array.from(files).map(async (file) => ({
+                        name: file.name,
+                        data: await convertFileToBase64(file),
+                        size: file.size,
+                        type: file.type
+                    }))
+                );
+
+                // 既存のアルバムに直接写真を追加
+                if (album) {
+                    const updatedAlbum = {
+                        ...album,
+                        photos: [...album.photos, ...newPhotos]
+                    };
+
+                    // ローカルストレージを更新
+                    const storedAlbums = localStorage.getItem('albums');
+                    if (storedAlbums) {
+                        const parsedAlbums: AlbumData[] = JSON.parse(storedAlbums);
+                        const updatedAlbums = parsedAlbums.map(a => 
+                            a.date === album.date ? updatedAlbum : a
+                        );
+                        localStorage.setItem('albums', JSON.stringify(updatedAlbums));
+                        setAlbum(updatedAlbum);
+                    }
+                }
             }
         };
         
@@ -147,7 +198,7 @@ export default function AlbumDetail() {
                                 onClick={() => handlePhotoSelect(index)}
                             >
                                 <img 
-                                    src={photo.preview} 
+                                    src={photo.data} 
                                     alt={`写真 ${index + 1}`}
                                 />
                                 {isDeleteMode && (
