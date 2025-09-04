@@ -27,7 +27,7 @@ export default function UserSetup() {
                 birthday: userBirthday,
             };
 
-            const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/user/signup`;
+            const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/user/signup`;
             const response = await fetch(apiUrl, {
                 method: "POST",
                 headers: {
