@@ -54,7 +54,26 @@ export default function AddPhotos() {
         };
     }, [photos]);
 
-    const handleAddToAlbum = () => {
+    const convertFileToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleAddToAlbum = async () => {
+        // 写真をBase64に変換
+        const photosWithBase64 = await Promise.all(
+            photos.map(async (photo) => ({
+                name: photo.file.name,
+                data: await convertFileToBase64(photo.file),
+                size: photo.file.size,
+                type: photo.file.type
+            }))
+        );
+
         if (albumDate) {
             // 既存のアルバムに写真を追加
             const existingAlbums = JSON.parse(localStorage.getItem('albums') || '[]');
@@ -64,11 +83,7 @@ export default function AddPhotos() {
                         ...album,
                         photos: [
                             ...album.photos,
-                            ...photos.map(photo => ({
-                                file: photo.file,
-                                preview: photo.preview,
-                                name: photo.file.name
-                            }))
+                            ...photosWithBase64
                         ]
                     };
                 }
@@ -82,11 +97,7 @@ export default function AddPhotos() {
             // 新しいアルバムを作成
             const albumData = {
                 date: currentDate,
-                photos: photos.map(photo => ({
-                    file: photo.file,
-                    preview: photo.preview,
-                    name: photo.file.name
-                }))
+                photos: photosWithBase64
             };
             
             const existingAlbums = JSON.parse(localStorage.getItem('albums') || '[]');
