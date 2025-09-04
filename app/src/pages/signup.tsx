@@ -4,11 +4,12 @@ import styles from "../styles/login.module.scss";
 import { Button } from '../components/Button';
 import { useState } from "react";
 //import { useEffect, useState } from "react";
-//import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSignup = async () => {
         try {
@@ -26,9 +27,12 @@ export default function Signup() {
 
             const data = await response.json();
 
+            
+
             if (response.ok) {
                 console.log(data)
                 // ここで画面遷移させたり、UUIDを保存したり
+                navigate('/login');
             } else {
                 alert(`エラー: ${data.error || data.message || "登録に失敗しました"}`);
             }
