@@ -12,8 +12,10 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret
       containers:
         - name: frontend-container
-          image: ghcr.io/your-username/your-repo:latest
+          image: ghcr.io/himatsumu/himatsumu_front:latest
           ports:
             - containerPort: 80

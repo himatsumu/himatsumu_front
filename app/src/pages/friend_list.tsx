@@ -42,8 +42,7 @@ export default function Friend_list() {
                 throw new Error('認証トークンが見つかりません');
             }
 
-            const go_port = import.meta.env.VITE_GO_PORT;
-            const apiUrl = `http://localhost:${go_port}/auth/friend/`;
+            const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/friend/`;
             console.log('APIリクエスト開始:', apiUrl);
             
             const response = await fetch(apiUrl, {

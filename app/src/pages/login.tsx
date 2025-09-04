@@ -17,7 +17,8 @@ export default function Login() {
     //JWTを使ってユーザー登録状況をチェック
     const checkUser = async (token: string) => {
         try {
-            const response = await fetch("http://localhost:8888/auth/user/", {
+            const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/user/`;
+            const response = await fetch(apiUrl, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -44,7 +45,8 @@ export default function Login() {
     // useEffect(() => {
     //     const fetchToken = async () => {
     //         try {
-    //             const res = await fetch("http://localhost:18080/auth/user/", {
+    //             const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/user/`;
+    //             const res = await fetch(apiUrl, {
     //                 credentials: "include", // cookie送るために必要
     //             });
     //             const data = await res.json();
@@ -67,7 +69,8 @@ export default function Login() {
     //メールとパスワードでログイン
     const handleLogin = async () => {
         try {
-            const response = await fetch("http://localhost:18080/auth/login", {
+            const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/login`;
+            const response = await fetch(apiUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,10 +100,13 @@ export default function Login() {
 
     //Googleログイン
     // const handleGoogleLogin = () => {
-    //     window.location.href = "http://localhost:18080/auth/google";
+    //     const apiUrl = `${import.meta.env.VITE_AUTH_BASE_URL}/auth/google`;
+    //     window.location.href = apiUrl;
 
     //     //     //     try {
-    //     //     //         const res = await fetch("http://localhost:18080/auth/google");
+    //     //     //         const res = await fetch(apiUrl, {
+    //     //     //             credentials: "include",
+    //     //     //         });
     //     //     //         const data = await res.json();
 
     //     //     //         if (data.url) {

@@ -1,0 +1,42 @@
+@use '../styles/common' as *;
+@use '../styles/common.scss' as *;
+
+@mixin item-box {
+    width: 100px;
+    height: 100px;
+    box-shadow: inset 0 0 8px 0 $drop_shadow;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &.selected {
+        border: 4px solid $main;
+        box-shadow: inset 0 0 24px 0 $drop_shadow;
+    }
+
+    img {
+        max-width: 65%; // 枠に合わせて縮小
+        max-height: 80%; // 枠に収まるように
+        object-fit: contain;
+        padding: 4px 0 0;
+    }
+
+    .price_box {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 2rem;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .coin_num {
+            font-size: $md;
+            font-weight: bold;
+            color: $text;
+        }
+    }
+}
