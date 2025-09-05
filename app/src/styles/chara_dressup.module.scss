@@ -211,6 +211,11 @@
         }
     }
 
+    .dress_up_menu{
+        position:fixed;
+        bottom: 0;
+        width: 100%;
+    }
 
 
     //親タブ
@@ -220,6 +225,7 @@
         white-space: nowrap; // 折り返さない
         background-color: $sub;
         margin-top: 25px;
+        
 
 
         .tab_item {
